@@ -46,6 +46,9 @@ hs_err_pid*
 .idea/**/uiDesigner.xml
 .idea/**/dbnavigator.xml
 
+#idea
+.idea
+
 # Gradle
 .idea/**/gradle.xml
 .idea/**/libraries
@@ -413,6 +416,9 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+
+# iml
+*.iml
 
 # Cake - Uncomment if you are using it
 # tools/**
