@@ -11,7 +11,7 @@ public class Monster extends Character{
     public Monster(int Hp, String name, int power){
         super(Hp,name,power);
     }
-    
+
     @Override
     public void basicAttack(Character target) {
         //A remplir

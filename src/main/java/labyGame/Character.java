@@ -1,5 +1,6 @@
 package labyGame;
 
+import org.jetbrains.annotations.NotNull;
 import java.util.Objects;
 
 public abstract class Character {
@@ -30,7 +31,7 @@ public abstract class Character {
      * @param sentence that will be yelled
      * @return the same sentence with upper case character.
      */
-    public String yell(String sentence){
+    public String yell(@NotNull String sentence){
         return sentence.toUpperCase();
     }
 
@@ -39,7 +40,7 @@ public abstract class Character {
      * @return yes if Hp are under or equal to 0 otherwise false;
      */
     public boolean isDead(){
-        return this.hp <= 0;
+        return hp <= 0;
     }
 
     /**
