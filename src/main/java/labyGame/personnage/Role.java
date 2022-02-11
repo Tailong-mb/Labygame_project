@@ -1,4 +1,4 @@
-package labyGame;
+package labyGame.personnage;
 
 import org.jetbrains.annotations.NotNull;
 import java.util.Objects;

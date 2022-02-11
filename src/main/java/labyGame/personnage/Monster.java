@@ -1,14 +1,13 @@
-package labyGame;
+package labyGame.personnage;
 
-public class Wizard extends Role {
-
+public class Monster extends Role {
     //All args constructor
-    public Wizard(int hp, CharacterState status, String name, int power){
+    public Monster(int hp, CharacterState status, String name, int power){
         super(hp,name, power, status);
     }
 
     //Basic status
-    public Wizard(int hp, String name, int power){
+    public Monster(int hp, String name, int power){
         super(hp,name,power);
     }
 
