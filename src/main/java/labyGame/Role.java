@@ -3,25 +3,25 @@ package labyGame;
 import org.jetbrains.annotations.NotNull;
 import java.util.Objects;
 
-public abstract class Character {
+public abstract class Role {
     protected int hp;
-    protected characterState currentStatus;
+    protected CharacterState currentStatus;
     protected String name;
     protected int power;
 
 
     //All args constructor
-    public Character(int Hp, String name, int power, characterState currentStatus){
-        this.hp = Hp;
+    public Role(int hp, String name, int power, CharacterState currentStatus){
+        this.hp = hp;
         this.currentStatus = currentStatus;
         this.name = name;
         this.power = power;
     }
 
     //Basic constructor
-    public Character(int Hp, String name, int power){
-        this.hp = Hp;
-        this.currentStatus = characterState.NORMAL;
+    public Role(int hp, String name, int power){
+        this.hp = hp;
+        this.currentStatus = CharacterState.NORMAL;
         this.name = name;
         this.power = power;
     }
@@ -37,7 +37,7 @@ public abstract class Character {
 
     /**
      * Check is the character is dead or not.
-     * @return yes if Hp are under or equal to 0 otherwise false;
+     * @return yes if hp are under or equal to 0 otherwise false;
      */
     public boolean isDead(){
         return hp <= 0;
@@ -47,13 +47,13 @@ public abstract class Character {
      * Principal method for a character to attack
      * @param target of the attack
      */
-    public abstract void basicAttack(Character target);
+    public abstract void basicAttack(Role target);
 
     /**
      * Secret attack method (should have a cool down)
      * @param target of the secret attack
      */
-    public abstract void secretAttack(Character target);
+    public abstract void secretAttack(Role target);
 
     /**
      * Charter will talk with some specificities
@@ -71,7 +71,7 @@ public abstract class Character {
         return hp;
     }
 
-    public characterState getCurrentStatus() {
+    public CharacterState getCurrentStatus() {
         return currentStatus;
     }
 
@@ -83,7 +83,7 @@ public abstract class Character {
         return name;
     }
 
-    public void setCurrentStatus(characterState currentStatus) {
+    public void setCurrentStatus(CharacterState currentStatus) {
         this.currentStatus = currentStatus;
     }
 
@@ -102,8 +102,8 @@ public abstract class Character {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Character character)) return false;
-        return getPower() == character.getPower() && getName().equals(character.getName());
+        if (!(o instanceof Role role)) return false;
+        return getPower() == role.getPower() && getName().equals(role.getName());
     }
 
     @Override

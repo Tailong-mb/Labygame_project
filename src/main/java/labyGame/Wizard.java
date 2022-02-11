@@ -1,19 +1,19 @@
 package labyGame;
 
-public class Wizard extends Character {
+public class Wizard extends Role {
 
     //All args constructor
-    public Wizard(int Hp, characterState status,String Name,int Power){
-        super(Hp,Name, Power, status);
+    public Wizard(int hp, CharacterState status, String name, int power){
+        super(hp,name, power, status);
     }
 
     //Basic status
-    public Wizard(int Hp, String name, int power){
-        super(Hp,name,power);
+    public Wizard(int hp, String name, int power){
+        super(hp,name,power);
     }
 
     @Override
-    public void basicAttack(Character target) {
+    public void basicAttack(Role target) {
         //A remplir
     }
 
@@ -30,7 +30,7 @@ public class Wizard extends Character {
     }
 
     @Override
-    public void secretAttack(Character target) {
+    public void secretAttack(Role target) {
         //a remplir
     }
 }

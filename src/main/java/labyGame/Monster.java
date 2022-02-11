@@ -1,19 +1,18 @@
 package labyGame;
 
-public class Monster extends Character{
-
+public class Monster extends Role {
     //All args constructor
-    public Monster(int Hp, characterState status,String Name,int Power){
-        super(Hp,Name, Power, status);
+    public Monster(int hp, CharacterState status, String name, int power){
+        super(hp,name, power, status);
     }
 
     //Basic status
-    public Monster(int Hp, String name, int power){
-        super(Hp,name,power);
+    public Monster(int hp, String name, int power){
+        super(hp,name,power);
     }
 
     @Override
-    public void basicAttack(Character target) {
+    public void basicAttack(Role target) {
         //A remplir
     }
 
@@ -30,7 +29,7 @@ public class Monster extends Character{
     }
 
     @Override
-    public void secretAttack(Character target) {
+    public void secretAttack(Role target) {
         //a remplir
     }
 }

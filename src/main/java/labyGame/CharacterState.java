@@ -1,6 +1,6 @@
 package labyGame;
 
-public enum characterState {
+public enum CharacterState {
     NORMAL,
     SICK,
     WEARY,
