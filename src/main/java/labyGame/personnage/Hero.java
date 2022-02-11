@@ -1,6 +1,6 @@
 package labyGame.personnage;
 
-import items.Item;
+import labyGame.items.Item;
 
 import java.util.HashMap;
 
