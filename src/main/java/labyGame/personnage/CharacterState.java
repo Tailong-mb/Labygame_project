@@ -1,4 +1,4 @@
-package labyGame;
+package labyGame.personnage;
 
 public enum CharacterState {
     NORMAL,

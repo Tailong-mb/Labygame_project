@@ -1,14 +1,16 @@
-package labyGame;
+package labyGame.personnage;
+
+import items.Item;
 
 import java.util.HashMap;
 
 public class Hero extends Role {
-    private HashMap<String,Integer> myItem;
+    private HashMap<Item,Integer> myItem;
     private int positionX;
     private int positionY;
 
     //All args constructor
-    public Hero(int hp, CharacterState status, String name, int power, int positionX, int positionY, HashMap<String, Integer> myItem) {
+    public Hero(int hp, CharacterState status, String name, int power, int positionX, int positionY, HashMap<Item, Integer> myItem) {
         super(hp,name, power, status);
         this.myItem = myItem;
         this.positionX = positionX;
@@ -47,7 +49,7 @@ public class Hero extends Role {
         return positionY;
     }
 
-    public HashMap<String, Integer> getMyItem() {
+    public HashMap<Item, Integer> getMyItem() {
         return myItem;
     }
 
@@ -59,7 +61,7 @@ public class Hero extends Role {
         this.positionY = positionY;
     }
 
-    public void setMyItem(HashMap<String, Integer> myItem) {
+    public void setMyItem(HashMap<Item, Integer> myItem) {
         this.myItem = myItem;
     }
 
