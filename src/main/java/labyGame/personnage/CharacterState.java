@@ -4,5 +4,5 @@ public enum CharacterState {
     NORMAL,
     SICK,
     WEARY,
-    POISON;
+    POISON
 }

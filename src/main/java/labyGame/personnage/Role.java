@@ -8,6 +8,8 @@ public abstract class Role {
     protected CharacterState currentStatus;
     protected String name;
     protected int power;
+    protected int positionX;
+    protected int positionY;
 
 
     //All args constructor
@@ -97,6 +99,22 @@ public abstract class Role {
 
     public void setPower(int power) {
         this.power = power;
+    }
+
+    public void setPositionY(int positionY) {
+        this.positionY = positionY;
+    }
+
+    public void setPositionX(int positionX) {
+        this.positionX = positionX;
+    }
+
+    public int getPositionY() {
+        return positionY;
+    }
+
+    public int getPositionX() {
+        return positionX;
     }
 
     @Override

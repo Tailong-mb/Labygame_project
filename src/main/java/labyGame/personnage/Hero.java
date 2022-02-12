@@ -6,8 +6,6 @@ import java.util.HashMap;
 
 public class Hero extends Role {
     private HashMap<Item,Integer> myItem;
-    private int positionX;
-    private int positionY;
 
     //All args constructor
     public Hero(int hp, CharacterState status, String name, int power, int positionX, int positionY, HashMap<Item, Integer> myItem) {
@@ -41,24 +39,8 @@ public class Hero extends Role {
 
     //get and set method
 
-    public int getPositionX() {
-        return positionX;
-    }
-
-    public int getPositionY() {
-        return positionY;
-    }
-
     public HashMap<Item, Integer> getMyItem() {
         return myItem;
-    }
-
-    public void setPositionX(int positionX) {
-        this.positionX = positionX;
-    }
-
-    public void setPositionY(int positionY) {
-        this.positionY = positionY;
     }
 
     public void setMyItem(HashMap<Item, Integer> myItem) {
