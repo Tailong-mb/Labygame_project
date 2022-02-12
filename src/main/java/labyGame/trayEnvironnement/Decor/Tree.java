@@ -1,5 +1,5 @@
 package labyGame.trayEnvironnement.Decor;
 
-public class Barrel implements DecorInterface {
+public class Tree implements DecorInterface {
     // a remplir
 }

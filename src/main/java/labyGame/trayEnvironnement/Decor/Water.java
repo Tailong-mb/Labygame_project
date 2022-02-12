@@ -1,6 +1,6 @@
 package labyGame.trayEnvironnement.Decor;
 
 
-public class Table implements DecorInterface {
+public class Water implements DecorInterface {
     // a remplir
 }
