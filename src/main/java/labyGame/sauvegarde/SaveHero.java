@@ -18,10 +18,10 @@ public class SaveHero {
             myWriter.writeObject(heroSave);
             myWriter.close();
         }catch (IOException e){
-            System.out.println("An IOEXCEPTION error occured");
+            System.out.println("An IOEXCEPTION error occurred");
             e.printStackTrace();
         } catch (Exception z){
-            System.out.println("An Exception error occured");
+            System.out.println("An Exception error occurred");
         }
     }
 
@@ -38,11 +38,11 @@ public class SaveHero {
             heroSaved = (Hero) myReader.readObject();
             myReader.close();
         } catch (IOException e) {
-            System.out.println("An IOEXCEPTION error occured");
+            System.out.println("An IOEXCEPTION error occurred");
             e.printStackTrace();
 
         } catch (Exception z) {
-            System.out.println("An Exception error occured");
+            System.out.println("An Exception error occurred");
         }
         if(heroSaved == null)
             throw new IllegalAccessError("No save");
