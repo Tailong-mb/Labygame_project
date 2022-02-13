@@ -4,15 +4,15 @@ public class Monster extends Role {
     //All args constructor
     public Monster(int hp, CharacterState status, String name, int power, int positionX, int positionY){
         super(hp,name, power, status);
-        this.positionX = positionX;
-        this.positionY = positionY;
+        super.positionX = positionX;
+        super.positionY = positionY;
     }
 
     //Basic status
     public Monster(int hp, String name, int power, int positionX, int positionY){
         super(hp,name,power);
-        this.positionX = positionX;
-        this.positionY = positionY;
+        super.positionX = positionX;
+        super.positionY = positionY;
     }
 
     @Override

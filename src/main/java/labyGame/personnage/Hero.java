@@ -2,17 +2,18 @@ package labyGame.personnage;
 
 import labyGame.items.Item;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class Hero extends Role {
+public class Hero extends Role implements Serializable {
     private HashMap<Item,Integer> myItem;
 
     //All args constructor
     public Hero(int hp, CharacterState status, String name, int power, int positionX, int positionY, HashMap<Item, Integer> myItem) {
         super(hp,name, power, status);
         this.myItem = myItem;
-        this.positionX = positionX;
-        this.positionY = positionY;
+        super.positionX = positionX;
+        super.positionY = positionY;
     }
 
     @Override
