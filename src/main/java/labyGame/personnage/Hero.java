@@ -2,9 +2,10 @@ package labyGame.personnage;
 
 import items.Item;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class Hero extends Role {
+public class Hero extends Role implements Serializable {
     private HashMap<Item,Integer> myItem;
     private int positionX;
     private int positionY;
