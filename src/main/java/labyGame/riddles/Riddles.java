@@ -17,7 +17,6 @@ public enum Riddles {
 
     final String rid;
     final String ans;
-    String answer;
 
     Riddles(String rid, String ans) {
         this.rid = rid;
