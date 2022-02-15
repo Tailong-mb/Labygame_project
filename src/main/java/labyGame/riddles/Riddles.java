@@ -32,7 +32,7 @@ public enum Riddles {
         this.answer = answer;
     }
 
-    public boolean AnsRid(String answer) {
+    public boolean AnsRid() {
         for (Riddles Ans : Riddles.values()) {
             if (Ans.Rid.equalsIgnoreCase(answer))
                 return true;
