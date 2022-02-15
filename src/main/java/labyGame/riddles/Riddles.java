@@ -15,13 +15,13 @@ public enum Riddles {
     riddleEleven("Where does today come before yesterday?", "the dictionary"),
     riddleTwelve("If you’ve got me, you want to share me; if you share me, you haven’t kept me. What am I?", "a secret");
 
-    final String Rid;
-    final String Ans;
+    final String rid;
+    final String ans;
     String answer;
 
     Riddles(String rid, String ans) {
-        this.Rid = rid;
-        this.Ans = ans;
+        this.rid = rid;
+        this.ans = ans;
     }
 
     public boolean ansVerification(String answer, Riddles question) {
@@ -29,11 +29,11 @@ public enum Riddles {
     }
     
     public String getRid() {
-        return Rid;
+        return rid;
     }
 
     public String getAns(){
-        return Ans;
+        return ans;
     }
 
 }
