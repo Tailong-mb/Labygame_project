@@ -4,5 +4,5 @@ public enum ItemName {
     ANTIDOTE,
     HEALPOTION,
     KEY,
-    MAGICKEY
+    MAGICKEY;
 }
