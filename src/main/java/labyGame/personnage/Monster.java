@@ -1,4 +1,6 @@
 package labyGame.personnage;
+import java.util.Random;
+
 
 public class Monster extends Role {
     //All args constructor
@@ -17,23 +19,26 @@ public class Monster extends Role {
 
     @Override
     public void basicAttack(Role target) {
-        //A remplir
+        Random rand = new Random();
+        target.setHp(-rand.nextInt(power - power/2+2) + power/2+2);
     }
 
     @Override
     public String toString() {
-        //A remplir
-        return null;
+        return String.format("My name is %s, I'm one of the labyrinth's guardians !", name);
     }
 
     @Override
     public String basicTalk(String sentence) {
-        //a remplir
-        return null;
+        return sentence.substring(0,1).toUpperCase() + toString().substring(1);
     }
 
     @Override
     public void secretAttack(Role target) {
-        //a remplir
+        Random rand = new Random();
+        if (CharacterState.NORMAL == currentStatus)
+            target.setHp(-rand.nextInt(power*power - power*10) + power *10);
+        else
+            hp -= power;
     }
 }

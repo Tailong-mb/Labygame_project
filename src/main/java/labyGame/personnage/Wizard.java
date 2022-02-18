@@ -1,5 +1,5 @@
 package labyGame.personnage;
-
+import labyGame.riddles.Riddles;
 import labyGame.personnage.CharacterState;
 import labyGame.personnage.Role;
 
@@ -26,8 +26,7 @@ public class Wizard extends Role {
 
     @Override
     public String toString() {
-        //A remplir
-        return null;
+        return String.format("My name is %s, I can help you if you answer correctly to my riddle.", name);
     }
 
     @Override
