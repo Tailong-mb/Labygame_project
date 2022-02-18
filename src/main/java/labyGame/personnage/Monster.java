@@ -20,7 +20,7 @@ public class Monster extends Role {
     @Override
     public void basicAttack(Role target) {
         Random rand = new Random();
-        target.setHp(-rand.nextInt(power - power/2+2) + power/2+2);
+        target.setHp(-rand.nextInt(power - power/3+2) + power/3+2);
     }
 
     @Override
@@ -37,8 +37,6 @@ public class Monster extends Role {
     public void secretAttack(Role target) {
         Random rand = new Random();
         if (CharacterState.NORMAL == currentStatus)
-            target.setHp(-rand.nextInt(power*power - power*10) + power *10);
-        else
-            hp -= power;
+            target.setHp(-rand.nextInt(power * power - power * 10) + power * 10);
     }
 }
