@@ -64,6 +64,26 @@ public class Hero extends Role implements Serializable {
         myItem.put(itemTargeted, myItem.get(itemTargeted) - 1);
     }
 
+    /**
+     * this method is for apply the effects when the currentStatus isn't NORMAL
+     */
+    public void stateEffect() {
+        while (currentStatus != CharacterState.NORMAL) {
+            switch (currentStatus) {
+                case POISON:
+                    hp -= 10;
+                    break;
+                case SICK:
+                    hp -= 5;
+                    power -= 5;
+                    break;
+                case WEARY:
+                    power -= 10;
+                    break;
+            }
+        }
+    }
+
     //get and set method
 
     public HashMap<Item, Integer> getMyItem() {
