@@ -494,3 +494,5 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+src/main/java/labyGame/personnage/Hero.java
+*.java

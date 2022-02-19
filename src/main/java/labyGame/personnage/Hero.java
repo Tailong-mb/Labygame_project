@@ -68,15 +68,15 @@ public class Hero extends Role implements Serializable {
      * this method is for apply the effects when the currentStatus isn't NORMAL
      */
     public void stateEffect() {
-            switch (currentStatus) {
-                case POISON -> hp -= 10;
-                case SICK -> {
-                    hp -= 5;
-                    power -= 5;
-                }
-                case WEARY -> power -= 10;
-                default -> hp += 2;
+        switch (currentStatus) {
+            case POISON -> hp -= 10;
+            case SICK -> {
+                hp -= 5;
+                power -= 5;
             }
+            case WEARY -> power -= 10;
+            default -> hp += 2;
+        }
     }
 
     //get and set method
@@ -88,6 +88,5 @@ public class Hero extends Role implements Serializable {
     public void setMyItem(HashMap<Item, Integer> myItem) {
         this.myItem = myItem;
     }
-
 }
 
