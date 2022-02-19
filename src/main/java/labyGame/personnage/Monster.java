@@ -1,4 +1,5 @@
 package labyGame.personnage;
+
 import java.util.Random;
 
 
