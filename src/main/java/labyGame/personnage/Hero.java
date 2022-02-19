@@ -68,20 +68,15 @@ public class Hero extends Role implements Serializable {
      * this method is for apply the effects when the currentStatus isn't NORMAL
      */
     public void stateEffect() {
-        while (currentStatus != CharacterState.NORMAL) {
             switch (currentStatus) {
-                case POISON:
-                    hp -= 10;
-                    break;
-                case SICK:
+                case POISON -> hp -= 10;
+                case SICK -> {
                     hp -= 5;
                     power -= 5;
-                    break;
-                case WEARY:
-                    power -= 10;
-                    break;
+                }
+                case WEARY -> power -= 10;
+                default -> hp += 2;
             }
-        }
     }
 
     //get and set method
