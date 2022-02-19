@@ -1,12 +1,13 @@
 package labyGame.personnage;
 
 import labyGame.riddles.Riddles;
-import java.util.HashMap;
+
+import java.util.Locale;
 import java.util.Random;
 
 public class Wizard extends Role {
 
-    private HashMap<Riddles, String> wizardRiddles;
+    private Riddles currentRiddle;
 
     //All args constructor
     public Wizard(int hp, CharacterState status, String name, int power, int positionX, int positionY){
@@ -46,11 +47,21 @@ public class Wizard extends Role {
     }
 
     /**
-     * method for ask riddle
-     * @param rid the riddle ask by the wizard
+     * Method for ask riddle
      * @return a riddle
      */
-    public String askQuestion(Riddles rid) {
-        return wizardRiddles.get(rid);
+    public String askQuestion() {
+        Random rand = new Random();
+        currentRiddle = Riddles.values()[rand.nextInt(12)];
+        return currentRiddle.getRid();
+    }
+
+    /**
+     * Check if the answer is correct
+     * @param answer the answer
+     * @return true if it's right else false.
+     */
+    public boolean ansVerification(String answer) {
+        return currentRiddle.getAns().equals(answer.trim().toLowerCase());
     }
 }
