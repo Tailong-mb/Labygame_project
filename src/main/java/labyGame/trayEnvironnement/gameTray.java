@@ -1,5 +1,12 @@
 package labyGame.trayEnvironnement;
 
 public class gameTray {
-    // a remplir
+
+    private gameTrayPiece[][] gameBoard;
+
+    //Constructor
+    public gameTray(){
+        this.gameBoard = new gameTrayPiece[5][5];
+    }
+
 }

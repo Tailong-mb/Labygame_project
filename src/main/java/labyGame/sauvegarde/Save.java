@@ -1,7 +1,7 @@
 package labyGame.sauvegarde;
 
 import labyGame.personnage.Hero;
-import labyGame.trayEnvironnement.labyTray;
+import labyGame.trayEnvironnement.gameTray;
 
 import java.io.*;
 
@@ -14,7 +14,7 @@ public class Save {
     public static void saveObject(Object objectToSave){
         try{
             File outFile;
-            if (objectToSave instanceof labyTray)
+            if (objectToSave instanceof gameTray)
                 outFile = new File("TraySave.txt");
             else
                 outFile = new File("HeroSave.txt");
@@ -34,13 +34,13 @@ public class Save {
      * This function recovers the tray's backup.
      * @return the tray saved.
      */
-    public static labyTray recuperationSaveTray(){
-        labyTray traySave = null;
+    public static gameTray recuperationSaveTray(){
+        gameTray traySave = null;
         try {
             File outFile = new File("traySave.txt");
             InputStream file = new FileInputStream(outFile);
             ObjectInputStream myReader = new ObjectInputStream(file);
-            traySave = (labyTray)  myReader.readObject();
+            traySave = (gameTray)  myReader.readObject();
             myReader.close();
         } catch (IOException e) {
             System.out.println("An IOEXCEPTION error occurred");
