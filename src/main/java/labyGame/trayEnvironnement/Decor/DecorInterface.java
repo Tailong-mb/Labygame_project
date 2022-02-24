@@ -7,7 +7,7 @@ public interface DecorInterface {
     /**
      * Check if the decor is destroyed or not.
      */
-    void isDestroyed();
+    boolean isDestroyed();
 
     /**
      * Some decor canMove with some conditions.
