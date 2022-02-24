@@ -12,6 +12,7 @@ public class Trap implements DecorInterface {
         this.hp = hp;
     }
 
+    @Override
     public boolean isDestroyed() {
         if(hp == 0)
             return false;
@@ -19,10 +20,12 @@ public class Trap implements DecorInterface {
             return true;
     }
 
+    @Override
     public boolean canMove() {
         return true;
     }
 
+    @Override
     public void hurtHero(Hero hero) {
         hero.setHp(-5);
     }
