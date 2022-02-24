@@ -5,19 +5,15 @@ import labyGame.personnage.Hero;
 
 public class Water implements DecorInterface {
 
-    @Override
-    public void isDestroyed(){
-        //a remplir
-    }
-
-    @Override
-    public boolean canMove() {
-        //a remplir
+    public boolean isDestroyed(){
         return false;
     }
 
-    @Override
+    public boolean canMove() {
+        return false;
+    }
+
     public void hurtHero(Hero hero) {
-        //a remplir
+        hero.setHp(0);
     }
 }
