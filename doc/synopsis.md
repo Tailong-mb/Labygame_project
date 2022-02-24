@@ -4,7 +4,7 @@
 
 🌲🌲🌲🌲🌲🌲🌲🌲🌲🌲🌲🌲🌲🌲🌲🌲🌲🌲🌲🌲🌲🌲🌲
 
-A forgotten hero wakes up after a long sleep in an unknow place.
+A forgotten hero wakes up after a long sleep in an unknown place.
 Deprived of his former strength, he will have to get out of this place which turns out to be a labyrinth.
 In this mysterious place, monsters 🧟 and magicians 🧙‍ will challenge his physical and intellectual strength. 
 One mistake, and it could be the end ☠️.
