@@ -1,6 +1,5 @@
 package labyGame.personnage;
 
-import org.jetbrains.annotations.NotNull;
 import java.util.Objects;
 
 public abstract class Role {
@@ -33,7 +32,7 @@ public abstract class Role {
      * @param sentence that will be yelled
      * @return the same sentence with upper case character.
      */
-    public String yell(@NotNull String sentence){
+    public String yell(String sentence){
         return sentence.toUpperCase();
     }
 
