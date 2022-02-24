@@ -2,7 +2,7 @@ package labyGame.trayEnvironnement.Decor;
 
 import labyGame.personnage.Hero;
 
-public class Box implements DecorInterface {
+public class Trap implements DecorInterface {
 
     @Override
     public void isDestroyed(){
