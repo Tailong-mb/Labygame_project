@@ -4,19 +4,34 @@ import labyGame.personnage.Hero;
 
 public class Trap implements DecorInterface {
 
-    @Override
-    public void isDestroyed(){
-        //a remplir
+    int hp;
+    String name;
+
+    Trap(String name, int hp){
+        this.name = name;
+        this.hp = hp;
     }
 
-    @Override
+    public boolean isDestroyed() {
+        if(hp == 0)
+            return false;
+        else
+            return true;
+    }
+
     public boolean canMove() {
-        //a remplir
-        return false;
+        return true;
     }
 
-    @Override
     public void hurtHero(Hero hero) {
-        //a remplir
+        hero.setHp(-5);
+    }
+
+    public int getHp(){
+        return hp;
+    }
+
+    public int setHp(int hp){
+        this.hp = hp;
     }
 }
