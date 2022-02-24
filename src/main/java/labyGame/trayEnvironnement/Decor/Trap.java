@@ -34,7 +34,7 @@ public class Trap implements DecorInterface {
         return hp;
     }
 
-    public int setHp(int hp){
+    public void setHp(int hp){
         this.hp = hp;
     }
 }
