@@ -7,7 +7,7 @@ public class Trap implements DecorInterface {
     int hp;
     String name;
 
-    Trap(String name, int hp){
+    public Trap(String name, int hp){
         this.name = name;
         this.hp = hp;
     }
