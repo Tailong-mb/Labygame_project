@@ -15,9 +15,9 @@ public class Trap implements DecorInterface {
     @Override
     public boolean isDestroyed() {
         if(hp <= 0)
-            return false;
-        else
             return true;
+        else
+            return false;
     }
 
     @Override
