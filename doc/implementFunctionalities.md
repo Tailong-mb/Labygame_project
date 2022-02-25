@@ -1,4 +1,4 @@
-#implementFunctionalities
+# Implement Functionalities
 
 In the purpose to create the great video game which will be LabyGame, we need a few functionalities. 
 
