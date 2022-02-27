@@ -2,7 +2,6 @@ package labyGame.personnage;
 
 import labyGame.riddles.Riddles;
 
-import java.util.Locale;
 import java.util.Random;
 
 public class Wizard extends Role {
