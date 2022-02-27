@@ -62,6 +62,6 @@ public class Wizard extends Role {
      * @return true if it's right else false.
      */
     public boolean ansVerification(String answer) {
-        return answer.matches(String.format(("(.*)%s(.*)"),currentRiddle.getAns()));
+        return answer.toLowerCase().matches(String.format(("(.*)%s(.*)"),currentRiddle.getAns().toLowerCase()));
     }
 }
