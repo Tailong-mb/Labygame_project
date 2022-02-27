@@ -18,10 +18,11 @@ public class Hero extends Role implements Serializable {
         super.positionY = positionY;
     }
 
-    @Override
-    public void basicAttack(Role target) {
-        Random rand = new Random();
-        target.setHp(-rand.nextInt(power - power/2+2) + power/2+2);
+    //Constructor without Item
+    public Hero(int hp, CharacterState status, String name, int power, int positionX, int positionY) {
+        super(hp,name, power, status);
+        super.positionX = positionX;
+        super.positionY = positionY;
     }
 
     @Override
@@ -31,14 +32,20 @@ public class Hero extends Role implements Serializable {
 
     @Override
     public String basicTalk(String sentence) {
-        return sentence.substring(0,1).toUpperCase() + toString().substring(1);
+        return sentence.substring(0,1).toUpperCase() + sentence.substring(1).toLowerCase();
+    }
+
+    @Override
+    public void basicAttack(Role target) {
+        Random rand = new Random();
+        target.setHp(target.getHp() - rand.nextInt(power) - power/2);
     }
 
     @Override
     public void secretAttack(Role target) {
         Random rand = new Random();
         if (CharacterState.NORMAL == currentStatus)
-            target.setHp(-rand.nextInt(power*power - power*10) + power *10);
+            target.setHp(target.getHp() - rand.nextInt(power*power - power*9) - power *10);
         else
             hp -= power; //He hurts himself because he can't use his secret attack (not the good statement).
     }
@@ -57,11 +64,13 @@ public class Hero extends Role implements Serializable {
      * @param itemTargeted the item the hero wants to use.
      */
     public void useItem(Item itemTargeted){
-        if (itemTargeted.name() == ItemName.ANTIDOTE)
-            currentStatus = CharacterState.NORMAL;
-        else
-            hp += itemTargeted.bonus();
-        myItem.put(itemTargeted, myItem.get(itemTargeted) - 1);
+        if(canUseItem(itemTargeted)) {
+            if (itemTargeted.name() == ItemName.ANTIDOTE)
+                currentStatus = CharacterState.NORMAL;
+            else
+                hp += itemTargeted.bonus();
+            myItem.put(itemTargeted, myItem.get(itemTargeted) - 1);
+        }
     }
 
     /**
@@ -74,7 +83,7 @@ public class Hero extends Role implements Serializable {
                 hp -= 5;
                 power -= 5;
             }
-            case WEARY -> power -= 10;
+            case WEARY -> power -= 3;
             default -> hp += 2;
         }
     }
