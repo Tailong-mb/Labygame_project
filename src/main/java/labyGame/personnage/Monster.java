@@ -1,8 +1,6 @@
 package labyGame.personnage;
 
-import java.util.Locale;
 import java.util.Random;
-
 
 public class Monster extends Role {
     //All args constructor

@@ -2,7 +2,6 @@ package labyGame.personnage;
 
 import labyGame.riddles.Riddles;
 
-import java.util.Locale;
 import java.util.Random;
 
 public class Wizard extends Role {
@@ -62,10 +61,6 @@ public class Wizard extends Role {
      * @return true if it's right else false.
      */
     public boolean ansVerification(String answer) {
-<<<<<<< HEAD
-        return answer.matches(String.format(("(.*)%s(.*)"),currentRiddle.getAns()));
-=======
         return answer.toLowerCase().matches(String.format(("(.*)%s(.*)"),currentRiddle.getAns().toLowerCase()));
->>>>>>> michael
     }
 }
