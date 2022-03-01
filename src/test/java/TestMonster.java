@@ -14,7 +14,7 @@ public class TestMonster {
     @Test
     void basicTalkMonster(){
         Monster myMonster = new Monster(50, CharacterState.NORMAL,"Demon",10,0,0);
-        assertEquals("I will defeat you",myMonster.basicTalk("i wiLl DefeAt yoU"));
+        assertEquals("I wll dft y",myMonster.basicTalk("I will defeat you"));
     }
 
     @Test
