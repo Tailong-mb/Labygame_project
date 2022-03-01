@@ -42,7 +42,7 @@ public class Wizard extends Role {
     @Override
     public void basicAttack(Role target) {
         Random rand = new Random();
-        target.setHp(target.getHp()-rand.nextInt(power - power/4) - power/3+3);
+        target.setHp(target.getHp()-rand.nextInt(power - power/4) - power/2+3);
     }
     /**
      * Method for ask riddle
@@ -60,7 +60,9 @@ public class Wizard extends Role {
      * @return true if it's right else false.
      */
     public boolean ansVerification(String answer) {
-        return answer.toLowerCase().matches(String.format(("(.*) %s (.*)"),currentRiddle.getAns().toLowerCase()));
+
+        return answer.toLowerCase().matches(String.format(("(.*)%s(.*)"),currentRiddle.getAns().toLowerCase()));
+
     }
 
     //GetRiddle
