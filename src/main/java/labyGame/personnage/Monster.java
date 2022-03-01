@@ -24,7 +24,7 @@ public class Monster extends Role {
 
     @Override
     public String basicTalk(String sentence) {
-        return sentence.substring(0,1).toUpperCase() + sentence.substring(1).toLowerCase();
+        return sentence.replaceAll("[aeiou]", "");
     }
 
     @Override
