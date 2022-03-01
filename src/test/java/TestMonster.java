@@ -43,7 +43,7 @@ public class TestMonster {
 
     @Test
     void basicAttackMonsterShouldKIll(){
-        Monster myMonster = new Monster(50, CharacterState.NORMAL,"Demon",10,0,0);
+        Monster myMonster = new Monster(50, CharacterState.NORMAL,"Demon",20,0,0);
         Monster mySecondMonster = new Monster(10, CharacterState.NORMAL,"Demon",10,0,0);
         myMonster.basicAttack(mySecondMonster);
         assertTrue(mySecondMonster.isDead());
