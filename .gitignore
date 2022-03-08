@@ -148,3 +148,7 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+# Save
+
+saveHero.json
+saveItem.json
