@@ -2,14 +2,17 @@ package labyGame.personnage;
 
 import labyGame.items.Item;
 import labyGame.items.ItemName;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Random;
 
+@ToString(callSuper=true)
+@EqualsAndHashCode(callSuper = true)
 public class Hero extends Role implements Serializable {
-    private HashMap<Item,Integer> myItem;
+    private transient HashMap<Item,Integer> myItem;
 
     //All args constructor
     public Hero(int hp, CharacterState status, String name, int power, int positionX, int positionY, HashMap<Item, Integer> myItem) {
@@ -24,11 +27,6 @@ public class Hero extends Role implements Serializable {
         super(hp,name, power, status);
         super.positionX = positionX;
         super.positionY = positionY;
-    }
-
-    @Override
-    public String toString() {
-        return String.format("My name is %s, I'm the hero who will defeat this labyrinth !", name);
     }
 
     @Override

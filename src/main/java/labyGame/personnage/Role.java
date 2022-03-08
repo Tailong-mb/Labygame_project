@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public abstract class Role {
     protected int hp;
-    protected transient CharacterState currentStatus;
+    protected CharacterState currentStatus;
     protected String name;
     protected int power;
     protected int positionX;
