@@ -5,6 +5,6 @@ module Menu {
     requires lombok;
     opens menu to javafx.fxml;
     exports labyGame.menu;
-    
+
 }
 
