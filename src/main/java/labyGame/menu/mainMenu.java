@@ -26,6 +26,10 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+/**
+ * main class
+ * open the menu window
+ * */
 public class mainMenu extends Application {
 
     GameMenu gameMenu;
@@ -55,14 +59,13 @@ public class mainMenu extends Application {
 
     }
 
-    private class MenuButton extends StackPane {
+    /**
+     * Class to creat menu buttons
+     * */
+    private static class MenuButton extends StackPane {
 
         Text txt;
 
-
-        /**
-         * Class to menu buttons creation
-         * */
         public MenuButton(String name) {
 
             txt = new Text(name);
@@ -101,7 +104,10 @@ public class mainMenu extends Application {
         }
     }
 
-    private class GameMenu extends Parent {
+    /**
+     * class to creat the menus and to choice actions link to the buttons
+     * */
+    private static class GameMenu extends Parent {
 
         public GameMenu() {
 
@@ -149,15 +155,11 @@ public class mainMenu extends Application {
                 tt.play();
                 tt1.play();
 
-                tt.setOnFinished(evt -> {
-                    getChildren().remove(menu0);
-                });
+                tt.setOnFinished(evt -> getChildren().remove(menu0));
             });
 
             MenuButton btnE = new MenuButton("Exit");
-            btnE.setOnMouseClicked(event -> {
-                System.exit(0);
-            });
+            btnE.setOnMouseClicked(event -> System.exit(0));
 
             MenuButton btnBk = new MenuButton("Back");
             btnBk.setOnMouseClicked(event -> {
@@ -172,9 +174,7 @@ public class mainMenu extends Application {
                 tt.play();
                 tt1.play();
 
-                tt.setOnFinished(evt -> {
-                    getChildren().remove(menu1);
-                });
+                tt.setOnFinished(evt -> getChildren().remove(menu1));
             });
 
             MenuButton btnS = new MenuButton("Sound");
