@@ -140,6 +140,12 @@ public class menuInGame extends Application {
                 ft.play();
             });
 
+            MenuButton btnS = new MenuButton("Save");
+            //btnR.setOnMouseClicked(event -> {
+            //TODO
+            //});
+
+
             MenuButton btnR = new MenuButton("Return Main Menu");
             //btnR.setOnMouseClicked(event -> {
             //TODO
@@ -191,7 +197,7 @@ public class menuInGame extends Application {
             //TODO
             //});
 
-            menu0.getChildren().addAll(btnRes, btnOpt, btnR, btnE);
+            menu0.getChildren().addAll(btnRes, btnS, btnOpt, btnR, btnE);
             menu1.getChildren().addAll(btnBk,btnS);
 
             Rectangle r = new Rectangle(1332, 850);
@@ -205,6 +211,6 @@ public class menuInGame extends Application {
     }
 
     public static void main(String[] args) {
-        Application.launch(args);
+        launch(args);
     }
 }
