@@ -73,7 +73,7 @@ public class menuInGame extends Application {
 
     }
 
-    private class MenuButton extends StackPane {
+    private static class MenuButton extends StackPane {
 
         Text txt;
 
@@ -115,7 +115,7 @@ public class menuInGame extends Application {
         }
     }
 
-    private class GMenu extends Parent {
+    private static class GMenu extends Parent {
 
         public GMenu() {
 
@@ -164,15 +164,11 @@ public class menuInGame extends Application {
                 tt.play();
                 tt1.play();
 
-                tt.setOnFinished(evt -> {
-                    getChildren().remove(menu0);
-                });
+                tt.setOnFinished(evt -> getChildren().remove(menu0));
             });
 
             MenuButton btnE = new MenuButton("Exit");
-            btnE.setOnMouseClicked(event -> {
-                System.exit(0);
-            });
+            btnE.setOnMouseClicked(event -> System.exit(0));
 
             MenuButton btnBk = new MenuButton("Back");
             btnBk.setOnMouseClicked(event -> {
@@ -187,9 +183,7 @@ public class menuInGame extends Application {
                 tt.play();
                 tt1.play();
 
-                tt.setOnFinished(evt -> {
-                    getChildren().remove(menu1);
-                });
+                tt.setOnFinished(evt -> getChildren().remove(menu1));
             });
 
             MenuButton btnS = new MenuButton("Sound");
