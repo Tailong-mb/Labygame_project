@@ -2,7 +2,6 @@ package labyGame.personnage;
 
 import labyGame.items.Item;
 import labyGame.items.ItemName;
-import lombok.Data;
 
 import java.io.Serializable;
 import java.util.HashMap;
