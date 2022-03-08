@@ -20,16 +20,12 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.time.Duration;
 
-/**
- * main class
- * open the menu window
- * */
 public class mainMenu extends Application {
 
     GameMenu gameMenu;
@@ -59,16 +55,13 @@ public class mainMenu extends Application {
 
     }
 
-    /**
-     * Class to creat menu buttons
-     * */
-    private static class MenuButton extends StackPane {
+    private class MenuButton extends StackPane {
 
         Text txt;
 
-        public MenuButton(String name) {
+        public MenuButton(String nane) {
 
-            txt = new Text(name);
+            txt = new Text(nane);
             txt.setFont(this.txt.getFont().font(20));
             txt.setFill(Color.rgb(72, 184, 250));
 
@@ -104,10 +97,7 @@ public class mainMenu extends Application {
         }
     }
 
-    /**
-     * class to creat the menus and to choice actions link to the buttons
-     * */
-    private static class GameMenu extends Parent {
+    private class GameMenu extends Parent {
 
         public GameMenu() {
 
@@ -155,11 +145,15 @@ public class mainMenu extends Application {
                 tt.play();
                 tt1.play();
 
-                tt.setOnFinished(evt -> getChildren().remove(menu0));
+                tt.setOnFinished(evt -> {
+                    getChildren().remove(menu0);
+                });
             });
 
             MenuButton btnE = new MenuButton("Exit");
-            btnE.setOnMouseClicked(event -> System.exit(0));
+            btnE.setOnMouseClicked(event -> {
+                System.exit(0);
+            });
 
             MenuButton btnBk = new MenuButton("Back");
             btnBk.setOnMouseClicked(event -> {
@@ -174,7 +168,9 @@ public class mainMenu extends Application {
                 tt.play();
                 tt1.play();
 
-                tt.setOnFinished(evt -> getChildren().remove(menu1));
+                tt.setOnFinished(evt -> {
+                    getChildren().remove(menu1);
+                });
             });
 
             MenuButton btnS = new MenuButton("Sound");
@@ -196,6 +192,6 @@ public class mainMenu extends Application {
     }
 
     public static void main(String[] args) {
-        launch(args);
+        Application.launch(args);
     }
 }
