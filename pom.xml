@@ -35,6 +35,11 @@
             <version>17.0.2</version>
             <type>pom</type>
         </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics</artifactId>
+            <version>17.0.1</version>
+        </dependency>
 
     </dependencies>
 
