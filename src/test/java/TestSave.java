@@ -6,13 +6,12 @@ import labyGame.personnage.Hero;
 
 import java.util.HashMap;
 
-import static labyGame.sauvegarde.Save.recuperationSaveHero;
-import static labyGame.sauvegarde.Save.saveObject;
+import static labyGame.sauvegarde.Save.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TestSave {
 
-   /* @Test
+    @Test
     void testSaveHeroAreEquals(){
         Item itemTest = new Item(2, ItemName.ANTIDOTE,"");
         Item itemTest2 = new Item(10, ItemName.HEALPOTION,"");
@@ -21,8 +20,8 @@ public class TestSave {
             put(itemTest2, 1);
         }};
         Hero myHero = new Hero(50, CharacterState.NORMAL,"Jean",10,0,0,itemPack);
-        saveObject(myHero);
+        saveHero(myHero);
         Hero secondHero = recuperationSaveHero();
-        assertTrue(myHero.equals(secondHero));
-    }*/
+        assertEquals(myHero, secondHero);
+    }
 }
