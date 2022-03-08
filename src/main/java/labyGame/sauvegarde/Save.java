@@ -1,58 +1,39 @@
 package labyGame.sauvegarde;
 
+import com.google.gson.Gson;
+import labyGame.items.Item;
 import labyGame.personnage.Hero;
-import labyGame.trayEnvironnement.gameTray;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.HashMap;
 
 public class Save {
 
     /**
      * Method who save an object progress.
-     * @param objectToSave the object statement.
+     * @param heroToSave the object statement.
      */
-    public static void saveObject(Object objectToSave){
+    public static void saveHero(@NotNull Hero heroToSave){
+        Gson gson = new Gson();
+        //Write hero statement
         try{
-            File outFile;
-            if (objectToSave instanceof gameTray)
-                outFile = new File("TraySave.txt");
-            else
-                outFile = new File("HeroSave.txt");
-            OutputStream file = new FileOutputStream(outFile);
-            ObjectOutputStream myWriter = new ObjectOutputStream(file);
-            myWriter.writeObject(objectToSave);
-            myWriter.close();
-        }catch (IOException e){
-            System.out.println("An IOEXCEPTION error occurred");
-            e.printStackTrace();
-        } catch (Exception z){
-            System.out.println("An Exception error occurred");
+            Writer writer = Files.newBufferedWriter(Paths.get("saveHero.json"));
+            gson.toJson(heroToSave,writer);
+            writer.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
-    }
-
-    /**
-     * This function recovers the tray's backup.
-     * @return the tray saved.
-     */
-    public static gameTray recuperationSaveTray(){
-        gameTray traySave = null;
-        try {
-            File outFile = new File("traySave.txt");
-            InputStream file = new FileInputStream(outFile);
-            ObjectInputStream myReader = new ObjectInputStream(file);
-            traySave = (gameTray)  myReader.readObject();
-            myReader.close();
-        } catch (IOException e) {
-            System.out.println("An IOEXCEPTION error occurred");
-            e.printStackTrace();
-
-        } catch (Exception z) {
-            System.out.println("An Exception error occurred");
+        //write item statement
+        try{
+            Writer writer = Files.newBufferedWriter(Paths.get("saveItem.json"));
+            gson.toJson(new HashMap<>(heroToSave.getMyItem()),writer);
+            writer.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
-        if(traySave == null)
-            throw new IllegalAccessError("No save");
-        else
-            return traySave;
     }
 
     /**
@@ -60,23 +41,21 @@ public class Save {
      * @return the Hero saved.
      */
     public static Hero recuperationSaveHero(){
-        Hero heroSaved = null;
-        try {
-            File outFile = new File("HeroSave.txt");
-            InputStream file = new FileInputStream(outFile);
-            ObjectInputStream myReader = new ObjectInputStream(file);
-            heroSaved = (Hero) myReader.readObject();
-            myReader.close();
-        } catch (IOException e) {
-            System.out.println("An IOEXCEPTION error occurred");
-            e.printStackTrace();
-
-        } catch (Exception z) {
-            System.out.println("An Exception error occurred");
-        }
-        if(heroSaved == null)
-            throw new IllegalAccessError("No save");
-        else
+        Gson gson = new Gson();
+        //Recuperation of Hero save
+        try{
+            String file = "saveHero.json";
+            String jsonString = new String(Files.readAllBytes(Paths.get(file)));
+            Hero heroSaved = gson.fromJson(jsonString, Hero.class);
+        //Recuperation of item save
+            String newFile = "saveItem.json";
+            Reader reader = Files.newBufferedReader(Paths.get(newFile));
+            HashMap<Item,Integer> itemSaved = gson.fromJson(reader, HashMap.class);
+            heroSaved.setMyItem(itemSaved);
             return heroSaved;
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return null;
     }
 }

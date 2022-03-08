@@ -10,12 +10,6 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TestHero {
 
     @Test
-    void toStringHero(){
-        Hero myHero = new Hero(50, CharacterState.NORMAL,"Jean",10,0,0);
-        assertEquals("My name is Jean, I'm the hero who will defeat this labyrinth !",myHero.toString());
-    }
-
-    @Test
     void basicTalkHero(){
         Hero myHero = new Hero(50, CharacterState.NORMAL,"Jean",10,0,0);
         assertEquals("I will defeat you",myHero.basicTalk("i wiLl DefeAt yoU"));
