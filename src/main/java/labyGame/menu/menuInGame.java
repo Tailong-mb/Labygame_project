@@ -1,4 +1,4 @@
-package labyGame.menu;
+package Menu;
 
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
@@ -73,7 +73,7 @@ public class menuInGame extends Application {
 
     }
 
-    private static class MenuButton extends StackPane {
+    private class MenuButton extends StackPane {
 
         Text txt;
 
@@ -115,7 +115,7 @@ public class menuInGame extends Application {
         }
     }
 
-    private static class GMenu extends Parent {
+    private class GMenu extends Parent {
 
         public GMenu() {
 
@@ -140,12 +140,6 @@ public class menuInGame extends Application {
                 ft.play();
             });
 
-            MenuButton btnSv = new MenuButton("Save");
-            //btnR.setOnMouseClicked(event -> {
-            //TODO
-            //});
-
-
             MenuButton btnR = new MenuButton("Return Main Menu");
             //btnR.setOnMouseClicked(event -> {
             //TODO
@@ -164,11 +158,15 @@ public class menuInGame extends Application {
                 tt.play();
                 tt1.play();
 
-                tt.setOnFinished(evt -> getChildren().remove(menu0));
+                tt.setOnFinished(evt -> {
+                    getChildren().remove(menu0);
+                });
             });
 
             MenuButton btnE = new MenuButton("Exit");
-            btnE.setOnMouseClicked(event -> System.exit(0));
+            btnE.setOnMouseClicked(event -> {
+                System.exit(0);
+            });
 
             MenuButton btnBk = new MenuButton("Back");
             btnBk.setOnMouseClicked(event -> {
@@ -183,7 +181,9 @@ public class menuInGame extends Application {
                 tt.play();
                 tt1.play();
 
-                tt.setOnFinished(evt -> getChildren().remove(menu1));
+                tt.setOnFinished(evt -> {
+                    getChildren().remove(menu1);
+                });
             });
 
             MenuButton btnS = new MenuButton("Sound");
@@ -191,7 +191,7 @@ public class menuInGame extends Application {
             //TODO
             //});
 
-            menu0.getChildren().addAll(btnRes, btnSv, btnOpt, btnR, btnE);
+            menu0.getChildren().addAll(btnRes, btnOpt, btnR, btnE);
             menu1.getChildren().addAll(btnBk,btnS);
 
             Rectangle r = new Rectangle(1332, 850);
@@ -205,6 +205,6 @@ public class menuInGame extends Application {
     }
 
     public static void main(String[] args) {
-        launch(args);
+        Application.launch(args);
     }
 }
