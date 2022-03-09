@@ -1,4 +1,4 @@
-module com.labygame.demo {
+module com.labygame {
     requires javafx.controls;
     requires javafx.fxml;
     requires static lombok;
