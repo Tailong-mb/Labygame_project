@@ -1,4 +1,4 @@
-package com.labygame.demo;
+package com.labygame;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

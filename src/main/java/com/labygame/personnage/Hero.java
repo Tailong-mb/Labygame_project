@@ -1,7 +1,7 @@
-package com.labygame.demo.personnage;
+package com.labygame.personnage;
 
-import com.labygame.demo.items.Item;
-import com.labygame.demo.items.ItemName;
+import com.labygame.items.Item;
+import com.labygame.items.ItemName;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 

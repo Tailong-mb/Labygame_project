@@ -1,4 +1,4 @@
-package com.labygame.demo.personnage;
+package com.labygame.personnage;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

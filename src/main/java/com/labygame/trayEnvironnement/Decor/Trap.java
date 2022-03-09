@@ -1,16 +1,15 @@
-package com.labygame.demo.trayEnvironnement.Decor;
+package com.labygame.trayEnvironnement.Decor;
 
-import com.labygame.demo.personnage.Hero;
+import com.labygame.personnage.Hero;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
+@AllArgsConstructor
+@Data
 public class Trap implements DecorInterface {
 
     int hp;
     String name;
-
-    public Trap(String name, int hp){
-        this.name = name;
-        this.hp = hp;
-    }
 
     @Override
     public boolean isDestroyed() {

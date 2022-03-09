@@ -1,8 +1,8 @@
-package com.labygame.demo.sauvegarde;
+package com.labygame.sauvegarde;
 
 import com.google.gson.Gson;
-import com.labygame.demo.items.Item;
-import com.labygame.demo.personnage.Hero;
+import com.labygame.items.Item;
+import com.labygame.personnage.Hero;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.*;

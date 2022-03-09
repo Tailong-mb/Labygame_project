@@ -1,9 +1,8 @@
-package com.labygame.demo.trayEnvironnement.Decor;
+package com.labygame.trayEnvironnement.Decor;
 
+import com.labygame.personnage.Hero;
 
-import com.labygame.demo.personnage.Hero;
-
-public class Tree implements DecorInterface {
+public class Water implements DecorInterface {
 
     @Override
     public boolean isDestroyed(){

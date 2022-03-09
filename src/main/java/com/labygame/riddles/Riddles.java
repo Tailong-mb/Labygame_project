@@ -1,4 +1,4 @@
-package com.labygame.demo.riddles;
+package com.labygame.riddles;
 
 public enum Riddles {
 
