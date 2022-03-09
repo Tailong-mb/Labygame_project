@@ -1,8 +1,11 @@
 package labyGame.trayEnvironnement.Decor;
 
+import javafx.scene.image.Image;
 import labyGame.personnage.Hero;
 
 public interface DecorInterface {
+    
+    Image img = null;
 
     /**
      * Check if the decor is destroyed or not.
@@ -20,5 +23,7 @@ public interface DecorInterface {
      * @param hero the main character.
      */
     void hurtHero(Hero hero);
+
+    public void setImage();
 
 }
