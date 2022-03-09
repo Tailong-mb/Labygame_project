@@ -1,4 +1,4 @@
-package com.labygame.demo.items;
+package com.labygame.items;
 
 import java.io.Serializable;
 

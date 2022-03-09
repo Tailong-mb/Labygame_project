@@ -1,4 +1,4 @@
-package com.labygame.demo.trayEnvironnement;
+package com.labygame.trayEnvironnement;
 
 public class gameTrayPiece {
     //a remplir

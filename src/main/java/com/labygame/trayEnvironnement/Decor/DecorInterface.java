@@ -1,6 +1,6 @@
-package com.labygame.demo.trayEnvironnement.Decor;
+package com.labygame.trayEnvironnement.Decor;
 
-import com.labygame.demo.personnage.Hero;
+import com.labygame.personnage.Hero;
 
 public interface DecorInterface {
 

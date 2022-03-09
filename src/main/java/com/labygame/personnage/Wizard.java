@@ -1,6 +1,6 @@
-package com.labygame.demo.personnage;
+package com.labygame.personnage;
 
-import com.labygame.demo.riddles.Riddles;
+import com.labygame.riddles.Riddles;
 
 import java.util.Random;
 

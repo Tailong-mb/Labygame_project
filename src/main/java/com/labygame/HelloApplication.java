@@ -1,7 +1,7 @@
-package com.labygame.demo;
+package com.labygame;
 
-import com.labygame.demo.personnage.CharacterState;
-import com.labygame.demo.personnage.Monster;
+import com.labygame.personnage.CharacterState;
+import com.labygame.personnage.Monster;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -18,7 +18,6 @@ public class HelloApplication extends Application {
         stage.setTitle(myMonster.getName());
         stage.setScene(scene);
         stage.show();
-
     }
 
     public static void main(String[] args) {

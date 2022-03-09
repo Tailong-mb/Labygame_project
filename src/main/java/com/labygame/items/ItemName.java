@@ -1,4 +1,4 @@
-package com.labygame.demo.items;
+package com.labygame.items;
 
 public enum ItemName {
     ANTIDOTE, // to be use when the character is poison
