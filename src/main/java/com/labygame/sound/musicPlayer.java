@@ -28,7 +28,7 @@ public class musicPlayer extends Application {
         Pane root = new Pane();
         root.setPrefSize(1332, 850);
 
-        InputStream is = Files.newInputStream(Paths.get("doc/images/wallpaper/menu_wallpaper.jpg"));
+        InputStream is = Files.newInputStream(Paths.get("doc/music/cover.png"));
         Image img = new Image(is);
         is.close();
 
