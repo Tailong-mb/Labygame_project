@@ -11,9 +11,6 @@ import javafx.scene.media.MediaPlayer;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 public class musicPlayer extends Application {
 
@@ -27,22 +24,13 @@ public class musicPlayer extends Application {
         Pane root = new Pane();
         root.setPrefSize(1332, 850);
 
-        InputStream is = Files.newInputStream(Paths.get("doc/music/sound/cover.png"));
-        Image img = new Image(is);
-        is.close();
-        ImageView imgView = new ImageView(img);
-        imgView.setFitWidth(1332);
-        imgView.setFitHeight(850);
 
-        Media media = new Media(new File("doc/music/sound/GamerInstincts.wav").toURI().toString()));
+        Media media = new Media(new File("doc/music/sound/GamerInstincts.wav").toURI().toString());
 
         MediaPlayer mp = new MediaPlayer(media);
 
         mp.setAutoPlay(true);
 
-        root.getChildren().addAll(imgView, mp);
-        Scene scene = new Scene(root);
-        primaryStage.setScene(scene);
         primaryStage.show();
 
     }
