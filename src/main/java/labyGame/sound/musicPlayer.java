@@ -1,16 +1,13 @@
 package labyGame.sound;
 
 import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.stage.Stage;
 
 import java.io.File;
-import java.io.IOException;
+
 
 public class musicPlayer extends Application {
 
@@ -19,7 +16,7 @@ public class musicPlayer extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws IOException {
+    public void start(Stage primaryStage) {
 
         Pane root = new Pane();
         root.setPrefSize(1332, 850);
