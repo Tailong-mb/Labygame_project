@@ -1,6 +1,5 @@
 package com.labygame.menu;
 
-//import labyGame.sauvegarde.Save;
 
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
@@ -36,7 +35,7 @@ public class mainMenu extends Application {
         Pane root = new Pane();
         root.setPrefSize(1332, 850);
 
-        InputStream is = Files.newInputStream(Paths.get("doc/images/wallpaper/menu_wallpaper.jpg"));
+        InputStream is = Files.newInputStream(Paths.get("file: doc/images/wallpaper/menu_wallpaper.jpg"));
         Image img = new Image(is);
         is.close();
 
