@@ -37,7 +37,7 @@ public class musicPlayer extends Application {
         imgView.setFitHeight(850);
 
 
-        Media media = new Media(new File("doc/music/GamerInstincts.wav").toURI().toString());
+        Media media = new Media(new File("file: doc/music/GamerInstincts.wav").toURI().toString());
 
         MediaPlayer mp = new MediaPlayer(media);
 
