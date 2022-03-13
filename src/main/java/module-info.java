@@ -5,7 +5,9 @@ module com.labygame {
     requires org.jetbrains.annotations;
     requires com.google.gson;
     requires javafx.media;
+    requires  javafx.graphics;
 
     opens com.labygame to javafx.fxml;
     exports com.labygame;
+
 }
