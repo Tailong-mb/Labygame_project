@@ -17,12 +17,12 @@ public class mainMenu extends Application {
     public void start(Stage stage) throws IOException {
 
         Pane root = new Pane();
-        root.setPrefSize(1332, 850);
+        root.setPrefSize(1200, 850);
 
-        Image img = new Image("file: doc/images/wallpaper/menu_wallpaper.jpg");
+        Image img = new Image("file: doc/images/wallpaper/mainMenu.jpg");
 
         ImageView imgView = new ImageView(img);
-        imgView.setFitWidth(1332);
+        imgView.setFitWidth(1200);
         imgView.setFitHeight(850);
 
         GameMenu gameMenu = new GameMenu();
