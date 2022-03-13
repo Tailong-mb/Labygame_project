@@ -12,10 +12,11 @@ import javafx.scene.text.Text;
 
 public class MenuButton extends StackPane {
 
-    public MenuButton(String nane) {
+    Text txt;
 
-        Text txt = new Text(nane);
-        txt.getFont();
+    public MenuButton(String name) {
+
+        txt = new Text(name);
         txt.setFont(Font.font(20));
         txt.setFill(Color.rgb(72, 184, 250));
 
