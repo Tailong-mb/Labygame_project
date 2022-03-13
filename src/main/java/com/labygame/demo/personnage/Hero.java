@@ -2,7 +2,10 @@ package com.labygame.demo.personnage;
 
 import com.labygame.demo.items.Item;
 import com.labygame.demo.items.ItemName;
+import javafx.scene.image.Image;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 import java.io.Serializable;
@@ -11,8 +14,11 @@ import java.util.Random;
 
 @ToString(callSuper=true)
 @EqualsAndHashCode(callSuper = true)
+@Getter
+@Setter
 public class Hero extends Role implements Serializable {
     private transient HashMap<Item,Integer> myItem;
+    private final transient Image myImage = new Image("file:doc/images/gfx/gfx/character.png");
 
     //All args constructor
     public Hero(int hp, CharacterState status, String name, int power, int positionX, int positionY, HashMap<Item, Integer> myItem) {
@@ -88,7 +94,7 @@ public class Hero extends Role implements Serializable {
     }
 
     //get and set method
-
+/*
     public HashMap<Item, Integer> getMyItem() {
         return myItem;
     }
@@ -96,5 +102,10 @@ public class Hero extends Role implements Serializable {
     public void setMyItem(HashMap<Item, Integer> myItem) {
         this.myItem = myItem;
     }
-}
 
+    public Image getMyImage() {
+        return this.myImage;
+    }
+
+ */
+}
