@@ -15,9 +15,9 @@ public class GMenu extends Parent {
         VBox menu0 = new VBox(15);
         VBox menu1 = new VBox(15);
 
-        menu0.setTranslateX(550);
+        menu0.setTranslateX(500);
         menu0.setTranslateY(300);
-        menu1.setTranslateX(550);
+        menu1.setTranslateX(500);
         menu1.setTranslateY(300);
 
         final int offset = 200;
@@ -81,7 +81,7 @@ public class GMenu extends Parent {
         menu0.getChildren().addAll(btnRes, btnOpt, btnR, btnE);
         menu1.getChildren().addAll(btnBk,btnS);
 
-        Rectangle r = new Rectangle(1332, 850);
+        Rectangle r = new Rectangle(1200, 850);
         r.setFill(Color.GREY);
         r.setOpacity(0.4);
 
