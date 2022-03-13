@@ -25,7 +25,7 @@ public class mainMenu extends Application {
         Pane root = new Pane();
         root.setPrefSize(1200, 850);
 
-        InputStream is = Files.newInputStream(Paths.get("doc/images/wallpaper/menu_wallpaper.jpg"));
+        InputStream is = Files.newInputStream(Paths.get("doc/images/wallpaper/mainMenu.jpg"));
         Image img = new Image(is);
         is.close();
 
