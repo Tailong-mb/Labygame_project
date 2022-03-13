@@ -19,7 +19,7 @@ public class mainMenu extends Application {
         Pane root = new Pane();
         root.setPrefSize(1200, 850);
 
-        Image img = new Image("file: doc/images/wallpaper/mainMenu.jpg");
+        Image img = new Image("file: doc/images/wallpaper/mainMenu1.jpg");
 
         ImageView imgView = new ImageView(img);
         imgView.setFitWidth(1200);
