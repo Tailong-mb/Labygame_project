@@ -26,14 +26,14 @@ public class musicPlayer extends Application {
     public void start(Stage primaryStage) throws IOException {
 
         Pane root = new Pane();
-        root.setPrefSize(1332, 850);
+        root.setPrefSize(1200, 850);
 
         InputStream is = Files.newInputStream(Paths.get("doc/music/cover.png"));
         Image img = new Image(is);
         is.close();
 
         ImageView imgView = new ImageView(img);
-        imgView.setFitWidth(1332);
+        imgView.setFitWidth(1200);
         imgView.setFitHeight(850);
 
 
