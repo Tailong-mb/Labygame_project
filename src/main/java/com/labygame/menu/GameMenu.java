@@ -1,5 +1,6 @@
 package com.labygame.menu;
 
+import com.labygame.personnage.Hero;
 import com.labygame.sound.Music;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
@@ -12,6 +13,7 @@ import javafx.util.Duration;
 public class GameMenu extends Parent {
 
     Music msc = new Music();
+    Hero start;
 
     public GameMenu() {
 
@@ -37,17 +39,18 @@ public class GameMenu extends Parent {
             ft.setToValue(0);
             ft.setOnFinished(evt -> this.setVisible(false));
             ft.play();
-            //ft.Save.recuperationSaveHero();
+
         });
 
         MenuButton btnNG = new MenuButton("New Game");
-        //btnNG.setOnMouseClicked(event -> {
-        //FadeTransition ft = new FadeTransition(Duration.seconds(0.5), this);
-        //ft.setFromValue(1);
-        //ft.setToValue(0);
-        //ft.setOnFinished(evt -> this.setVisible(false));
-        //ft.play();
-        //});
+        btnNG.setOnMouseClicked(event -> {
+            FadeTransition ft = new FadeTransition(Duration.seconds(0.5), this);
+            ft.setFromValue(1);
+            ft.setToValue(0);
+            ft.setOnFinished(evt -> this.setVisible(false));
+            ft.play();
+            
+        });
 
         MenuButton btnOpt = new MenuButton("Options");
         btnOpt.setOnMouseClicked(event -> {
