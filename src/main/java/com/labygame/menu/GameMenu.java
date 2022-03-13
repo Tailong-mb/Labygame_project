@@ -15,9 +15,9 @@ public class GameMenu extends Parent {
         VBox menu0 = new VBox(15);
         VBox menu1 = new VBox(15);
 
-        menu0.setTranslateX(550);
+        menu0.setTranslateX(500);
         menu0.setTranslateY(200);
-        menu1.setTranslateX(550);
+        menu1.setTranslateX(500);
         menu1.setTranslateY(200);
 
         final int offset = 200;
@@ -48,7 +48,7 @@ public class GameMenu extends Parent {
             getChildren().add(menu1);
 
             TranslateTransition tt = new TranslateTransition(Duration.seconds(0.25), menu0);
-            tt.setToX(menu0.getTranslateX()+offset);
+            tt.setToX(menu0.getTranslateX() + offset);
 
             TranslateTransition tt1 = new TranslateTransition(Duration.seconds(0.5), menu1);
             tt1.setToX(menu0.getTranslateX());
@@ -56,22 +56,23 @@ public class GameMenu extends Parent {
             tt.play();
             tt1.play();
 
-            tt.setOnFinished(evt -> {
-                getChildren().remove(menu0);
-            });
+            tt.setOnFinished(evt -> getChildren().remove(menu0));
+        });
+
+        MenuButton btnC = new MenuButton("Credits");
+        btnC.setOnMouseClicked(event -> {
+            //TODO
         });
 
         MenuButton btnE = new MenuButton("Exit");
-        btnE.setOnMouseClicked(event -> {
-            System.exit(0);
-        });
+        btnE.setOnMouseClicked(event -> System.exit(0));
 
         MenuButton btnBk = new MenuButton("Back");
         btnBk.setOnMouseClicked(event -> {
             getChildren().add(menu0);
 
             TranslateTransition tt = new TranslateTransition(Duration.seconds(0.25), menu1);
-            tt.setToX(menu1.getTranslateX()+offset);
+            tt.setToX(menu1.getTranslateX() + offset);
 
             TranslateTransition tt1 = new TranslateTransition(Duration.seconds(0.5), menu0);
             tt1.setToX(menu1.getTranslateX());
@@ -79,9 +80,7 @@ public class GameMenu extends Parent {
             tt.play();
             tt1.play();
 
-            tt.setOnFinished(evt -> {
-                getChildren().remove(menu1);
-            });
+            tt.setOnFinished(evt -> getChildren().remove(menu1));
         });
 
         MenuButton btnS = new MenuButton("Sound");
@@ -89,10 +88,10 @@ public class GameMenu extends Parent {
         //TODO
         //});
 
-        menu0.getChildren().addAll(btnCtn, btnNG, btnOpt, btnE);
-        menu1.getChildren().addAll(btnBk,btnS);
+        menu0.getChildren().addAll(btnCtn, btnNG, btnOpt, btnC, btnE);
+        menu1.getChildren().addAll(btnBk, btnS);
 
-        Rectangle r = new Rectangle(1332, 850);
+        Rectangle r = new Rectangle(1200, 850);
         r.setFill(Color.GREY);
         r.setOpacity(0.4);
 
@@ -101,3 +100,4 @@ public class GameMenu extends Parent {
     }
 
 }
+
