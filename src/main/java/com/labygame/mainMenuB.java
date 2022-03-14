@@ -10,18 +10,13 @@ import javafx.stage.Stage;
 
 public class mainMenuB extends Application {
 
-    public static void main(String[] args) {
-        Application.launch(args);
-    }
-
-
     @Override
     public void start(Stage stage) throws Exception {
 
         Pane root = new Pane();
         root.setPrefSize(1200, 850);
 
-        Image img = new Image("file:doc/images/wallpaper/menu_wallpaper.jpg");
+        Image img = new Image("file:doc/images/wallpaper/mainMenu.jpg");
 
         ImageView imgView = new ImageView(img);
         imgView.setFitWidth(1200);
@@ -35,7 +30,12 @@ public class mainMenuB extends Application {
 
         stage.setScene(scene);
         stage.show();
-
     }
+
+    public static void main(String[] args) {
+        Application.launch();
+    }
+
+
 
 }

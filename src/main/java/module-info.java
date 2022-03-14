@@ -12,5 +12,7 @@ module com.labygame {
     exports com.labygame;
     exports com.labygame.sound;
     opens com.labygame.sound to javafx.fxml;
+    exports com.labygame.demo.scenes;
+    exports com.labygame.personnage;
 
 }

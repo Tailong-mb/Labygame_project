@@ -1,6 +1,5 @@
 package com.labygame.menu;
 
-import com.labygame.personnage.Hero;
 import com.labygame.sound.Music;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
@@ -13,36 +12,35 @@ import javafx.util.Duration;
 public class GameMenu extends Parent {
 
     Music msc = new Music();
-    Hero start;
 
     public GameMenu() {
 
-        VBox menu0 = new VBox(15);
-        VBox menu1 = new VBox(15);
-        VBox menu2 = new VBox(15);
+        //Set menu Container
+        VBox menuMain = new VBox(15);
+        VBox menuOption = new VBox(15);
+        VBox menuOptionSound = new VBox(15);
 
-        menu0.setTranslateX(500);
-        menu0.setTranslateY(200);
-        menu1.setTranslateX(500);
-        menu1.setTranslateY(200);
-        menu2.setTranslateX(500);
-        menu2.setTranslateY(200);
+        menuMain.setTranslateX(500);
+        menuMain.setTranslateY(200);
+        menuOption.setTranslateX(500);
+        menuOption.setTranslateY(200);
+        menuOptionSound.setTranslateX(500);
+        menuOptionSound.setTranslateY(200);
 
         final int offset = 200;
 
-        menu1.setTranslateX(offset);
+        menuOption.setTranslateX(offset);
 
-        MenuButton btnCtn = new MenuButton("Continue");
+        button btnCtn = new button("Continue");
         btnCtn.setOnMouseClicked(event -> {
             FadeTransition ft = new FadeTransition(Duration.seconds(0.5), this);
             ft.setFromValue(1);
             ft.setToValue(0);
             ft.setOnFinished(evt -> this.setVisible(false));
             ft.play();
-
         });
 
-        MenuButton btnNG = new MenuButton("New Game");
+        button btnNG = new button("New Game");
         btnNG.setOnMouseClicked(event -> {
             FadeTransition ft = new FadeTransition(Duration.seconds(0.5), this);
             ft.setFromValue(1);
@@ -52,79 +50,79 @@ public class GameMenu extends Parent {
             
         });
 
-        MenuButton btnOpt = new MenuButton("Options");
+        button btnOpt = new button("Options");
         btnOpt.setOnMouseClicked(event -> {
-            getChildren().add(menu1);
+            getChildren().add(menuOption);
 
-            TranslateTransition tt = new TranslateTransition(Duration.seconds(0.25), menu0);
-            tt.setToX(menu0.getTranslateX() + offset);
+            TranslateTransition tt = new TranslateTransition(Duration.seconds(0.25), menuMain);
+            tt.setToX(menuMain.getTranslateX() + offset);
 
-            TranslateTransition tt1 = new TranslateTransition(Duration.seconds(0.5), menu1);
-            tt1.setToX(menu0.getTranslateX());
+            TranslateTransition tt1 = new TranslateTransition(Duration.seconds(0.5), menuOption);
+            tt1.setToX(menuMain.getTranslateX());
 
             tt.play();
             tt1.play();
 
-            tt.setOnFinished(evt -> getChildren().remove(menu0));
+            tt.setOnFinished(evt -> getChildren().remove(menuMain));
         });
 
-        MenuButton btnC = new MenuButton("Credits");
+        button btnC = new button("Credits");
         btnC.setOnMouseClicked(event -> {
             //TODO
         });
 
-        MenuButton btnE = new MenuButton("Exit");
+        button btnE = new button("Exit");
         btnE.setOnMouseClicked(event -> System.exit(0));
 
-        MenuButton btnBk = new MenuButton("Back");
+        button btnBk = new button("Back");
         btnBk.setOnMouseClicked(event -> {
-            getChildren().add(menu0);
+            getChildren().add(menuMain);
 
-            TranslateTransition tt = new TranslateTransition(Duration.seconds(0.25), menu2);
-            tt.setToX(menu2.getTranslateX() + offset);
+            TranslateTransition tt = new TranslateTransition(Duration.seconds(0.25), menuOptionSound);
+            tt.setToX(menuOptionSound.getTranslateX() + offset);
 
-            TranslateTransition tt1 = new TranslateTransition(Duration.seconds(0.5), menu0);
-            tt1.setToX(menu2.getTranslateX());
+            TranslateTransition tt1 = new TranslateTransition(Duration.seconds(0.5), menuMain);
+            tt1.setToX(menuOptionSound.getTranslateX());
 
             tt.play();
             tt1.play();
 
-            tt.setOnFinished(evt -> getChildren().remove(menu2));
+            tt.setOnFinished(evt -> getChildren().remove(menuOptionSound));
         });
 
-        MenuButton btnS = new MenuButton("Sound");
+        button btnS = new button("Sound");
         btnS.setOnMouseClicked(event -> {
-            getChildren().add(menu2);
+            getChildren().add(menuOptionSound);
 
-            TranslateTransition tt = new TranslateTransition(Duration.seconds(0.25), menu1);
-            tt.setToX(menu1.getTranslateX() + offset);
+            TranslateTransition tt = new TranslateTransition(Duration.seconds(0.25), menuOption);
+            tt.setToX(menuOption.getTranslateX() + offset);
 
-            TranslateTransition tt1 = new TranslateTransition(Duration.seconds(0.5), menu2);
-            tt1.setToX(menu1.getTranslateX());
+            TranslateTransition tt1 = new TranslateTransition(Duration.seconds(0.5), menuOptionSound);
+            tt1.setToX(menuOption.getTranslateX());
 
             tt.play();
             tt1.play();
 
-            tt.setOnFinished(evt -> getChildren().remove(menu1));
+            tt.setOnFinished(evt -> getChildren().remove(menuOption));
 
         });
 
-        MenuButton btnM = new MenuButton("Mute");
+        button btnM = new button("Mute");
         btnM.setOnMouseClicked(event -> msc.stopMusic());
 
-        MenuButton btnU = new MenuButton("Unmute");
+        button btnU = new button("Unmute");
         btnU.setOnMouseClicked(event -> msc.playMusic());
 
 
-        menu0.getChildren().addAll(btnCtn, btnNG, btnOpt, btnC, btnE);
-        menu1.getChildren().addAll(btnS);
-        menu2.getChildren().addAll(btnM, btnU, btnBk);
+        menuMain.getChildren().addAll(btnCtn, btnNG, btnOpt, btnC, btnE);
+        menuOption.getChildren().addAll(btnS);
+        menuOptionSound.getChildren().addAll(btnM, btnU, btnBk);
 
         Rectangle r = new Rectangle(1200, 850);
         r.setFill(Color.GREY);
         r.setOpacity(0.4);
 
-        getChildren().addAll(r, menu0);
+        getChildren().addAll(r, menuMain);
 
     }
 

@@ -30,7 +30,7 @@ public class GMenu extends Parent {
 
         menu1.setTranslateX(offset);
 
-        menuBtn btnRes = new menuBtn("Resume");
+        button btnRes = new button("Resume");
         btnRes.setOnMouseClicked(event -> {
             FadeTransition ft = new FadeTransition(Duration.seconds(0.5), this);
             ft.setFromValue(1);
@@ -39,12 +39,12 @@ public class GMenu extends Parent {
             ft.play();
         });
 
-        menuBtn btnR = new menuBtn("Return Main Menu");
+        button btnR = new button("Return Main Menu");
         //btnR.setOnMouseClicked(event -> {
         //TODO
         //});
 
-        menuBtn btnOpt = new menuBtn("Options");
+        button btnOpt = new button("Options");
         btnOpt.setOnMouseClicked(evnt -> {
             getChildren().add(menu1);
 
@@ -60,10 +60,10 @@ public class GMenu extends Parent {
             tt.setOnFinished(evt -> getChildren().remove(menu0));
         });
 
-        menuBtn btnE = new menuBtn("Exit");
+        button btnE = new button("Exit");
         btnE.setOnMouseClicked(event -> System.exit(0));
 
-        menuBtn btnBk = new menuBtn("Back");
+        button btnBk = new button("Back");
         btnBk.setOnMouseClicked(event -> {
             getChildren().add(menu0);
 
@@ -79,7 +79,7 @@ public class GMenu extends Parent {
             tt.setOnFinished(evt -> getChildren().remove(menu2));
         });
 
-        menuBtn btnS = new menuBtn("Sound");
+        button btnS = new button("Sound");
         btnS.setOnMouseClicked(event -> {
             getChildren().add(menu2);
 
@@ -96,10 +96,10 @@ public class GMenu extends Parent {
 
         });
 
-        menuBtn btnM = new menuBtn("Mute");
+        button btnM = new button("Mute");
         btnM.setOnMouseClicked(event -> msc.stopMusic());
 
-        menuBtn btnU = new menuBtn("Unmute");
+        button btnU = new button("Unmute");
         btnU.setOnMouseClicked(event -> msc.playMusic());
 
         menu0.getChildren().addAll(btnRes, btnOpt, btnR, btnE);
