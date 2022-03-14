@@ -5,6 +5,8 @@ module com.labygame{
     requires org.jetbrains.annotations;
     requires com.google.gson;
 
-    opens com.labygame to javafx.fxml;
-    exports com.labygame;
+    opens com.labygame.demo to javafx.fxml;
+    exports com.labygame.demo;
+    exports com.labygame.demo.scenes;
+    opens com.labygame.demo.scenes to javafx.fxml;
 }
