@@ -1,6 +1,7 @@
 package com.labygame.demo.scenes;
 
 import com.labygame.demo.Labygame;
+import javafx.animation.AnimationTimer;
 import javafx.scene.input.KeyCode;
 
 public class GameScene extends GeneralScene{
@@ -9,9 +10,15 @@ public class GameScene extends GeneralScene{
     public void draw() {
         activeKeys.clear();
 
-        if(activeKeys.contains(KeyCode.ESCAPE)){
-            Labygame.exit();
-            //Labygame.setScene(Labygame.MENU_SCENE);
-        }
+        AnimationTimer timer = new AnimationTimer() {
+            @Override
+            public void handle(long currentNanoTime) {
+                if(activeKeys.contains(KeyCode.ESCAPE)){
+                    this.stop();
+                    Labygame.exit();
+                    //Labygame.setScene(Labygame.MENU_SCENE);
+                }
+            }
+        };timer.start();
     }
 }

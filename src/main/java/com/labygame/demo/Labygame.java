@@ -1,10 +1,11 @@
 package com.labygame.demo;
 
-import com.labygame.demo.scenes.*;
+import com.labygame.demo.scenes.CreditsScene;
+import com.labygame.demo.scenes.FightScene;
+import com.labygame.demo.scenes.GameScene;
+import com.labygame.demo.scenes.GeneralScene;
 import javafx.application.Application;
 import javafx.stage.Stage;
-
-import java.util.Arrays;
 
 public class Labygame extends Application {
     public static final int MENU_SCENE = 0;
@@ -12,13 +13,18 @@ public class Labygame extends Application {
     public static final int FIGHT_SCENE = 2;
     public static final int CREDITS_SCENE = 3;
 
-    public static final GeneralScene[] scenes = Arrays.asList(new MenuScene(), new GameScene(), new FightScene(), new CreditsScene());
+    public static final GeneralScene[] scenes = new GeneralScene[4];//Arrays.asList(new MenuScene(), new GameScene(), new FightScene(), new CreditsScene());
 
     public static Stage stage;
 
     @Override
     public void start(Stage stage) throws Exception {
         this.stage = stage;
+
+        scenes[0] = null;
+        scenes[1] = new GameScene();
+        scenes[2] = new FightScene();
+        scenes[3] = new CreditsScene();
 
         stage.setTitle("LabyGame");
         setScene(GAME_SCENE);
