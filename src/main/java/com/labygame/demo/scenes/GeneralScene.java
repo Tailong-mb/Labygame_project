@@ -9,18 +9,17 @@ import javafx.scene.layout.StackPane;
 import java.util.HashSet;
 import java.util.Set;
 
-public abstract class GeneralScene extends Scene
-{
+public abstract class GeneralScene extends Scene {
     public static final int GAME_WIDTH = 1200;
     public static final int GAME_HEIGHT = 850;
 
-    private StackPane root = new StackPane();
     protected GraphicsContext gc;
     protected Set<KeyCode> activeKeys;
     protected Set<KeyCode> releasedKeys;
 
     public GeneralScene() {
         super(new StackPane(), GAME_WIDTH, GAME_HEIGHT);
+        StackPane root = new StackPane();
         this.setRoot(root);
 
         Canvas canvas = new Canvas(GAME_WIDTH, GAME_HEIGHT);
