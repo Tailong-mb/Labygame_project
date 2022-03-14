@@ -4,6 +4,7 @@ import com.labygame.demo.scenes.*;
 import com.labygame.personnage.CharacterState;
 import com.labygame.personnage.Hero;
 import com.labygame.personnage.Monster;
+import com.labygame.personnage.Wizard;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -18,7 +19,7 @@ public class Labygame extends Application {
     public static final GeneralScene[] scenes = {new MenuScene(),
             new GameScene(),
             new FightScene(new Hero(50, CharacterState.NORMAL,"Jean",10,0,0),
-            new Monster(16, CharacterState.NORMAL,"Demon",10,0,0)),
+            new Wizard(16, CharacterState.NORMAL,"Demon",10,0,0)),
             new CreditsScene()};
 
     public static Stage stage;
