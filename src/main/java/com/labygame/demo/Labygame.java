@@ -19,7 +19,7 @@ public class Labygame extends Application {
     public static final GeneralScene[] scenes = {new MenuScene(),
             new GameScene(),
             new FightScene(new Hero(50, CharacterState.NORMAL,"Jean",10,0,0),
-            new Wizard(16, CharacterState.NORMAL,"Demon",10,0,0)),
+            new Wizard(16, CharacterState.NORMAL,"Merlin",10,0,0)),
             new CreditsScene()};
 
     public static Stage stage;
