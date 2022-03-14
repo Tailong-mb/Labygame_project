@@ -5,6 +5,8 @@ import javafx.scene.media.MediaPlayer;
 
 import java.nio.file.Paths;
 
+import static javafx.scene.media.MediaPlayer.INDEFINITE;
+
 public class Music {
 
     Media media;
@@ -18,7 +20,9 @@ public class Music {
 
     public void playMusic() {
 
-
+        int count = INDEFINITE;
+        mp.setVolume(0.5f);
+        mp.setCycleCount(count);
         mp.play();
 
     }
