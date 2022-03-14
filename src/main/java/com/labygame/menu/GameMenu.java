@@ -47,7 +47,7 @@ public class GameMenu extends Parent {
             ft.setToValue(0);
             ft.setOnFinished(evt -> this.setVisible(false));
             ft.play();
-            
+
         });
 
         button btnOpt = new button("Options");
