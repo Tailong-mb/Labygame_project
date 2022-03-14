@@ -9,4 +9,6 @@ module com.labygame{
     exports com.labygame.demo;
     exports com.labygame.demo.scenes;
     opens com.labygame.demo.scenes to javafx.fxml;
+    exports com.labygame.personnage;
+    exports com.labygame.items;
 }
