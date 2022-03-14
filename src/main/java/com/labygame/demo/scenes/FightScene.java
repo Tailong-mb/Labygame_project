@@ -61,6 +61,7 @@ public class FightScene extends GeneralScene{
         gc.fillText(String.format("%2d",hero.getHp()),65,75);
         gc.fillText(String.format("%d",hero.getPower()),65,122);
         gc.fillText(hero.getCurrentStatus().getNameState(),65,175);
+        gc.fillText(hero.getName(), 170,350);
 
         //Draw opponent Stats
         gc.drawImage(hpImage,1135,50);
@@ -70,6 +71,7 @@ public class FightScene extends GeneralScene{
         gc.fillText(String.format("%2d",opponent.getHp()),1095,75);
         gc.fillText(String.format("%d",opponent.getPower()),1095,122);
         gc.fillText(opponent.getCurrentStatus().getNameState(),1020,175);
+        gc.fillText(opponent.getName(),960,350);
 
         //Draw Monster
         if(opponent instanceof Monster){
@@ -88,7 +90,7 @@ public class FightScene extends GeneralScene{
         }else{
             //draw wizard
             Image wizardImage = new Image("file:doc/images/gfx/gfx/fightScene/wizardRdyToFight.png");
-            gc.drawImage(wizardImage,900,400);
+            gc.drawImage(wizardImage,900,390);
         }
 
         //Draw Hero
