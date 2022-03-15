@@ -4,12 +4,11 @@ import com.labygame.demo.button.ButtonLaby;
 import com.labygame.personnage.Hero;
 import com.labygame.personnage.Monster;
 import com.labygame.personnage.Role;
-import javafx.animation.FadeTransition;
 import javafx.scene.image.Image;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import javafx.util.Duration;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -62,7 +61,12 @@ public class FightScene extends GeneralScene{
         ButtonLaby buttonSpecialAttack = new ButtonLaby("SPECIAL ATTACK");
         buttonSpecialAttack.buttonAttackAnimation(true,hero,opponent,this);
 
-        root.getChildren().addAll(buttonNormalAttack,buttonSpecialAttack);
+        HBox containerButtonAttack = new HBox(buttonNormalAttack,buttonSpecialAttack);
+        containerButtonAttack.setSpacing(200);
+        containerButtonAttack.setTranslateX(250);
+        containerButtonAttack.setTranslateY(250);
+
+        root.getChildren().addAll(containerButtonAttack);
         this.setRoot(root);
     }
 
