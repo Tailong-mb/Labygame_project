@@ -1,12 +1,14 @@
 package com.labygame.demo.scenes;
 
-import com.labygame.demo.button.ButtonLaby;
+import com.labygame.demo.button.ItemButtonLaby;
+import com.labygame.demo.button.StandardButtonLaby;
 import com.labygame.items.Item;
 import com.labygame.personnage.Hero;
 import com.labygame.personnage.Monster;
 import com.labygame.personnage.Role;
 import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -57,10 +59,10 @@ public class FightScene extends GeneralScene{
     }
 
     public void gameChoiceMonster(){
-        ButtonLaby buttonNormalAttack = new ButtonLaby("NORMAL ATTACK");
+        StandardButtonLaby buttonNormalAttack = new StandardButtonLaby("NORMAL ATTACK");
         buttonNormalAttack.buttonAttackAnimation(false,hero,opponent,this);
 
-        ButtonLaby buttonSpecialAttack = new ButtonLaby("SPECIAL ATTACK");
+        StandardButtonLaby buttonSpecialAttack = new StandardButtonLaby("SPECIAL ATTACK");
         buttonSpecialAttack.buttonAttackAnimation(true,hero,opponent,this);
 
         HBox containerButtonAttack = new HBox(buttonNormalAttack,buttonSpecialAttack);
@@ -147,17 +149,30 @@ public class FightScene extends GeneralScene{
         myFontStats = Font.font("Arial", FontWeight.BOLD, 17);
         gc.setFont(myFontStats);
         gc.setFill(Color.WHITE);
-
+        //Search all values
         ArrayList<Integer> numberOfItem = new ArrayList<>();
+        ArrayList<Item> itemType = new ArrayList<>();
         for(Map.Entry<Item,Integer> entry: hero.getMyItem().entrySet()){
             numberOfItem.add(entry.getValue());
+            itemType.add(entry.getKey());
         }
 
+        //Print all values
         int yPositionItemNumber = 792;
         for(int i = 0; i < 3;i++){
             gc.fillText(String.format("= %d",numberOfItem.get(i)),50,yPositionItemNumber);
             yPositionItemNumber -= 35;
         }
 
+        ItemButtonLaby healUseButton = new ItemButtonLaby(itemType.get(2),this,hero);
+        ItemButtonLaby antidoteUseButton = new ItemButtonLaby(itemType.get(1),this,hero);
+        ItemButtonLaby energyDrinkUseButton = new ItemButtonLaby(itemType.get(0),this,hero);
+        VBox itemUseBox = new VBox(healUseButton,antidoteUseButton,energyDrinkUseButton);
+        itemUseBox.setSpacing(8);
+        itemUseBox.setTranslateX(-495);
+        itemUseBox.setTranslateY(675);
+
+        root.getChildren().addAll(itemUseBox);
+        this.setRoot(root);
     }
 }
