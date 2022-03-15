@@ -1,6 +1,7 @@
 package com.labygame.demo.scenes;
 
 import com.labygame.demo.button.ButtonLaby;
+import com.labygame.items.Item;
 import com.labygame.personnage.Hero;
 import com.labygame.personnage.Monster;
 import com.labygame.personnage.Role;
@@ -14,6 +15,7 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 @Setter
@@ -130,5 +132,32 @@ public class FightScene extends GeneralScene{
         //Draw Hero
         Image myHero = new Image("file:doc/images/gfx/gfx/fightScene/heroRdyToFight.png");
         gc.drawImage(myHero,-100,275);
+
+        //Draw item Hero Image
+        Image healPotionImage = new Image("file:doc/images/gfx/gfx/item/hpPotion.png");
+        gc.drawImage(healPotionImage,20,775);
+
+        Image antidotePotionImage = new Image("file:doc/images/gfx/gfx/item/antidotePotion.png");
+        gc.drawImage(antidotePotionImage,20,740);
+
+        Image energyDrinkPotionImage = new Image("file:doc/images/gfx/gfx/item/energyDrinkPotion.png");
+        gc.drawImage(energyDrinkPotionImage,20,705);
+
+        //Draw item stats
+        myFontStats = Font.font("Arial", FontWeight.BOLD, 17);
+        gc.setFont(myFontStats);
+        gc.setFill(Color.WHITE);
+
+        ArrayList<Integer> numberOfItem = new ArrayList<>();
+        for(Map.Entry<Item,Integer> entry: hero.getMyItem().entrySet()){
+            numberOfItem.add(entry.getValue());
+        }
+
+        int yPositionItemNumber = 792;
+        for(int i = 0; i < 3;i++){
+            gc.fillText(String.format("= %d",numberOfItem.get(i)),50,yPositionItemNumber);
+            yPositionItemNumber -= 35;
+        }
+
     }
 }
