@@ -43,8 +43,10 @@ public class Hero extends Role implements Serializable {
     @Override
     public void secretAttack(Role target) {
         Random rand = new Random();
-        if (CharacterState.NORMAL == currentStatus)
-            target.setHp(target.getHp() - rand.nextInt(power*power - power*9) - power *10);
+        if (CharacterState.NORMAL == currentStatus) {
+            target.setHp(target.getHp() - rand.nextInt(power * power - power * 9) - power * 10);
+            currentStatus = CharacterState.WEARY;
+        }
         else
             hp -= power; //He hurts himself because he can't use his secret attack (not the good statement).
     }
