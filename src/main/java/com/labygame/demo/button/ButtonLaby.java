@@ -1,5 +1,9 @@
 package com.labygame.demo.button;
 
+import com.labygame.demo.scenes.FightScene;
+import com.labygame.personnage.Hero;
+import com.labygame.personnage.Role;
+import javafx.animation.FadeTransition;
 import javafx.geometry.Pos;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.GaussianBlur;
@@ -9,17 +13,20 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 
-public class Button extends StackPane {
+import java.util.Random;
 
-    public Button(String name) {
+public class ButtonLaby extends StackPane {
+
+    public ButtonLaby(String name) {
 
         //Initialisation Text
         Text myText  = new Text(name);
         myText.setFont(Font.font(20));
         myText.setFill(Color.rgb(72, 184, 250));
 
-        //Initialisation Button container
+        //Initialisation ButtonLaby container
         Rectangle myContainer = new Rectangle(250, 30);
         myContainer.setOpacity(0.6);
         myContainer.setFill(Color.WHITE);
@@ -49,5 +56,34 @@ public class Button extends StackPane {
         setOnMousePressed(event -> setEffect(drop));
         setOnMouseReleased(event -> setEffect(null));
 
+    }
+
+    public void buttonAttackAnimation(boolean typeOfAttack, Hero hero, Role opponent, FightScene fightScene) {
+        setOnMouseClicked(event -> {
+            //ATTACK OPPONENT
+            if(typeOfAttack)
+                hero.secretAttack(opponent);
+            else
+                hero.basicAttack(opponent);
+
+            Random myRand = new Random();
+
+            //THE MONSTER ATTACK THE HERO
+            if (myRand.nextInt(20) != 0)
+                opponent.basicAttack(hero);
+            else
+                opponent.secretAttack(hero);
+
+            //EFFECT STATUE
+            hero.stateEffect();
+
+            //BUTTON ANIMATION
+            FadeTransition ft = new FadeTransition(Duration.seconds(0.5));
+            ft.setFromValue(1);
+            ft.setToValue(0);
+            ft.play();
+
+            fightScene.gameDrawScene();
+        });
     }
 }
