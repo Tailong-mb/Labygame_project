@@ -13,9 +13,11 @@ public class mainLabyGame extends Application {
     public static final int GAME_SCENE = 1;
     public static final int FIGHT_SCENE = 2;
     public static final int CREDITS_SCENE = 3;
+    public static final int GAMEOVER_SCENE = 2;
 
     public static final GeneralScene[] scenes = {new MenuScene(),new FightScene(new Hero(50, CharacterState.NORMAL,"Jean",10,0,0),
-            new Wizard(16, CharacterState.NORMAL,"Merlin",10,0,0))};
+            new Wizard(16, CharacterState.NORMAL,"Merlin",10,0,0)),
+            new GameOverScene()};
 
     public static Stage stage;
 
