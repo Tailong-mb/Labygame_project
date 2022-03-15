@@ -18,10 +18,10 @@ public class MenuScene extends GeneralScene{
         activeKeys.clear();
 
         //Set backGround image Menu
-        Image backgroundMenu = new Image("file:doc/images/wallpaper/mainMenu.jpg");
+        Image backgroundMenu = new Image("file:doc/images/wallpaper/mainMenu.jpg", 1200, 600, false, false);
 
         Pane root = new Pane();
-        root.setPrefSize(1200, 850);
+        root.setPrefSize(1200, 600);
 
         GameMenu gameMenu = new GameMenu();
         root.getChildren().addAll(new ImageView(backgroundMenu),gameMenu);
