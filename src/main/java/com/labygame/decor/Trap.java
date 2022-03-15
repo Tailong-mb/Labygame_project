@@ -1,4 +1,4 @@
-package com.labygame.trayEnvironnement.Decor;
+package com.labygame.decor;
 
 import com.labygame.personnage.Hero;
 import lombok.AllArgsConstructor;
