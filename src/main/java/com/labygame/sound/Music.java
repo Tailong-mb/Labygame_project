@@ -35,7 +35,7 @@ public class Music {
 
     public void playGameOverMusic() {
 
-        this.media = new Media("");
+        this.media = new Media(Paths.get("doc/Music/ItsNotGameOverYet.mp3").toUri().toString());
         this.mp = new MediaPlayer(media);
 
         mp.play();
@@ -44,7 +44,7 @@ public class Music {
 
     public void playBattleMusic() {
 
-        this.media = new Media("");
+        this.media = new Media(Paths.get("doc/Music/WeMustBattleNOW.mp3").toUri().toString());
         this.mp = new MediaPlayer(media);
 
         mp.play();
