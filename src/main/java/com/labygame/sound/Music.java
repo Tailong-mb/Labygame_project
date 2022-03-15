@@ -33,4 +33,22 @@ public class Music {
 
     }
 
+    public void playGameOverMusic() {
+
+        this.media = new Media("");
+        this.mp = new MediaPlayer(media);
+
+        mp.play();
+
+    }
+
+    public void playBattleMusic() {
+
+        this.media = new Media("");
+        this.mp = new MediaPlayer(media);
+
+        mp.play();
+
+    }
+
 }
