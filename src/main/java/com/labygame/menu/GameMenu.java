@@ -21,11 +21,11 @@ public class GameMenu extends Parent {
         VBox menuOptionSound = new VBox(15);
 
         menuMain.setTranslateX(500);
-        menuMain.setTranslateY(200);
+        menuMain.setTranslateY(50);
         menuOption.setTranslateX(500);
-        menuOption.setTranslateY(200);
+        menuOption.setTranslateY(50);
         menuOptionSound.setTranslateX(500);
-        menuOptionSound.setTranslateY(200);
+        menuOptionSound.setTranslateY(50);
 
         final int offset = 200;
 
@@ -48,6 +48,11 @@ public class GameMenu extends Parent {
             ft.setOnFinished(evt -> this.setVisible(false));
             ft.play();
 
+        });
+
+        button btnGlossary = new button("Glossary");
+        btnGlossary.setOnMouseClicked(event ->{
+            //TODO
         });
 
         button btnOpt = new button("Options");
@@ -114,7 +119,7 @@ public class GameMenu extends Parent {
         btnU.setOnMouseClicked(event -> msc.playMusic());
 
 
-        menuMain.getChildren().addAll(btnCtn, btnNG, btnOpt, btnC, btnE);
+        menuMain.getChildren().addAll(btnCtn, btnNG, btnGlossary, btnOpt, btnC, btnE);
         menuOption.getChildren().addAll(btnS);
         menuOptionSound.getChildren().addAll(btnM, btnU, btnBk);
 
