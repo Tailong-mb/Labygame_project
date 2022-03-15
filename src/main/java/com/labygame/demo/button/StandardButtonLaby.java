@@ -17,16 +17,16 @@ import javafx.util.Duration;
 
 import java.util.Random;
 
-public class ButtonLaby extends StackPane {
+public class StandardButtonLaby extends StackPane {
 
-    public ButtonLaby(String name) {
+    public StandardButtonLaby(String name) {
 
         //Initialisation Text
         Text myText  = new Text(name);
         myText.setFont(Font.font(20));
         myText.setFill(Color.rgb(72, 184, 250));
 
-        //Initialisation ButtonLaby container
+        //Initialisation StandardButtonLaby container
         Rectangle myContainer = new Rectangle(250, 30);
         myContainer.setOpacity(0.6);
         myContainer.setFill(Color.WHITE);
