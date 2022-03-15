@@ -14,13 +14,13 @@ public class mainMenuB extends Application {
     public void start(Stage stage) throws Exception {
 
         Pane root = new Pane();
-        root.setPrefSize(1200, 850);
+        root.setPrefSize(1200, 600);
 
-        Image img = new Image("file:doc/images/wallpaper/mainMenu.jpg");
+        Image img = new Image("file:doc/images/wallpaper/mainMenu.jpg", 1200, 600, false, false);
 
         ImageView imgView = new ImageView(img);
         imgView.setFitWidth(1200);
-        imgView.setFitHeight(850);
+        imgView.setFitHeight(600);
 
         GameMenu gameMenu = new GameMenu();
 
