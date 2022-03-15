@@ -21,6 +21,8 @@ public class GameOverScene extends GeneralScene{
         Image backgroundImage = new Image("file:doc/images/gameover.jpg",1200,600,false,false);
         Image ghost = new Image("file:doc/images/Dead.png", 400, 75, false, false);
 
+        gameOverMusic.playGameOverMusic();
+
         gc.drawImage(backgroundImage,0,0);
         gc.drawImage(ghost,390,400);
 
