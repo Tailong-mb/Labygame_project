@@ -29,6 +29,7 @@ public class button extends StackPane {
         setRotate(-0.5);
         getChildren().addAll(myContainer,myText);
 
+        //actions when the mouse is over the button
         setOnMouseEntered(event -> {
             myContainer.setTranslateX(10);
             myText.setTranslateX(10);
