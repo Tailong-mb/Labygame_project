@@ -26,7 +26,7 @@ public class mainLabyGame extends Application {
         mainLabyGame.stage = stage;
 
         stage.setTitle("LabyGame");
-        setScene(MENU_SCENE);
+        setScene(GAMEOVER_SCENE);
         stage.show();
 
 
