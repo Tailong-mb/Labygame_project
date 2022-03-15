@@ -1,17 +1,19 @@
 package com.labygame.demo.scenes;
 
+import com.labygame.demo.button.ButtonLaby;
 import com.labygame.personnage.Hero;
 import com.labygame.personnage.Monster;
 import com.labygame.personnage.Role;
+import javafx.animation.FadeTransition;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.util.Duration;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -22,6 +24,7 @@ public class FightScene extends GeneralScene{
     private Hero hero;
     private Role opponent;
     private Image backgroundImage;
+    private int typeMonster;
 
     private final String PATH_BACKGROUND_IMAGE = "file:doc/images/gfx/gfx/fightScene/backgroundFightScene.png";
 
@@ -30,6 +33,8 @@ public class FightScene extends GeneralScene{
         this.hero = hero;
         this.opponent = opponent;
         this.backgroundImage = new Image(PATH_BACKGROUND_IMAGE);
+        Random myRand = new Random();
+        typeMonster = myRand.nextInt(6);
     }
 
     public FightScene(){
@@ -42,7 +47,33 @@ public class FightScene extends GeneralScene{
         //Reset Key
         activeKeys.clear();
 
-        //Init Font
+        gameDrawScene();
+
+        if(opponent instanceof Monster)
+            gameChoiceMonster();
+        else
+            gameChoiceWizard();
+    }
+
+    public void gameChoiceMonster(){
+        ButtonLaby buttonNormalAttack = new ButtonLaby("NORMAL ATTACK");
+        buttonNormalAttack.buttonAttackAnimation(false,hero,opponent,this);
+
+        ButtonLaby buttonSpecialAttack = new ButtonLaby("SPECIAL ATTACK");
+        buttonSpecialAttack.buttonAttackAnimation(true,hero,opponent,this);
+
+        root.getChildren().addAll(buttonNormalAttack,buttonSpecialAttack);
+        this.setRoot(root);
+    }
+
+    public void gameChoiceWizard(){
+
+    }
+
+    /**
+     * Draw the game Scene.
+     */
+    public void gameDrawScene(){
         Font myFontStats = Font.font("Arial", FontWeight.BOLD, 24);
         gc.setFont(myFontStats);
 
@@ -71,7 +102,6 @@ public class FightScene extends GeneralScene{
         gc.fillText(String.format("%2d",opponent.getHp()),1095,75);
         gc.fillText(String.format("%d",opponent.getPower()),1095,122);
         gc.fillText(opponent.getCurrentStatus().getNameState(),1020,175);
-        gc.fillText(opponent.getName(),960,350);
 
         //Draw Monster
         if(opponent instanceof Monster){
@@ -83,14 +113,14 @@ public class FightScene extends GeneralScene{
                     "file:doc/images/gfx/gfx/fightScene/extraCreatures/shredSquid.png",
                     "file:doc/images/gfx/gfx/fightScene/extraCreatures/strangeGhost.png"));
 
-            Random myRandom = new Random();
-            int randomPath = myRandom.nextInt(6);
-            Image monsterImage = new Image(possibleMonsterList.get(randomPath));
+            Image monsterImage = new Image(possibleMonsterList.get(typeMonster));
             gc.drawImage(monsterImage,950,450);
+            gc.fillText(opponent.getName(),975,425);
         }else{
             //draw wizard
             Image wizardImage = new Image("file:doc/images/gfx/gfx/fightScene/wizardRdyToFight.png");
             gc.drawImage(wizardImage,900,390);
+            gc.fillText(opponent.getName(),960,350);
         }
 
         //Draw Hero
