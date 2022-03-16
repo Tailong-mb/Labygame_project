@@ -6,19 +6,23 @@ import com.labygame.items.Item;
 import com.labygame.personnage.Hero;
 import com.labygame.personnage.Monster;
 import com.labygame.personnage.Role;
+import com.labygame.personnage.Wizard;
+import javafx.scene.control.TextField;
+import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import lombok.Getter;
 import lombok.Setter;
+import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 @Setter
 @Getter
@@ -40,6 +44,7 @@ public class FightScene extends GeneralScene{
         typeMonster = myRand.nextInt(6);
     }
 
+    //No args constructor
     public FightScene(){
         super();
         this.backgroundImage = new Image(PATH_BACKGROUND_IMAGE);
@@ -55,7 +60,7 @@ public class FightScene extends GeneralScene{
         if(opponent instanceof Monster)
             gameChoiceMonster();
         else
-            gameChoiceWizard();
+            gameChoiceWizard((Wizard) opponent);
     }
 
     public void gameChoiceMonster(){
@@ -74,7 +79,36 @@ public class FightScene extends GeneralScene{
         this.setRoot(root);
     }
 
-    public void gameChoiceWizard(){
+    public void gameChoiceWizard(@NotNull Wizard opponent){
+        //Textquesiton
+        Text myText  = new Text(opponent.askQuestion());
+        myText.setFont(Font.font(20));
+        myText.setFill(Color.BLACK);
+
+        //TextRectangleContainer
+        Rectangle myContainerQuestion = new Rectangle(opponent.getCurrentRiddle().getRid().length()*8.5, 30);
+        myContainerQuestion.setOpacity(0.6);
+        myContainerQuestion.setFill(Color.WHITE);
+        myContainerQuestion.setEffect(new GaussianBlur(3.5));
+
+        //TextContainer
+        StackPane questionPane = new StackPane();
+        questionPane.getChildren().addAll(myContainerQuestion,myText);
+        questionPane.setMaxWidth(800);
+        questionPane.setMaxHeight(80);
+        questionPane.setTranslateY(-250);
+
+        //TextAnswer
+        TextField answerToRiddle = new TextField();
+        answerToRiddle.setFont(Font.font(15));
+        answerToRiddle.setMaxWidth(300);
+        answerToRiddle.setTranslateX(0);
+        answerToRiddle.setTranslateY(225);
+        questionPane.setMaxHeight(80);
+
+
+        root.getChildren().addAll(questionPane,answerToRiddle);
+        this.setRoot(root);
 
     }
 
