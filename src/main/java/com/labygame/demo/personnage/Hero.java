@@ -1,12 +1,10 @@
 package com.labygame.demo.personnage;
 
+import com.labygame.demo.Sprites;
 import com.labygame.demo.items.Item;
 import com.labygame.demo.items.ItemName;
 import javafx.scene.image.Image;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -19,6 +17,12 @@ import java.util.Random;
 public class Hero extends Role implements Serializable {
     private transient HashMap<Item,Integer> myItem;
     private final transient Image myImage = new Image("file:doc/images/gfx/gfx/character.png");
+    private Sprites mainCharacter;
+
+    public static final int LEFT = 0;
+    public static final int RIGHT = 1;
+    public static final int UP = 2;
+    public static final int DOWN = 3;
 
     //All args constructor
     public Hero(int hp, CharacterState status, String name, int power, int positionX, int positionY, HashMap<Item, Integer> myItem) {
@@ -26,6 +30,10 @@ public class Hero extends Role implements Serializable {
         this.myItem = myItem;
         super.positionX = positionX;
         super.positionY = positionY;
+        mainCharacter = new Sprites(16,24);
+        mainCharacter.setSpriteImage(new Image("file:doc/images/gfx/gfx/character.png"));
+        mainCharacter.setSpriteX(0);
+        mainCharacter.setSpriteY(6);
     }
 
     //Constructor without Item
@@ -33,6 +41,9 @@ public class Hero extends Role implements Serializable {
         super(hp,name, power, status);
         super.positionX = positionX;
         super.positionY = positionY;
+        mainCharacter = new Sprites(15,29);
+        mainCharacter.setSpriteImage(new Image("file:doc/images/gfx/gfx/character.png"));
+        mainCharacter.setSpriteX(0);
     }
 
     @Override
@@ -93,19 +104,22 @@ public class Hero extends Role implements Serializable {
         }
     }
 
-    //get and set method
-/*
-    public HashMap<Item, Integer> getMyItem() {
-        return myItem;
+    public void move(int move) {
+        int newX = mainCharacter.getX();
+        int newY = mainCharacter.getY();
+        if (move == LEFT) {
+            newX -= 10;
+            setPositionX(newX);
+        } else if (move == RIGHT) {
+            newX += 10;
+            setPositionX(newX);
+        } else if (move == UP) {
+            newY -= 10;
+            setPositionY(newY);
+        } else if (move == DOWN) {
+            newY += 10;
+            setPositionY(newY);
+        }
+        mainCharacter.moveTo(newX, newY);
     }
-
-    public void setMyItem(HashMap<Item, Integer> myItem) {
-        this.myItem = myItem;
-    }
-
-    public Image getMyImage() {
-        return this.myImage;
-    }
-
- */
 }

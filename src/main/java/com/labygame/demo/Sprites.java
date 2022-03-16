@@ -24,6 +24,6 @@ public class Sprites {
     }
 
     public void draw(GraphicsContext gc){
-        gc.drawImage(spriteImage,spriteX,spriteY,width,height,x,y,width,height);
+        gc.drawImage(spriteImage,spriteX,spriteY,width,height,x,y,width*2,height*2);
     }
 }

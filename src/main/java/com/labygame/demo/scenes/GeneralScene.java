@@ -4,6 +4,7 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
 import java.util.HashSet;
@@ -14,7 +15,7 @@ public abstract class GeneralScene extends Scene
     public static final int GAME_WIDTH = 1200;
     public static final int GAME_HEIGHT = 600;
 
-    private StackPane root = new StackPane();
+    private Pane root = new Pane();
     protected GraphicsContext gc;
     protected Set<KeyCode> activeKeys;
     protected Set<KeyCode> releasedKeys;

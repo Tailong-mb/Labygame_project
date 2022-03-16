@@ -1,10 +1,10 @@
 package com.labygame.demo.scenes;
 
-import com.labygame.demo.Labygame;
+import com.labygame.demo.mainLabyGame;
 import javafx.animation.AnimationTimer;
 import javafx.scene.input.KeyCode;
 
-import static com.labygame.demo.Labygame.GAME_SCENE;
+import static com.labygame.demo.mainLabyGame.GAME_SCENE;
 
 public class CreditsScene extends GeneralScene{
     @Override
@@ -16,11 +16,11 @@ public class CreditsScene extends GeneralScene{
             public void handle(long currentNanoTime) {
                 if(activeKeys.contains(KeyCode.SPACE)){
                     this.stop();
-                    Labygame.exit();
+                    mainLabyGame.exit();
                 }
                 if(activeKeys.contains(KeyCode.BACK_SPACE)){
                     this.stop();
-                    Labygame.setScene(GAME_SCENE);
+                    mainLabyGame.setScene(GAME_SCENE);
                 }
             }
         };timer.start();

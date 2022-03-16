@@ -7,7 +7,7 @@ import com.labygame.demo.scenes.GeneralScene;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-public class Labygame extends Application {
+public class mainLabyGame extends Application {
     public static final int MENU_SCENE = 0;
     public static final int GAME_SCENE = 1;
     public static final int FIGHT_SCENE = 2;
