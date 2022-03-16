@@ -1,5 +1,6 @@
 package com.labygame.demo.scenes;
 
+import com.labygame.demo.Labygame;
 import com.labygame.demo.button.ItemButtonLaby;
 import com.labygame.demo.button.StandardButtonLaby;
 import com.labygame.items.Item;
@@ -7,9 +8,11 @@ import com.labygame.personnage.Hero;
 import com.labygame.personnage.Monster;
 import com.labygame.personnage.Role;
 import com.labygame.personnage.Wizard;
+import javafx.animation.FadeTransition;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -18,9 +21,9 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 import lombok.Getter;
 import lombok.Setter;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 
@@ -32,6 +35,8 @@ public class FightScene extends GeneralScene{
     private Role opponent;
     private Image backgroundImage;
     private int typeMonster;
+    private int lastHpHero;
+    private int lastHpOpponent;
 
     private final String PATH_BACKGROUND_IMAGE = "file:doc/images/gfx/gfx/fightScene/backgroundFightScene.png";
 
@@ -42,12 +47,16 @@ public class FightScene extends GeneralScene{
         this.backgroundImage = new Image(PATH_BACKGROUND_IMAGE);
         Random myRand = new Random();
         typeMonster = myRand.nextInt(6);
+        this.lastHpHero = hero.getHp();
+        this.lastHpOpponent = opponent.getHp();
     }
 
     //No args constructor
     public FightScene(){
         super();
         this.backgroundImage = new Image(PATH_BACKGROUND_IMAGE);
+        this.lastHpHero = hero.getHp();
+        this.lastHpOpponent = opponent.getHp();
     }
 
     @Override
@@ -60,7 +69,7 @@ public class FightScene extends GeneralScene{
         if(opponent instanceof Monster)
             gameChoiceMonster();
         else
-            gameChoiceWizard((Wizard) opponent);
+            gameChoiceWizard((Wizard)opponent);
     }
 
     public void gameChoiceMonster(){
@@ -79,7 +88,7 @@ public class FightScene extends GeneralScene{
         this.setRoot(root);
     }
 
-    public void gameChoiceWizard(@NotNull Wizard opponent){
+    public void gameChoiceWizard(Wizard opponent){
         //Textquesiton
         Text myText  = new Text(opponent.askQuestion());
         myText.setFont(Font.font(20));
@@ -106,16 +115,36 @@ public class FightScene extends GeneralScene{
         answerToRiddle.setTranslateY(225);
         questionPane.setMaxHeight(80);
 
+        answerToRiddle.setOnKeyPressed( event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                if(opponent.ansVerification(answerToRiddle.getText())){
+                    Labygame.setScene(Labygame.GAME_SCENE);
+                } else{
+                    Random rand = new Random();
+                    if(rand.nextBoolean())
+                        opponent.basicAttack(hero);
+                    else
+                        opponent.secretAttack(hero);
+                }
+            }
+            this.gameDrawScene();
+        });
 
         root.getChildren().addAll(questionPane,answerToRiddle);
         this.setRoot(root);
-
     }
 
     /**
      * Draw the game Scene.
      */
     public void gameDrawScene(){
+        showDamage();
+        //Check is one of the character is dead
+        if(hero.isDead())
+            Labygame.setScene(Labygame.CREDITS_SCENE);
+        else if(opponent.isDead())
+            Labygame.setScene(Labygame.GAME_SCENE);
+
         Font myFontStats = Font.font("Arial", FontWeight.BOLD, 24);
         gc.setFont(myFontStats);
 
@@ -209,4 +238,49 @@ public class FightScene extends GeneralScene{
         root.getChildren().addAll(itemUseBox);
         this.setRoot(root);
     }
+
+    public void showDamage(){
+        int heroDamage = hero.getHp() - lastHpHero;
+        int opponentDamage = opponent.getHp() - lastHpOpponent;
+        lastHpHero = hero.getHp();
+        lastHpOpponent = opponent.getHp();
+        if((heroDamage != 0) || (opponentDamage != 0)){
+            //Initialisation text for hero value
+            Text textDamageHero  = new Text(Integer.toString(heroDamage));
+            textDamageHero.setFont(Font.font("Arial",FontWeight.BOLD,30));
+            textDamageHero.setTranslateX(-300);
+
+            //Initialisation text for opponent value
+            Text textDamageOpponent = new Text(Integer.toString(opponentDamage));
+            textDamageOpponent.setFont(Font.font("Arial",FontWeight.BOLD,30));
+            textDamageOpponent.setTranslateX(300);
+            textDamageOpponent.setTranslateY(20);
+
+            if(heroDamage >= 0) {
+                textDamageHero.setFill(Color.GREEN);
+                textDamageHero.setText("+" + heroDamage);
+            }
+            else
+                textDamageHero.setFill(Color.RED);
+
+            if(opponentDamage >= 0)
+                textDamageOpponent.setFill(Color.GREEN);
+            else
+                textDamageOpponent.setFill(Color.RED);
+
+            transitionDamage(textDamageHero);
+            transitionDamage(textDamageOpponent);
+
+            root.getChildren().addAll(textDamageHero,textDamageOpponent);
+            this.setRoot(root);
+        }
+    }
+
+    public void transitionDamage(Text myText){
+        FadeTransition ft = new FadeTransition(Duration.seconds(2), myText);
+        ft.setFromValue(1.0);
+        ft.setToValue(0.0);
+        ft.play();
+    }
 }
+

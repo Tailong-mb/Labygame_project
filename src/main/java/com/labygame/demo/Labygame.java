@@ -23,7 +23,7 @@ public class Labygame extends Application {
     public static final GeneralScene[] scenes = {new MenuScene(),
             new GameScene(),
             new FightScene(
-                    new Hero(50,
+                    new Hero(150,
                     CharacterState.NORMAL,
                     "Jean",
                     10,
@@ -33,7 +33,7 @@ public class Labygame extends Application {
         put(new Item(10, ItemName.ANTIDOTE,""), 1);
         put(new Item(40,ItemName.HEALPOTION,""),3);
                     }}),
-            new Wizard(16,
+            new Monster(100,
                     CharacterState.NORMAL,
                     "Merlin",
                     10,
