@@ -51,28 +51,26 @@ public class FightScene extends GeneralScene{
         this.lastHpOpponent = opponent.getHp();
     }
 
-    //No args constructor
-    public FightScene(){
-        super();
-        this.backgroundImage = new Image(PATH_BACKGROUND_IMAGE);
-        this.lastHpHero = hero.getHp();
-        this.lastHpOpponent = opponent.getHp();
-    }
-
     @Override
     public void draw() {
         //Reset Key
         activeKeys.clear();
 
+        //Draw Scene
         gameDrawScene();
 
+        //The scene changes according to the type of opponent
         if(opponent instanceof Monster)
             gameChoiceMonster();
         else
             gameChoiceWizard((Wizard)opponent);
     }
 
+    /**
+     * Interface when the hero fight a Monster
+     */
     public void gameChoiceMonster(){
+        //Set Button attackChoice
         StandardButtonLaby buttonNormalAttack = new StandardButtonLaby("NORMAL ATTACK");
         buttonNormalAttack.buttonAttackAnimation(false,hero,opponent,this);
 
@@ -88,6 +86,10 @@ public class FightScene extends GeneralScene{
         this.setRoot(root);
     }
 
+    /**
+     * Set the interface when the hero face a wizard
+     * @param opponent a wizard.
+     */
     public void gameChoiceWizard(Wizard opponent){
         //Textquesiton
         Text myText  = new Text(opponent.askQuestion());
@@ -116,10 +118,14 @@ public class FightScene extends GeneralScene{
         questionPane.setMaxHeight(80);
 
         answerToRiddle.setOnKeyPressed( event -> {
+            //when he validates his answer
             if (event.getCode() == KeyCode.ENTER) {
+                //Check the answer
                 if(opponent.ansVerification(answerToRiddle.getText())){
+                    //If he won change scene
                     Labygame.setScene(Labygame.GAME_SCENE);
                 } else{
+                    //If the answer is bad the wizard hit him
                     Random rand = new Random();
                     if(rand.nextBoolean())
                         opponent.basicAttack(hero);
@@ -227,6 +233,7 @@ public class FightScene extends GeneralScene{
             yPositionItemNumber -= 35;
         }
 
+        //Draw Button to use potion (Heal/Antidote/EnergyDrink)
         ItemButtonLaby healUseButton = new ItemButtonLaby(itemType.get(2),this,hero);
         ItemButtonLaby antidoteUseButton = new ItemButtonLaby(itemType.get(1),this,hero);
         ItemButtonLaby energyDrinkUseButton = new ItemButtonLaby(itemType.get(0),this,hero);
@@ -239,6 +246,9 @@ public class FightScene extends GeneralScene{
         this.setRoot(root);
     }
 
+    /**
+     * Draw damage with faded event
+     */
     public void showDamage(){
         int heroDamage = hero.getHp() - lastHpHero;
         int opponentDamage = opponent.getHp() - lastHpOpponent;
@@ -256,6 +266,7 @@ public class FightScene extends GeneralScene{
             textDamageOpponent.setTranslateX(300);
             textDamageOpponent.setTranslateY(20);
 
+            //Text will be green if the value is positive otherwise red
             if(heroDamage >= 0) {
                 textDamageHero.setFill(Color.GREEN);
                 textDamageHero.setText("+" + heroDamage);
@@ -276,6 +287,10 @@ public class FightScene extends GeneralScene{
         }
     }
 
+    /**
+     * Fade Transition for a text
+     * @param myText the text to show
+     */
     public void transitionDamage(Text myText){
         FadeTransition ft = new FadeTransition(Duration.seconds(2), myText);
         ft.setFromValue(1.0);
