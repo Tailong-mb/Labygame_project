@@ -1,15 +1,15 @@
 package com.labygame.demo.scenes;
 
 import com.labygame.mainLabyGame;
-import com.labygame.menu.button;
-import com.labygame.menu.menuInGame;
 import com.labygame.sound.Music;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 
 public class GameOverScene extends GeneralScene{
 
     Music gameOverMusic = new Music();
-    menuInGame menu = new menuInGame();
 
     public GameOverScene() {
         super();
@@ -25,24 +25,25 @@ public class GameOverScene extends GeneralScene{
         Image backgroundImage = new Image("file:doc/images/gameover.jpg",1200,600,false,false);
         Image ghost = new Image("file:doc/images/Dead.png", 400, 75, false, false);
 
-        gameOverMusic.playGameOverMusic();
+        this.gameOverMusic.playGameOverMusic();
+
+        //text with instruction
+        Text myText  = new Text("Click to continue");
+        this.myText.setFont(Font.font(20));
+        this.myText.setFill(Color.GREY);
+        this.myText.setTranslateY(-200);
 
         gc.drawImage(backgroundImage,0,0);
         gc.drawImage(ghost,390,400);
 
 
-        //button to return to the main Menu
-        button btnReturn = new button("Return");
-        btnReturn.setOnMouseClicked(event ->{
+        //way to return to the main Menu
+        setOnMouseClicked(event ->{
             mainLabyGame.setScene(0);
             gameOverMusic.stopMusic();
         });
-        btnReturn.setTranslateY(-250);
-        btnReturn.setTranslateX(-400);
 
-        menu.accessMenu();
-
-        root.getChildren().addAll(btnReturn);
+        root.getChildren().addAll(myText);
 
     }
 }
