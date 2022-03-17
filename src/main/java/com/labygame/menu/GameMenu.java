@@ -53,7 +53,7 @@ public class GameMenu extends Parent {
             ft.setToValue(0);
             ft.setOnFinished(evt -> this.setVisible(false));
             ft.play();
-
+            //TODO
         });
 
         //"New Game" button
@@ -108,7 +108,7 @@ public class GameMenu extends Parent {
         //"Glossary" button
         button btnGlossary = new button("Glossary");
         btnGlossary.setOnMouseClicked(event ->{
-            //mainLabyGame.setScene(5);
+            mainLabyGame.setScene(5);
         });
 
         //"Options" button
@@ -131,7 +131,7 @@ public class GameMenu extends Parent {
         //"Credits" button
         button btnC = new button("Credits");
         btnC.setOnMouseClicked(event -> {
-            //mainLabyGame.setScene(6);
+            mainLabyGame.setScene(6);
         });
 
         //"Exit" button to exit the game
