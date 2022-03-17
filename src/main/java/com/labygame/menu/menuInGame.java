@@ -6,35 +6,41 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
-public class menuInGame{
+public class menuInGame {
 
-    GameMenu gameMenu;
+    GMenu gameMenu;
 
-    public void menuInGame() {
+    public menuInGame() {
+
+        this.gameMenu = new GMenu();
+        this.gameMenu.setVisible(false);
+
+    }
+
+    /**
+     * The scene with the menu in game appears only when "escape" key was pressed and disappears when "escape" key was pressed twice
+     */
+    public void accessMenu() {
 
         Pane root = new Pane();
         root.setPrefSize(1200, 600);
-
-        gameMenu = new GameMenu();
-        gameMenu.setVisible(false);
-
-        root.getChildren().addAll(gameMenu);
+        root.getChildren().addAll(this.gameMenu);
 
         Scene scene = new Scene(root);
         scene.setOnKeyPressed(event -> {
-            if(event.getCode() == KeyCode.ESCAPE){
-                if(!gameMenu.isVisible()){
-                    FadeTransition ft = new FadeTransition(Duration.seconds(0.5), gameMenu);
+            if (event.getCode() == KeyCode.ESCAPE) {
+                if (!this.gameMenu.isVisible()) {
+                    FadeTransition ft = new FadeTransition(Duration.seconds(0.5), this.gameMenu);
                     ft.setFromValue(0);
                     ft.setToValue(1);
 
-                    gameMenu.setVisible(true);
+                    this.gameMenu.setVisible(true);
                     ft.play();
-                }else{
-                    FadeTransition ft = new FadeTransition(Duration.seconds(0.5),gameMenu);
+                } else {
+                    FadeTransition ft = new FadeTransition(Duration.seconds(0.5), this.gameMenu);
                     ft.setFromValue(1);
                     ft.setToValue(0);
-                    ft.setOnFinished(evt -> gameMenu.setVisible(false));
+                    ft.setOnFinished(evt -> this.gameMenu.setVisible(false));
                     ft.play();
                 }
             }
