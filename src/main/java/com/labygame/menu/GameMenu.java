@@ -1,14 +1,18 @@
 package com.labygame.menu;
 
+import com.labygame.mainLabyGame;
 import com.labygame.personnage.CharacterState;
 import com.labygame.personnage.Hero;
 import com.labygame.sound.Music;
+import com.labygame.demo.scenes.GeneralScene;
+import javafx.animation.AnimationTimer;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -16,6 +20,8 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+
+import static com.labygame.mainLabyGame.FIGHT_SCENE;
 
 public class GameMenu extends Parent {
 
@@ -48,6 +54,7 @@ public class GameMenu extends Parent {
             ft.setToValue(0);
             ft.setOnFinished(evt -> this.setVisible(false));
             ft.play();
+
         });
 
         button btnNG = new button("New Game");
@@ -83,6 +90,8 @@ public class GameMenu extends Parent {
             btnEnter.setOnMouseClicked(evt -> {
                 nameHero[0] = txtField.getText();
                 newWindow.close();
+
+                mainLabyGame.setScene(1);
             });
 
             newHero = new Hero(100, CharacterState.NORMAL, nameHero[0], 20, 50, 50, null);
@@ -172,6 +181,7 @@ public class GameMenu extends Parent {
         r.setOpacity(0.4);
 
         getChildren().addAll(r, menuMain);
+
 
     }
 
