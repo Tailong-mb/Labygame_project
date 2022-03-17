@@ -3,12 +3,11 @@ package com.labygame.demo.scenes;
 import com.labygame.mainLabyGame;
 import com.labygame.menu.button;
 import com.labygame.sound.Music;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 
 public class GameOverScene extends GeneralScene{
 
-    Music gameOverMusic = new Music();
+    public Music gameOverMusic = new Music();
 
     public GameOverScene() {
         super();
@@ -29,9 +28,12 @@ public class GameOverScene extends GeneralScene{
         gc.drawImage(backgroundImage,0,0);
         gc.drawImage(ghost,390,400);
 
+
+        //button to return to the main Menu
         button btnReturn = new button("Return");
         btnReturn.setOnMouseClicked(event ->{
             mainLabyGame.setScene(0);
+            gameOverMusic.stopMusic();
         });
         btnReturn.setTranslateY(-250);
         btnReturn.setTranslateX(-400);
