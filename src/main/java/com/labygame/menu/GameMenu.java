@@ -92,6 +92,7 @@ public class GameMenu extends Parent {
                 nameHero[0] = txtField.getText();
                 newWindow.close();
 
+                music.stopMusic();
                 mainLabyGame.setScene(1);
             });
 
@@ -102,13 +103,6 @@ public class GameMenu extends Parent {
             newWindow.setTitle("New Hero");
             newWindow.show();
 
-        });
-
-
-        //"Glossary" button
-        button btnGlossary = new button("Glossary");
-        btnGlossary.setOnMouseClicked(event ->{
-            mainLabyGame.setScene(5);
         });
 
         //"Options" button
@@ -186,11 +180,11 @@ public class GameMenu extends Parent {
         btnU.setOnMouseClicked(event -> music.playMusic());
 
 
-        menuMain.getChildren().addAll(btnCtn, btnNG, btnGlossary, btnOpt, btnC, btnE);
+        menuMain.getChildren().addAll(btnCtn, btnNG, btnOpt, btnC, btnE);
         menuOption.getChildren().addAll(btnS);
         menuOptionSound.getChildren().addAll(btnM, btnU, btnBk);
 
-        Rectangle r = new Rectangle(1200, 850);
+        Rectangle r = new Rectangle(1200, 600);
         r.setFill(Color.GREY);
         r.setOpacity(0.4);
 
