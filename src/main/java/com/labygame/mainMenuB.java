@@ -1,6 +1,7 @@
 package com.labygame;
 
 import com.labygame.menu.GameMenu;
+import com.labygame.sound.Music;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -10,9 +11,12 @@ import javafx.stage.Stage;
 
 public class mainMenuB extends Application {
 
+    Music music = new Music();
 
     @Override
     public void start(Stage stage) throws Exception {
+
+        music.playMusic();
 
         Pane root = new Pane();
         root.setPrefSize(1200, 600);
