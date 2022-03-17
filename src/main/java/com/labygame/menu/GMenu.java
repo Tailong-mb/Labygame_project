@@ -1,5 +1,6 @@
 package com.labygame.menu;
 
+import com.labygame.mainLabyGame;
 import com.labygame.sound.Music;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
@@ -30,6 +31,7 @@ public class GMenu extends Parent {
 
         menu1.setTranslateX(offset);
 
+        //"Resume" button
         button btnRes = new button("Resume");
         btnRes.setOnMouseClicked(event -> {
             FadeTransition ft = new FadeTransition(Duration.seconds(0.5), this);
@@ -37,13 +39,16 @@ public class GMenu extends Parent {
             ft.setToValue(0);
             ft.setOnFinished(evt -> setVisible(false));
             ft.play();
+            mainLabyGame.setScene(1);
         });
 
+        //"Return Main Menu" button
         button btnR = new button("Return Main Menu");
-        //btnR.setOnMouseClicked(event -> {
-        //TODO
-        //});
+        btnR.setOnMouseClicked(event -> {
+            mainLabyGame.setScene(0);
+        });
 
+        //"Options" button
         button btnOpt = new button("Options");
         btnOpt.setOnMouseClicked(evnt -> {
             getChildren().add(menu1);
@@ -60,9 +65,11 @@ public class GMenu extends Parent {
             tt.setOnFinished(evt -> getChildren().remove(menu0));
         });
 
+        //"Exit" button to exit the game
         button btnE = new button("Exit");
         btnE.setOnMouseClicked(event -> System.exit(0));
 
+        //"Back" button
         button btnBk = new button("Back");
         btnBk.setOnMouseClicked(event -> {
             getChildren().add(menu0);
@@ -79,6 +86,7 @@ public class GMenu extends Parent {
             tt.setOnFinished(evt -> getChildren().remove(menu2));
         });
 
+        //"Sound" button
         button btnS = new button("Sound");
         btnS.setOnMouseClicked(event -> {
             getChildren().add(menu2);
@@ -96,9 +104,11 @@ public class GMenu extends Parent {
 
         });
 
+        //"Mute" button to stop the music
         button btnM = new button("Mute");
         btnM.setOnMouseClicked(event -> msc.stopMusic());
 
+        //"Unmute" button to play the music if it was muted
         button btnU = new button("Unmute");
         btnU.setOnMouseClicked(event -> msc.playMusic());
 
