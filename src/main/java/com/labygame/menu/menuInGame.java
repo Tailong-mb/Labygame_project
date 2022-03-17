@@ -1,9 +1,8 @@
 package com.labygame.menu;
 
 import javafx.animation.FadeTransition;
-import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 
 public class menuInGame {
@@ -22,12 +21,11 @@ public class menuInGame {
      */
     public void accessMenu() {
 
-        Pane root = new Pane();
-        root.setPrefSize(1200, 600);
-        root.getChildren().addAll(this.gameMenu);
+        StackPane pane = new StackPane();
+        pane.setPrefSize(1200, 600);
+        pane.getChildren().addAll(this.gameMenu);
 
-        Scene scene = new Scene(root);
-        scene.setOnKeyPressed(event -> {
+        pane.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ESCAPE) {
                 if (!this.gameMenu.isVisible()) {
                     FadeTransition ft = new FadeTransition(Duration.seconds(0.5), this.gameMenu);
