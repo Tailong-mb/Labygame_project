@@ -29,9 +29,9 @@ public class GameOverScene extends GeneralScene{
 
         //text with instruction
         Text myText  = new Text("Click to continue");
-        this.myText.setFont(Font.font(20));
-        this.myText.setFill(Color.GREY);
-        this.myText.setTranslateY(-200);
+        myText.setFont(Font.font(20));
+        myText.setFill(Color.GREY);
+        myText.setTranslateY(-200);
 
         gc.drawImage(backgroundImage,0,0);
         gc.drawImage(ghost,390,400);
