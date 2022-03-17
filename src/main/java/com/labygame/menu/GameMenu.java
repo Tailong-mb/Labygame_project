@@ -4,15 +4,12 @@ import com.labygame.mainLabyGame;
 import com.labygame.personnage.CharacterState;
 import com.labygame.personnage.Hero;
 import com.labygame.sound.Music;
-import com.labygame.demo.scenes.GeneralScene;
-import javafx.animation.AnimationTimer;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -21,15 +18,16 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import static com.labygame.mainLabyGame.FIGHT_SCENE;
-
 public class GameMenu extends Parent {
 
-    Music msc = new Music();
+    Music music = new Music();
     Hero newHero;
     Hero oldHero;
 
     public GameMenu() {
+
+        //Play main music
+        music.playMusic();
 
         //Set menu Container
         VBox menuMain = new VBox(15);
@@ -47,6 +45,7 @@ public class GameMenu extends Parent {
 
         menuOption.setTranslateX(offset);
 
+        //"Continue" button
         button btnCtn = new button("Continue");
         btnCtn.setOnMouseClicked(event -> {
             FadeTransition ft = new FadeTransition(Duration.seconds(0.5), this);
@@ -57,6 +56,7 @@ public class GameMenu extends Parent {
 
         });
 
+        //"New Game" button
         button btnNG = new button("New Game");
         btnNG.setOnMouseClicked(event -> {
             FadeTransition ft = new FadeTransition(Duration.seconds(0.5), this);
@@ -69,7 +69,7 @@ public class GameMenu extends Parent {
 
             Scene secondScene = new Scene(secondaryLayout, 230, 100);
 
-            // New window (Stage)
+            // New window (Stage) which opens when "New Game" has chosen, it's to give a name at the hero
             Stage newWindow = new Stage();
             newWindow.setTitle("Second Stage");
             newWindow.setScene(secondScene);
@@ -80,11 +80,12 @@ public class GameMenu extends Parent {
 
             Label label = new Label("Name your hero ");
 
+            //Field for the hero name
             TextField txtField = new TextField();
             label.setTranslateY(-25);
             final String[] nameHero = new String[1];
 
-            //Enter button creation
+            //"Enter" button to validate the hero name and launch the game
             button btnEnter = new button("Enter");
             btnEnter.setTranslateY(30);
             btnEnter.setOnMouseClicked(evt -> {
@@ -103,11 +104,14 @@ public class GameMenu extends Parent {
 
         });
 
+
+        //"Glossary" button
         button btnGlossary = new button("Glossary");
         btnGlossary.setOnMouseClicked(event ->{
-            //TODO
+            //mainLabyGame.setScene(5);
         });
 
+        //"Options" button
         button btnOpt = new button("Options");
         btnOpt.setOnMouseClicked(event -> {
             getChildren().add(menuOption);
@@ -124,14 +128,17 @@ public class GameMenu extends Parent {
             tt.setOnFinished(evt -> getChildren().remove(menuMain));
         });
 
+        //"Credits" button
         button btnC = new button("Credits");
         btnC.setOnMouseClicked(event -> {
-            //TODO
+            //mainLabyGame.setScene(6);
         });
 
+        //"Exit" button to exit the game
         button btnE = new button("Exit");
         btnE.setOnMouseClicked(event -> System.exit(0));
 
+        //"Back" button
         button btnBk = new button("Back");
         btnBk.setOnMouseClicked(event -> {
             getChildren().add(menuMain);
@@ -148,6 +155,7 @@ public class GameMenu extends Parent {
             tt.setOnFinished(evt -> getChildren().remove(menuOptionSound));
         });
 
+        //"Sound" button
         button btnS = new button("Sound");
         btnS.setOnMouseClicked(event -> {
             getChildren().add(menuOptionSound);
@@ -165,11 +173,17 @@ public class GameMenu extends Parent {
 
         });
 
+        //"Mute" button to stop the music
         button btnM = new button("Mute");
-        btnM.setOnMouseClicked(event -> msc.stopMusic());
+        btnM.setOnMouseClicked(event -> music.stopMusic());
+        /**
+         * music."music of the game scene".getMusic();
+         * music.stopMusic();
+         */
 
+        //"Unmute" button to play the music if it was muted
         button btnU = new button("Unmute");
-        btnU.setOnMouseClicked(event -> msc.playMusic());
+        btnU.setOnMouseClicked(event -> music.playMusic());
 
 
         menuMain.getChildren().addAll(btnCtn, btnNG, btnGlossary, btnOpt, btnC, btnE);
