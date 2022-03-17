@@ -8,14 +8,14 @@ import javafx.util.Duration;
 
 public class menuInGame{
 
-    GMenu gameMenu;
+    GameMenu gameMenu;
 
     public void menuInGame() {
 
         Pane root = new Pane();
         root.setPrefSize(1200, 600);
 
-        gameMenu = new GMenu();
+        gameMenu = new GameMenu();
         gameMenu.setVisible(false);
 
         root.getChildren().addAll(gameMenu);
