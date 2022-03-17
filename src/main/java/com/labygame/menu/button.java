@@ -19,7 +19,7 @@ public class button extends StackPane {
         myText.setFont(Font.font(20));
         myText.setFill(Color.rgb(72, 184, 250));
 
-        //Initialisation button container
+        //Initialisation button form
         Rectangle myContainer = new Rectangle(250, 30);
         myContainer.setOpacity(0.6);
         myContainer.setFill(Color.WHITE);
@@ -37,6 +37,7 @@ public class button extends StackPane {
             myText.setFill(Color.WHITE);
         });
 
+        //actions when the mouse is not over the button
         setOnMouseExited(event -> {
             myContainer.setTranslateX(0);
             myText.setTranslateX(0);
