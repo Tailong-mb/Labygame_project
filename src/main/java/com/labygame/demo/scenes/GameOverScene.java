@@ -2,12 +2,14 @@ package com.labygame.demo.scenes;
 
 import com.labygame.mainLabyGame;
 import com.labygame.menu.button;
+import com.labygame.menu.menuInGame;
 import com.labygame.sound.Music;
 import javafx.scene.image.Image;
 
 public class GameOverScene extends GeneralScene{
 
-    public Music gameOverMusic = new Music();
+    Music gameOverMusic = new Music();
+    menuInGame menu = new menuInGame();
 
     public GameOverScene() {
         super();
@@ -37,6 +39,8 @@ public class GameOverScene extends GeneralScene{
         });
         btnReturn.setTranslateY(-250);
         btnReturn.setTranslateX(-400);
+
+        menu.accessMenu();
 
         root.getChildren().addAll(btnReturn);
 
