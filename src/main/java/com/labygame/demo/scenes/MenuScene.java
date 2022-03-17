@@ -7,13 +7,13 @@ import javafx.scene.layout.Pane;
 
 public class MenuScene extends GeneralScene{
 
-
     public MenuScene(){
         super();
     }
 
     @Override
     public void draw() {
+
         //Reset Key
         activeKeys.clear();
 
