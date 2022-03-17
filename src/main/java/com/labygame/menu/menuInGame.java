@@ -1,5 +1,6 @@
 package com.labygame.menu;
 
+import com.labygame.sound.Music;
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -17,9 +18,12 @@ import java.nio.file.Paths;
 public class menuInGame extends Application {
 
     GMenu gameMenu;
+    Music music;
 
     @Override
     public void start(Stage stage) throws Exception {
+
+        music.playMusic();
 
         Pane root = new Pane();
         root.setPrefSize(1200, 850);
