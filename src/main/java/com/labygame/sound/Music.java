@@ -25,9 +25,9 @@ public class Music {
     public void playMusic() {
 
         int count = INDEFINITE;
-        mp.setVolume(0.5f);
-        mp.setCycleCount(count);
-        mp.play();
+        this.mp.setVolume(0.5f);
+        this.mp.setCycleCount(count);
+        this.mp.play();
 
     }
 
@@ -36,7 +36,7 @@ public class Music {
      */
     public void stopMusic() {
 
-        mp.stop();
+        this.mp.stop();
 
     }
 
@@ -47,8 +47,8 @@ public class Music {
 
         this.media = new Media(Paths.get("doc/Music/ItsNotGameOverYet.mp3").toUri().toString());
         this.mp = new MediaPlayer(media);
-
-        mp.play();
+        this.mp.setVolume(0.5f);
+        this.mp.play();
 
     }
 
@@ -59,8 +59,8 @@ public class Music {
 
         this.media = new Media(Paths.get("doc/Music/WeMustBattleNOW.mp3").toUri().toString());
         this.mp = new MediaPlayer(media);
-
-        mp.play();
+        this.mp.setVolume(0.5f);
+        this.mp.play();
 
     }
 
