@@ -1,6 +1,5 @@
 package com.labygame.menu;
 
-import com.labygame.sound.Music;
 import javafx.animation.FadeTransition;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
@@ -10,7 +9,6 @@ import javafx.util.Duration;
 public class menuInGame{
 
     GMenu gameMenu;
-    Music music;
 
     public void menuInGame() {
 
