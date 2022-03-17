@@ -9,13 +9,12 @@ import static javafx.scene.media.MediaPlayer.INDEFINITE;
 
 public class Music {
 
-    Media media;
     MediaPlayer mp;
 
     //constructor
     public Music() {
-        this.media = new Media(Paths.get(("doc/Music/GamerInstincts.mp3")).toUri().toString());
-        this.mp = new MediaPlayer(media);
+
+        this.mp = new MediaPlayer(new Media(Paths.get(("doc/Music/GamerInstincts.mp3")).toUri().toString()));
 
     }
 
@@ -45,8 +44,7 @@ public class Music {
      */
     public void playGameOverMusic() {
 
-        this.media = new Media(Paths.get("doc/Music/ItsNotGameOverYet.mp3").toUri().toString());
-        this.mp = new MediaPlayer(media);
+        this.mp = new MediaPlayer(new Media(Paths.get("doc/Music/ItsNotGameOverYet.mp3").toUri().toString()));
         this.mp.setVolume(0.5f);
         this.mp.play();
 
@@ -57,8 +55,7 @@ public class Music {
      */
     public void playBattleMusic() {
 
-        this.media = new Media(Paths.get("doc/Music/WeMustBattleNOW.mp3").toUri().toString());
-        this.mp = new MediaPlayer(media);
+        this.mp = new MediaPlayer(new Media(Paths.get("doc/Music/WeMustBattleNOW.mp3").toUri().toString()));
         this.mp.setVolume(0.5f);
         this.mp.play();
 
