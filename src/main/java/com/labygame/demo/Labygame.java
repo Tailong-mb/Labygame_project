@@ -33,7 +33,7 @@ public class Labygame extends Application {
         put(new Item(10, ItemName.ANTIDOTE,""), 1);
         put(new Item(40,ItemName.HEALPOTION,""),3);
                     }}),
-            new Monster(100,
+            new Wizard(100,
                     CharacterState.NORMAL,
                     "Merlin",
                     10,
