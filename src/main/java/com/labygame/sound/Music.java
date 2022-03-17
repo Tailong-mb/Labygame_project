@@ -12,12 +12,16 @@ public class Music {
     Media media;
     MediaPlayer mp;
 
+    //constructor
     public Music() {
         this.media = new Media(Paths.get(("doc/Music/GamerInstincts.mp3")).toUri().toString());
         this.mp = new MediaPlayer(media);
 
     }
 
+    /**
+     * method to play main music of the game
+     */
     public void playMusic() {
 
         int count = INDEFINITE;
@@ -27,12 +31,18 @@ public class Music {
 
     }
 
+    /**
+     * method to stop playing music
+     */
     public void stopMusic() {
 
         mp.stop();
 
     }
 
+    /**
+     * method to play music for the GameOver scene
+     */
     public void playGameOverMusic() {
 
         this.media = new Media(Paths.get("doc/Music/ItsNotGameOverYet.mp3").toUri().toString());
@@ -42,6 +52,9 @@ public class Music {
 
     }
 
+    /**
+     * method to play music for the Fight scene
+     */
     public void playBattleMusic() {
 
         this.media = new Media(Paths.get("doc/Music/WeMustBattleNOW.mp3").toUri().toString());
@@ -51,4 +64,11 @@ public class Music {
 
     }
 
+    /**
+     * method to get the music which  was playing
+     * @return mp
+     */
+    public MediaPlayer getMusic() {
+        return this.mp;
+    }
 }
