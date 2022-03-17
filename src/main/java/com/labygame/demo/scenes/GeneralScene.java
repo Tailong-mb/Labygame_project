@@ -13,13 +13,14 @@ public abstract class GeneralScene extends Scene {
     public static final int GAME_WIDTH = 1200;
     public static final int GAME_HEIGHT = 600;
 
+    protected StackPane root;
     protected GraphicsContext gc;
     protected Set<KeyCode> activeKeys;
     protected Set<KeyCode> releasedKeys;
 
     public GeneralScene() {
         super(new StackPane(), GAME_WIDTH, GAME_HEIGHT);
-        StackPane root = new StackPane();
+        this.root = new StackPane();
         this.setRoot(root);
 
         Canvas canvas = new Canvas(GAME_WIDTH, GAME_HEIGHT);
