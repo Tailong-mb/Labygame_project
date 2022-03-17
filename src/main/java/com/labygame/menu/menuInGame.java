@@ -2,44 +2,25 @@ package com.labygame.menu;
 
 import com.labygame.sound.Music;
 import javafx.animation.FadeTransition;
-import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-
-public class menuInGame extends Application {
+public class menuInGame{
 
     GMenu gameMenu;
     Music music;
 
-    @Override
-    public void start(Stage stage) throws Exception {
-
-        music.playMusic();
+    public void menuInGame() {
 
         Pane root = new Pane();
-        root.setPrefSize(1200, 850);
-
-        InputStream is = Files.newInputStream(Paths.get("doc/images/wallpaper/background_menuInGame.png"));
-        Image img = new Image(is);
-        is.close();
-
-        ImageView imgView = new ImageView(img);
-        imgView.setFitWidth(1200);
-        imgView.setFitHeight(850);
+        root.setPrefSize(1200, 600);
 
         gameMenu = new GMenu();
         gameMenu.setVisible(false);
 
-        root.getChildren().addAll(imgView, gameMenu);
+        root.getChildren().addAll(gameMenu);
 
         Scene scene = new Scene(root);
         scene.setOnKeyPressed(event -> {
@@ -60,13 +41,5 @@ public class menuInGame extends Application {
                 }
             }
         });
-
-        stage.setScene(scene);
-        stage.show();
-
-    }
-
-    public static void main(String[] args) {
-        Application.launch(args);
     }
 }
