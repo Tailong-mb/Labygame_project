@@ -1,6 +1,9 @@
 package com.labygame.demo.scenes;
 
+import com.labygame.mainLabyGame;
+import com.labygame.menu.button;
 import com.labygame.sound.Music;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 
 public class GameOverScene extends GeneralScene{
@@ -25,6 +28,15 @@ public class GameOverScene extends GeneralScene{
 
         gc.drawImage(backgroundImage,0,0);
         gc.drawImage(ghost,390,400);
+
+        button btnReturn = new button("Return");
+        btnReturn.setOnMouseClicked(event ->{
+            mainLabyGame.setScene(0);
+        });
+        btnReturn.setTranslateY(-250);
+        btnReturn.setTranslateX(-400);
+
+        root.getChildren().addAll(btnReturn);
 
     }
 }
