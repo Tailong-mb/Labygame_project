@@ -1,6 +1,7 @@
 package com.labygame.demo.button;
 
 import com.labygame.demo.scenes.FightScene;
+import com.labygame.personnage.CharacterState;
 import com.labygame.personnage.Hero;
 import com.labygame.personnage.Role;
 import javafx.animation.FadeTransition;
@@ -17,16 +18,16 @@ import javafx.util.Duration;
 
 import java.util.Random;
 
-public class StandardButtonLaby extends StackPane {
+public class StandardButtonMenu extends StackPane {
 
-    public StandardButtonLaby(String name) {
+    public StandardButtonMenu(String name) {
 
         //Initialisation Text
         Text myText  = new Text(name);
         myText.setFont(Font.font(20));
         myText.setFill(Color.rgb(72, 184, 250));
 
-        //Initialisation StandardButtonLaby container
+        //Initialisation StandardButtonMenu container
         Rectangle myContainer = new Rectangle(250, 30);
         myContainer.setOpacity(0.6);
         myContainer.setFill(Color.WHITE);
@@ -73,6 +74,9 @@ public class StandardButtonLaby extends StackPane {
                 opponent.basicAttack(hero);
             else
                 opponent.secretAttack(hero);
+
+            if(myRand.nextInt(10) == 9)
+                hero.setCurrentStatus(CharacterState.POISON);
 
             //EFFECT STATUE
             hero.stateEffect();

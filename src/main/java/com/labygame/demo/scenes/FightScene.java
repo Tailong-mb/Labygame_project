@@ -1,8 +1,8 @@
 package com.labygame.demo.scenes;
 
 import com.labygame.demo.Labygame;
-import com.labygame.demo.button.ItemButtonLaby;
-import com.labygame.demo.button.StandardButtonLaby;
+import com.labygame.demo.button.ItemButton;
+import com.labygame.demo.button.StandardButtonMenu;
 import com.labygame.items.Item;
 import com.labygame.personnage.Hero;
 import com.labygame.personnage.Monster;
@@ -71,10 +71,10 @@ public class FightScene extends GeneralScene{
      */
     public void gameChoiceMonster(){
         //Set Button attackChoice
-        StandardButtonLaby buttonNormalAttack = new StandardButtonLaby("NORMAL ATTACK");
+        StandardButtonMenu buttonNormalAttack = new StandardButtonMenu("NORMAL ATTACK");
         buttonNormalAttack.buttonAttackAnimation(false,hero,opponent,this);
 
-        StandardButtonLaby buttonSpecialAttack = new StandardButtonLaby("SPECIAL ATTACK");
+        StandardButtonMenu buttonSpecialAttack = new StandardButtonMenu("SPECIAL ATTACK");
         buttonSpecialAttack.buttonAttackAnimation(true,hero,opponent,this);
 
         HBox containerButtonAttack = new HBox(buttonNormalAttack,buttonSpecialAttack);
@@ -146,10 +146,13 @@ public class FightScene extends GeneralScene{
     public void gameDrawScene(){
         showDamage();
         //Check is one of the character is dead
-        if(hero.isDead())
+        if(hero.isDead() || hero.getPower() <= 0)
             Labygame.setScene(Labygame.CREDITS_SCENE);
-        else if(opponent.isDead())
+        else if(opponent.isDead()) {
+            hero.setHp(hero.getHp() + 20);
+            hero.setPower(hero.getPower() + 5);
             Labygame.setScene(Labygame.GAME_SCENE);
+        }
 
         Font myFontStats = Font.font("Arial", FontWeight.BOLD, 24);
         gc.setFont(myFontStats);
@@ -234,9 +237,9 @@ public class FightScene extends GeneralScene{
         }
 
         //Draw Button to use potion (Heal/Antidote/EnergyDrink)
-        ItemButtonLaby healUseButton = new ItemButtonLaby(itemType.get(2),this,hero);
-        ItemButtonLaby antidoteUseButton = new ItemButtonLaby(itemType.get(1),this,hero);
-        ItemButtonLaby energyDrinkUseButton = new ItemButtonLaby(itemType.get(0),this,hero);
+        ItemButton healUseButton = new ItemButton(itemType.get(2),this,hero);
+        ItemButton antidoteUseButton = new ItemButton(itemType.get(1),this,hero);
+        ItemButton energyDrinkUseButton = new ItemButton(itemType.get(0),this,hero);
         VBox itemUseBox = new VBox(healUseButton,antidoteUseButton,energyDrinkUseButton);
         itemUseBox.setSpacing(8);
         itemUseBox.setTranslateX(-495);

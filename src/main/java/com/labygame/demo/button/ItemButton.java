@@ -15,9 +15,9 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
-public class ItemButtonLaby extends StackPane {
+public class ItemButton extends StackPane {
 
-    public ItemButtonLaby(Item itemToUse, FightScene fightScene, Hero hero){
+    public ItemButton(Item itemToUse, FightScene fightScene, Hero hero){
         //Initialisation Text
         Text myText  = new Text("USE");
         myText.setFont(Font.font(14));
