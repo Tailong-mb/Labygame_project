@@ -1,5 +1,8 @@
 package com.labygame.menu;
 
+import com.labygame.demo.scenes.FightScene;
+import com.labygame.items.Item;
+import com.labygame.items.ItemName;
 import com.labygame.mainLabyGame;
 import com.labygame.personnage.CharacterState;
 import com.labygame.personnage.Hero;
@@ -19,11 +22,15 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.util.HashMap;
+
+import static com.labygame.mainLabyGame.GAME_SCENE;
+import static com.labygame.mainLabyGame.scenesController;
+
 public class GameMenu extends Parent {
 
     Music music = new Music(MusicType.MENU);
-    Hero newHero;
-    Hero oldHero;
+    Hero hero;
 
     public GameMenu() {
 
@@ -54,7 +61,7 @@ public class GameMenu extends Parent {
             ft.setToValue(0);
             ft.setOnFinished(evt -> this.setVisible(false));
             ft.play();
-            //TODO
+            //TODO : Take the save and launch the game.
         });
 
         //"New Game" button
@@ -84,20 +91,31 @@ public class GameMenu extends Parent {
             //Field for the hero name
             TextField txtField = new TextField();
             label.setTranslateY(-25);
-            final String[] nameHero = new String[1];
 
             //"Enter" button to validate the hero name and launch the game
             button btnEnter = new button("Enter");
             btnEnter.setTranslateY(30);
             btnEnter.setOnMouseClicked(evt -> {
-                nameHero[0] = txtField.getText();
+                String nameHero = txtField.getText();
                 newWindow.close();
 
-                music.stopMusic();
-                mainLabyGame.setScene(1);
-            });
+                //Create the hero
+                hero = new Hero(200,
+                        CharacterState.NORMAL,
+                        nameHero,
+                        20,
+                        0,
+                        0,
+                        new HashMap<>() {{
+                            put(new Item(2, ItemName.ENERGYDRINK,""), 0);
+                            put(new Item(10, ItemName.ANTIDOTE,""), 1);
+                            put(new Item(40,ItemName.HEALPOTION,""),3);
+                        }});
 
-            newHero = new Hero(100, CharacterState.NORMAL, nameHero[0], 20, 50, 50, null);
+                (GameScene)scenesController[GAME_SCENE].setHero(hero);
+                music.stopMusic();
+                mainLabyGame.setScene(GAME_SCENE);
+            });
 
             secondaryLayout.getChildren().addAll(label, txtField, btnEnter);
 
@@ -125,9 +143,9 @@ public class GameMenu extends Parent {
 
         //"Credits" button
         button btnC = new button("Credits");
-        btnC.setOnMouseClicked(event -> {
-            mainLabyGame.setScene(6);
-        });
+        btnC.setOnMouseClicked(event ->
+            mainLabyGame.setScene(6)
+        );
 
         //"Exit" button to exit the game
         button btnE = new button("Exit");
@@ -171,10 +189,6 @@ public class GameMenu extends Parent {
         //"Mute" button to stop the music
         button btnM = new button("Mute");
         btnM.setOnMouseClicked(event -> music.stopMusic());
-        /**
-         * music."music of the game scene".getMusic();
-         * music.stopMusic();
-         */
 
         //"Unmute" button to play the music if it was muted
         button btnU = new button("Unmute");

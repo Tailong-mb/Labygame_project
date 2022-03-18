@@ -15,14 +15,14 @@ public class mainLabyGame extends Application {
     public static final int CREDITS_SCENE = 3;
     public static final int GAMEOVER_SCENE = 2;
 
-    public static final GeneralScene[] scenes = {new MenuScene(),new FightScene(new Hero(50, CharacterState.NORMAL,"Jean",10,0,0),
+    public static final GeneralScene[] scenesController = {new MenuScene(),new FightScene(new Hero(50, CharacterState.NORMAL,"Jean",10,0,0),
             new Wizard(16, CharacterState.NORMAL,"Merlin",10,0,0)),
             new GameOverScene()};
 
     public static Stage stage;
 
     @Override
-    public void start(Stage stage) throws InterruptedException {
+    public void start(Stage stage){
         mainLabyGame.stage = stage;
 
         stage.setTitle("LabyGame");
@@ -33,8 +33,8 @@ public class mainLabyGame extends Application {
     }
 
     public static void setScene(int numScene) {
-        stage.setScene(scenes[numScene]);
-        scenes[numScene].draw();
+        stage.setScene(scenesController[numScene]);
+        scenesController[numScene].draw();
     }
 
     public static void exit(){
