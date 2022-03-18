@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+// Classe à supprimer à la fin
+
 public class MainCharacter extends Sprites {
     //Attributes
     public static final int CHARAC_WIDTH = 16;
