@@ -11,7 +11,7 @@ import java.util.Set;
 
 public abstract class GeneralScene extends Scene {
     public static final int GAME_WIDTH = 1200;
-    public static final int GAME_HEIGHT = 600;
+    public static final int GAME_HEIGHT = 850;
 
     protected StackPane root;
     protected GraphicsContext gc;

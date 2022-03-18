@@ -43,8 +43,10 @@ public class Hero extends Role implements Serializable {
     @Override
     public void secretAttack(Role target) {
         Random rand = new Random();
-        if (CharacterState.NORMAL == currentStatus)
-            target.setHp(target.getHp() - rand.nextInt(power*power - power*9) - power *10);
+        if (CharacterState.NORMAL == currentStatus) {
+            target.setHp(target.getHp() - rand.nextInt(power * power - power * 9) - power * 10);
+            currentStatus = CharacterState.WEARY;
+        }
         else
             hp -= power; //He hurts himself because he can't use his secret attack (not the good statement).
     }
@@ -64,10 +66,13 @@ public class Hero extends Role implements Serializable {
      */
     public void useItem(Item itemTargeted){
         if(canUseItem(itemTargeted)) {
-            if (itemTargeted.name() == ItemName.ANTIDOTE)
+            if (((itemTargeted.name() == ItemName.ANTIDOTE) && (currentStatus == CharacterState.POISON)) ||
+                    ((itemTargeted.name() == ItemName.HEALPOTION) && (currentStatus == CharacterState.SICK)) ||
+                    ((itemTargeted.name() == ItemName.ENERGYDRINK) && (currentStatus == CharacterState.WEARY))){
                 currentStatus = CharacterState.NORMAL;
-            else
-                hp += itemTargeted.bonus();
+                power += 10;
+            }
+            hp += itemTargeted.bonus();
             myItem.put(itemTargeted, myItem.get(itemTargeted) - 1);
         }
     }
@@ -80,7 +85,7 @@ public class Hero extends Role implements Serializable {
             case POISON -> hp -= 10;
             case SICK -> {
                 hp -= 5;
-                power -= 5;
+                power -= 3;
             }
             case WEARY -> power -= 3;
             default -> hp += 2;

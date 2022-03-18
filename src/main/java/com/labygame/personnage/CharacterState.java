@@ -2,8 +2,10 @@ package com.labygame.personnage;
 
 import lombok.Getter;
 
+import java.io.Serializable;
+
 @Getter
-public enum CharacterState {
+public enum CharacterState implements Serializable {
     NORMAL("NORMAL"),
     SICK("SICK"),
     WEARY("WEARY"),

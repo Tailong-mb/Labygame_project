@@ -1,10 +1,9 @@
-package com.labygame.trayEnvironnement.Decor;
-
+package com.labygame.decor;
 
 import com.labygame.personnage.Hero;
 import javafx.scene.image.Image;
 
-public class Tree implements DecorInterface {
+public class Water implements DecorInterface {
 
     Image image;
 
@@ -23,8 +22,8 @@ public class Tree implements DecorInterface {
         hero.setHp(0);
     }
 
+    @Override
     public void setImage(){
-        this.image = new Image("doc/images/tree (1).png");
+        this.image = new Image("doc/images/water.png");
     }
-
 }
