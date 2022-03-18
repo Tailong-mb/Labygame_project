@@ -1,6 +1,5 @@
 package com.labygame.demo.scenes;
 
-import com.labygame.mainLabyGame;
 import com.labygame.sound.Music;
 import com.labygame.sound.MusicType;
 import javafx.scene.image.Image;

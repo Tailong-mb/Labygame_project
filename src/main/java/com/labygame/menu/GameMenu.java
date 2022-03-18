@@ -1,9 +1,9 @@
 package com.labygame.menu;
 
-import com.labygame.demo.scenes.FightScene;
+import com.labygame.demo.Labygame;
+import com.labygame.demo.button.StandardButtonMenu;
 import com.labygame.items.Item;
 import com.labygame.items.ItemName;
-import com.labygame.mainLabyGame;
 import com.labygame.personnage.CharacterState;
 import com.labygame.personnage.Hero;
 import com.labygame.sound.Music;
@@ -24,8 +24,8 @@ import javafx.util.Duration;
 
 import java.util.HashMap;
 
-import static com.labygame.mainLabyGame.GAME_SCENE;
-import static com.labygame.mainLabyGame.scenesController;
+import static com.labygame.demo.Labygame.CREDITS_SCENE;
+import static com.labygame.demo.Labygame.GAME_SCENE;
 
 public class GameMenu extends Parent {
 
@@ -53,8 +53,8 @@ public class GameMenu extends Parent {
 
         menuOption.setTranslateX(offset);
 
-        //"Continue" button
-        button btnCtn = new button("Continue");
+        //"Continue" StandardButtonMenu
+        StandardButtonMenu btnCtn = new StandardButtonMenu("Continue");
         btnCtn.setOnMouseClicked(event -> {
             FadeTransition ft = new FadeTransition(Duration.seconds(0.5), this);
             ft.setFromValue(1);
@@ -64,8 +64,8 @@ public class GameMenu extends Parent {
             //TODO : Take the save and launch the game.
         });
 
-        //"New Game" button
-        button btnNG = new button("New Game");
+        //"New Game" StandardButtonMenu
+        StandardButtonMenu btnNG = new StandardButtonMenu("New Game");
         btnNG.setOnMouseClicked(event -> {
             FadeTransition ft = new FadeTransition(Duration.seconds(0.5), this);
             ft.setFromValue(1);
@@ -92,8 +92,8 @@ public class GameMenu extends Parent {
             TextField txtField = new TextField();
             label.setTranslateY(-25);
 
-            //"Enter" button to validate the hero name and launch the game
-            button btnEnter = new button("Enter");
+            //"Enter" StandardButtonMenu to validate the hero name and launch the game
+            StandardButtonMenu btnEnter = new StandardButtonMenu("Enter");
             btnEnter.setTranslateY(30);
             btnEnter.setOnMouseClicked(evt -> {
                 String nameHero = txtField.getText();
@@ -112,9 +112,9 @@ public class GameMenu extends Parent {
                             put(new Item(40,ItemName.HEALPOTION,""),3);
                         }});
 
-                (GameScene)scenesController[GAME_SCENE].setHero(hero);
+                //(GameScene)scenesController[GAME_SCENE].setHero(hero);
                 music.stopMusic();
-                mainLabyGame.setScene(GAME_SCENE);
+                Labygame.setScene(GAME_SCENE);
             });
 
             secondaryLayout.getChildren().addAll(label, txtField, btnEnter);
@@ -124,8 +124,8 @@ public class GameMenu extends Parent {
 
         });
 
-        //"Options" button
-        button btnOpt = new button("Options");
+        //"Options" StandardButtonMenu
+        StandardButtonMenu btnOpt = new StandardButtonMenu("Options");
         btnOpt.setOnMouseClicked(event -> {
             getChildren().add(menuOption);
 
@@ -141,18 +141,18 @@ public class GameMenu extends Parent {
             tt.setOnFinished(evt -> getChildren().remove(menuMain));
         });
 
-        //"Credits" button
-        button btnC = new button("Credits");
+        //"Credits" StandardButtonMenu
+        StandardButtonMenu btnC = new StandardButtonMenu("Credits");
         btnC.setOnMouseClicked(event ->
-            mainLabyGame.setScene(6)
+            Labygame.setScene(CREDITS_SCENE)
         );
 
-        //"Exit" button to exit the game
-        button btnE = new button("Exit");
+        //"Exit" StandardButtonMenu to exit the game
+        StandardButtonMenu btnE = new StandardButtonMenu("Exit");
         btnE.setOnMouseClicked(event -> System.exit(0));
 
-        //"Back" button
-        button btnBk = new button("Back");
+        //"Back" StandardButtonMenu
+        StandardButtonMenu btnBk = new StandardButtonMenu("Back");
         btnBk.setOnMouseClicked(event -> {
             getChildren().add(menuMain);
 
@@ -168,8 +168,8 @@ public class GameMenu extends Parent {
             tt.setOnFinished(evt -> getChildren().remove(menuOptionSound));
         });
 
-        //"Sound" button
-        button btnS = new button("Sound");
+        //"Sound" StandardButtonMenu
+        StandardButtonMenu btnS = new StandardButtonMenu("Sound");
         btnS.setOnMouseClicked(event -> {
             getChildren().add(menuOptionSound);
 
@@ -186,12 +186,12 @@ public class GameMenu extends Parent {
 
         });
 
-        //"Mute" button to stop the music
-        button btnM = new button("Mute");
+        //"Mute" StandardButtonMenu to stop the music
+        StandardButtonMenu btnM = new StandardButtonMenu("Mute");
         btnM.setOnMouseClicked(event -> music.stopMusic());
 
-        //"Unmute" button to play the music if it was muted
-        button btnU = new button("Unmute");
+        //"Unmute" StandardButtonMenu to play the music if it was muted
+        StandardButtonMenu btnU = new StandardButtonMenu("Unmute");
         btnU.setOnMouseClicked(event -> music.playMusic());
 
 
