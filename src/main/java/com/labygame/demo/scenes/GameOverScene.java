@@ -2,6 +2,7 @@ package com.labygame.demo.scenes;
 
 import com.labygame.mainLabyGame;
 import com.labygame.sound.Music;
+import com.labygame.sound.MusicType;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -9,7 +10,7 @@ import javafx.scene.text.Text;
 
 public class GameOverScene extends GeneralScene{
 
-    Music gameOverMusic = new Music();
+    Music gameOverMusic = new Music(MusicType.END);
 
     public GameOverScene() {
         super();
@@ -25,7 +26,7 @@ public class GameOverScene extends GeneralScene{
         Image backgroundImage = new Image("file:doc/images/gameover.jpg",1200,600,false,false);
         Image ghost = new Image("file:doc/images/Dead.png", 400, 75, false, false);
 
-        this.gameOverMusic.playGameOverMusic();
+        this.gameOverMusic.playMusic();
 
         //text with instruction
         Text myText  = new Text("Click to continue");

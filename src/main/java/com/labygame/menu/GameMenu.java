@@ -4,6 +4,7 @@ import com.labygame.mainLabyGame;
 import com.labygame.personnage.CharacterState;
 import com.labygame.personnage.Hero;
 import com.labygame.sound.Music;
+import com.labygame.sound.MusicType;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.scene.Parent;
@@ -20,7 +21,7 @@ import javafx.util.Duration;
 
 public class GameMenu extends Parent {
 
-    Music music = new Music();
+    Music music = new Music(MusicType.MENU);
     Hero newHero;
     Hero oldHero;
 

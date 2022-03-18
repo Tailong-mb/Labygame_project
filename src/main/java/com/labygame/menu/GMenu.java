@@ -2,6 +2,7 @@ package com.labygame.menu;
 
 import com.labygame.mainLabyGame;
 import com.labygame.sound.Music;
+import com.labygame.sound.MusicType;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.scene.Parent;
@@ -12,7 +13,7 @@ import javafx.util.Duration;
 
 public class GMenu extends Parent {
 
-    Music msc = new Music(); //msc."music of the game scene".getMusic();
+    Music music = new Music(MusicType.MENU); //msc."music of the game scene".getMusic();
 
     public GMenu() {
 
@@ -50,19 +51,19 @@ public class GMenu extends Parent {
 
         //"Glossary" button
         button btnGlossary = new button("Glossary");
-        btnGlossary.setOnMouseClicked(event ->{
-            mainLabyGame.setScene(5);
-        });
+        btnGlossary.setOnMouseClicked(event ->
+            mainLabyGame.setScene(5)
+        );
 
         //"Return Main menu" button
         button btnR = new button("Return Main Menu");
-        btnR.setOnMouseClicked(event -> {
-            mainLabyGame.setScene(0);
-        });
+        btnR.setOnMouseClicked(event ->
+            mainLabyGame.setScene(0)
+        );
 
         //"Options" button
         button btnOpt = new button("Options");
-        btnOpt.setOnMouseClicked(evnt -> {
+        btnOpt.setOnMouseClicked(event -> {
             getChildren().add(menuOption);
 
             TranslateTransition tt = new TranslateTransition(Duration.seconds(0.25), menuMain);
@@ -118,11 +119,11 @@ public class GMenu extends Parent {
 
         //"Mute" button to stop the music
         button btnM = new button("Mute");
-        btnM.setOnMouseClicked(event ->msc.stopMusic());
+        btnM.setOnMouseClicked(event -> music.stopMusic());
 
         //"Unmute" button to play the music if it was muted
         button btnU = new button("Unmute");
-        btnU.setOnMouseClicked(event -> msc.playMusic());
+        btnU.setOnMouseClicked(event -> music.playMusic());
 
         menuMain.getChildren().addAll(btnRes, btnSave, btnGlossary, btnOpt, btnR, btnE);
         menuOption.getChildren().addAll(btnS);
