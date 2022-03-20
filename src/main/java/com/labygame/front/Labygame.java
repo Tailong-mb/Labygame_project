@@ -1,6 +1,6 @@
-package com.labygame.demo;
+package com.labygame.front;
 
-import com.labygame.demo.scenes.*;
+import com.labygame.front.scenes.*;
 import com.labygame.items.Item;
 import com.labygame.items.ItemName;
 import com.labygame.personnage.CharacterState;
@@ -33,9 +33,9 @@ public class Labygame extends Application {
         put(new Item(10, ItemName.ANTIDOTE,""), 1);
         put(new Item(40,ItemName.HEALPOTION,""),3);
                     }}),
-            new Wizard(100,
+            new Monster(99,
                     CharacterState.NORMAL,
-                    "Merlin",
+                    "Louis le raciste",
                     10,
                     0,
                     0)),
@@ -47,7 +47,7 @@ public class Labygame extends Application {
     public void start(Stage stage) throws Exception {
         Labygame.stage = stage;
         stage.setTitle("LabyGame");
-        setScene(FIGHT_SCENE);
+        setScene(CREDITS_SCENE);
         stage.show();
     }
 

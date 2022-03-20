@@ -1,6 +1,6 @@
-package com.labygame.demo.button;
+package com.labygame.front.button;
 
-import com.labygame.demo.scenes.FightScene;
+import com.labygame.front.scenes.FightScene;
 import com.labygame.personnage.CharacterState;
 import com.labygame.personnage.Hero;
 import com.labygame.personnage.Role;
