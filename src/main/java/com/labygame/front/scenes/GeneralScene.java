@@ -1,4 +1,4 @@
-package com.labygame.demo.scenes;
+package com.labygame.front.scenes;
 
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;

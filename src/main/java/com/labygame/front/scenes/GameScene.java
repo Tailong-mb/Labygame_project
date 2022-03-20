@@ -1,6 +1,6 @@
-package com.labygame.demo.scenes;
+package com.labygame.front.scenes;
 
-import com.labygame.demo.Labygame;
+import com.labygame.front.Labygame;
 import javafx.scene.input.KeyCode;
 
 public class GameScene extends GeneralScene{
