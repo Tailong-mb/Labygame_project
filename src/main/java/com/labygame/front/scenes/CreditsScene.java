@@ -3,6 +3,7 @@ package com.labygame.front.scenes;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -37,13 +38,16 @@ public class CreditsScene extends GeneralScene{
         creditTimer.setCycleCount(500);
 
         //Set the text decoration
-        credit.setFont(Font.font("Arial", FontWeight.BOLD, 24));
-        credit.setFill(Color.GREY);
+        credit.setFont(Font.font("Arial", FontWeight.BOLD, 30));
+        credit.setFill(Color.BLACK);
         credit.setTranslateX(10);
     }
 
     @Override
     public void draw() {
+        //Draw background;
+        Image backgroundMenu = new Image("file:doc/images/wallpaper/mainMenu.jpg",1200,850,false,false);
+        gc.drawImage(backgroundMenu,0,0);
         //Launch the animation
         creditTimer.play();
     }
