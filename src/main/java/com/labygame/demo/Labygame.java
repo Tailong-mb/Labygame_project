@@ -5,7 +5,6 @@ import com.labygame.items.Item;
 import com.labygame.items.ItemName;
 import com.labygame.personnage.CharacterState;
 import com.labygame.personnage.Hero;
-import com.labygame.personnage.Monster;
 import com.labygame.personnage.Wizard;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -18,6 +17,7 @@ public class Labygame extends Application {
     public static final int GAME_SCENE = 1;
     public static final int FIGHT_SCENE = 2;
     public static final int CREDITS_SCENE = 3;
+    public static final int GameOverScene = 4;
 
 
     public static final GeneralScene[] scenes = {new MenuScene(),
@@ -39,7 +39,8 @@ public class Labygame extends Application {
                     10,
                     0,
                     0)),
-            new CreditsScene()};
+            new CreditsScene(),
+            new GameOverScene()};
 
     public static Stage stage;
 
@@ -47,7 +48,7 @@ public class Labygame extends Application {
     public void start(Stage stage) throws Exception {
         Labygame.stage = stage;
         stage.setTitle("LabyGame");
-        setScene(FIGHT_SCENE);
+        setScene(GameOverScene);
         stage.show();
     }
 
