@@ -33,7 +33,7 @@ public class Labygame extends Application {
         put(new Item(10, ItemName.ANTIDOTE,""), 1);
         put(new Item(40,ItemName.HEALPOTION,""),3);
                     }}),
-            new Monster(99,
+            new Monster(200,
                     CharacterState.NORMAL,
                     "Louis le raciste",
                     10,
@@ -47,7 +47,7 @@ public class Labygame extends Application {
     public void start(Stage stage) throws Exception {
         Labygame.stage = stage;
         stage.setTitle("LabyGame");
-        setScene(CREDITS_SCENE);
+        setScene(FIGHT_SCENE);
         stage.show();
     }
 

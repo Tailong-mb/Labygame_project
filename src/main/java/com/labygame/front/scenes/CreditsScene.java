@@ -35,7 +35,7 @@ public class CreditsScene extends GeneralScene{
     public CreditsScene(){
         //Set the timer
         creditTimer = new Timeline(new KeyFrame(Duration.millis(50),this::doStep));
-        creditTimer.setCycleCount(500);
+        creditTimer.setCycleCount(750);
 
         //Set the text decoration
         credit.setFont(Font.font("Arial", FontWeight.BOLD, 30));
