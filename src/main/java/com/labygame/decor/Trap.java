@@ -9,7 +9,6 @@ import lombok.Data;
 public class Trap implements DecorInterface {
 
     int hp;
-    String name;
 
     @Override
     public boolean isDestroyed() {
