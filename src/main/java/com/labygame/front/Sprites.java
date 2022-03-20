@@ -1,4 +1,4 @@
-package com.labygame.demo;
+package com.labygame.front;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
