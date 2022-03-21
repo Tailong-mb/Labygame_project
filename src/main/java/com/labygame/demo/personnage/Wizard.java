@@ -1,11 +1,15 @@
 package com.labygame.demo.personnage;
 
 import com.labygame.demo.riddles.Riddles;
+import javafx.scene.image.Image;
+import lombok.Getter;
 
 import java.util.Random;
 
+@Getter
 public class Wizard extends Role {
 
+    private final transient Image myImage = new Image("file:doc/images/gfx/gfx/mage.png");
     private Riddles currentRiddle;
 
     //All args constructor

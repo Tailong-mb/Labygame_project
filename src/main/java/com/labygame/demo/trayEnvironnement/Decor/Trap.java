@@ -1,11 +1,15 @@
 package com.labygame.demo.trayEnvironnement.Decor;
 
 import com.labygame.demo.personnage.Hero;
+import javafx.scene.image.Image;
 
 public class Trap implements DecorInterface {
 
     int hp;
     String name;
+    private final transient Image myImage = new Image("file:doc/images/");
+    private int positionX;
+    private int positionY;
 
     public Trap(String name, int hp){
         this.name = name;

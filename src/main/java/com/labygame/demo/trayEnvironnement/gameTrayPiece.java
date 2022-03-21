@@ -6,18 +6,29 @@ import com.labygame.demo.personnage.Wizard;
 import com.labygame.demo.trayEnvironnement.Decor.Trap;
 import com.labygame.demo.trayEnvironnement.Decor.Tree;
 import com.labygame.demo.trayEnvironnement.Decor.Water;
+import javafx.scene.canvas.GraphicsContext;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.util.Random;
-
+@Getter
+@Setter
 public class gameTrayPiece {
-    private Hero hero;
-    private Monster monster;
-    private Wizard wizard;
-    private Tree tree;
-    private Water water;
-    private Trap trap;
+    private Hero myHero;
+    private Monster myMonster;
+    private Wizard myWizard;
+    private Tree myTree;
+    private Water myWater;
+    private Trap myTrap;
 
     public gameTrayPiece(){
-        Random rd = new Random();
+
+    }
+
+    public void draw(GraphicsContext gc){
+        gc.drawImage(myMonster.getMyImages()[0], myMonster.getPositionX(), myMonster.getPositionY());
+        gc.drawImage(myWizard.getMyImage(), myWizard.getPositionX(), myWizard.getPositionY());
+        gc.drawImage(myTree.getMyImage(), myTree.getPositionX(), myTree.getPositionY());
+        gc.drawImage(myWater.getMyImage(), myWater.getPositionX(), myWater.getPositionY());
+        //gc.drawImage(myTrap.getMyImage(), myTrap.getPositionX(), myTrap.getPositionY());
     }
 }
