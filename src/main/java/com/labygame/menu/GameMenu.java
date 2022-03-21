@@ -61,6 +61,7 @@ public class GameMenu extends Parent {
             ft.setToValue(0);
             ft.setOnFinished(evt -> this.setVisible(false));
             ft.play();
+            music.stopMusic();
             //TODO : Take the save and launch the game.
         });
 
@@ -143,9 +144,7 @@ public class GameMenu extends Parent {
 
         //"Credits" StandardButtonMenu
         StandardButtonMenu btnC = new StandardButtonMenu("Credits");
-        btnC.setOnMouseClicked(event ->
-            Labygame.setScene(CREDITS_SCENE)
-        );
+        btnC.setOnMouseClicked(event -> Labygame.setScene(CREDITS_SCENE));
 
         //"Exit" StandardButtonMenu to exit the game
         StandardButtonMenu btnE = new StandardButtonMenu("Exit");
@@ -204,7 +203,6 @@ public class GameMenu extends Parent {
         r.setOpacity(0.4);
 
         getChildren().addAll(r, menuMain);
-
 
     }
 
