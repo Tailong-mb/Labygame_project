@@ -27,15 +27,5 @@ MenuScene extends GeneralScene{
         GameMenu gameMenu = new GameMenu();
         root.getChildren().addAll(new ImageView(backgroundMenu),gameMenu);
         this.setRoot(root);
-
-        /**AnimationTimer timer = new AnimationTimer() {
-            @Override
-            public void handle(long currentNanoTime){
-                if(activeKeys.contains(KeyCode.SPACE)){
-                    this.stop();
-                    mainLabyGame.setScene(GAME_SCENE);
-                }
-            }
-        };timer.start();**/
     }
 }

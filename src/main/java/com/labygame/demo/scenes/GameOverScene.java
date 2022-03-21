@@ -1,5 +1,6 @@
 package com.labygame.demo.scenes;
 
+import com.labygame.demo.Labygame;
 import com.labygame.sound.Music;
 import com.labygame.sound.MusicType;
 import javafx.scene.image.Image;
@@ -39,7 +40,7 @@ public class GameOverScene extends GeneralScene{
 
         //way to return to the main Menu
         setOnMouseClicked(event ->{
-            mainLabyGame.setScene(0);
+            Labygame.setScene(0);
             gameOverMusic.stopMusic();
         });
 
