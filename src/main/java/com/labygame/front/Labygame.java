@@ -1,6 +1,6 @@
-package com.labygame.demo;
+package com.labygame.front;
 
-import com.labygame.demo.scenes.*;
+import com.labygame.front.scenes.*;
 import com.labygame.items.Item;
 import com.labygame.items.ItemName;
 import com.labygame.personnage.CharacterState;
@@ -17,7 +17,7 @@ public class Labygame extends Application {
     public static final int GAME_SCENE = 1;
     public static final int FIGHT_SCENE = 2;
     public static final int CREDITS_SCENE = 3;
-    public static final int GameOverScene = 4;
+    public static final int GAME_OVER_SCENE = 4;
 
 
     public static final GeneralScene[] scenes = {new MenuScene(),
@@ -48,7 +48,7 @@ public class Labygame extends Application {
     public void start(Stage stage) throws Exception {
         Labygame.stage = stage;
         stage.setTitle("LabyGame");
-        setScene(GameOverScene);
+        setScene(GAME_OVER_SCENE);
         stage.show();
     }
 

@@ -1,6 +1,6 @@
-package com.labygame.demo.button;
+package com.labygame.front.button;
 
-import com.labygame.demo.scenes.FightScene;
+import com.labygame.front.scenes.FightScene;
 import com.labygame.items.Item;
 import com.labygame.personnage.Hero;
 import javafx.animation.FadeTransition;

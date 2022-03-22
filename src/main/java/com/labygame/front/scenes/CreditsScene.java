@@ -1,4 +1,4 @@
-package com.labygame.demo.scenes;
+package com.labygame.front.scenes;
 
 public class CreditsScene extends GeneralScene{
     @Override

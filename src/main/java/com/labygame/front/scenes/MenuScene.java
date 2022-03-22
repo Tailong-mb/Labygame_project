@@ -1,4 +1,4 @@
-package com.labygame.demo.scenes;
+package com.labygame.front.scenes;
 
 import com.labygame.menu.GameMenu;
 import javafx.scene.image.Image;

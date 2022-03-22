@@ -1,7 +1,7 @@
 package com.labygame.menu;
 
-import com.labygame.demo.Labygame;
-import com.labygame.demo.button.StandardButtonMenu;
+import com.labygame.front.Labygame;
+import com.labygame.front.button.StandardButtonMenu;
 import com.labygame.sound.Music;
 import com.labygame.sound.MusicType;
 import javafx.animation.FadeTransition;

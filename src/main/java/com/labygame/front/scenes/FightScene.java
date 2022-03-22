@@ -1,8 +1,8 @@
-package com.labygame.demo.scenes;
+package com.labygame.front.scenes;
 
-import com.labygame.demo.Labygame;
-import com.labygame.demo.button.ItemButton;
-import com.labygame.demo.button.StandardButtonMenu;
+import com.labygame.front.Labygame;
+import com.labygame.front.button.ItemButton;
+import com.labygame.front.button.StandardButtonMenu;
 import com.labygame.items.Item;
 import com.labygame.personnage.Hero;
 import com.labygame.personnage.Monster;
