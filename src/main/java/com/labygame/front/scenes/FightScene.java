@@ -115,6 +115,7 @@ public class FightScene extends GeneralScene{
         answerToRiddle.setMaxWidth(300);
         answerToRiddle.setTranslateX(0);
         answerToRiddle.setTranslateY(225);
+
         questionPane.setMaxHeight(80);
 
         answerToRiddle.setOnKeyPressed( event -> {

@@ -45,10 +45,10 @@ public class Labygame extends Application {
     public static Stage stage;
 
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage){
         Labygame.stage = stage;
         stage.setTitle("LabyGame");
-        setScene(GAME_OVER_SCENE);
+        setScene(MENU_SCENE);
         stage.show();
     }
 
