@@ -11,26 +11,22 @@ import com.labygame.sound.MusicType;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.StackPane;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
+import javafx.scene.text.Font;
 import javafx.util.Duration;
+
 
 import java.util.HashMap;
 
-import static com.labygame.front.Labygame.CREDITS_SCENE;
-import static com.labygame.front.Labygame.GAME_SCENE;
+import static com.labygame.front.Labygame.*;
 
 public class GameMenu extends Parent {
 
-    Music music = new Music(MusicType.MENU);
-    Hero hero;
+    private final Music music = new Music(MusicType.MENU);
 
     public GameMenu() {
 
@@ -41,169 +37,128 @@ public class GameMenu extends Parent {
         VBox menuMain = new VBox(15);
         VBox menuOption = new VBox(15);
         VBox menuOptionSound = new VBox(15);
+        VBox createNewGame = new VBox(15);
 
-        menuMain.setTranslateX(500);
-        menuMain.setTranslateY(50);
-        menuOption.setTranslateX(500);
-        menuOption.setTranslateY(50);
-        menuOptionSound.setTranslateX(500);
-        menuOptionSound.setTranslateY(50);
+        final int MENU_POSITION_X = 475;
+        final int MENU_POSITION_Y = 200;
 
-        final int offset = 200;
-
-        menuOption.setTranslateX(offset);
+        menuMain.setTranslateX(MENU_POSITION_X);
+        menuMain.setTranslateY(MENU_POSITION_Y);
+        menuOption.setTranslateX(MENU_POSITION_X);
+        menuOption.setTranslateY(MENU_POSITION_Y);
+        menuOptionSound.setTranslateX(MENU_POSITION_X);
+        menuOptionSound.setTranslateY(MENU_POSITION_Y);
+        createNewGame.setTranslateX(MENU_POSITION_X);
+        createNewGame.setTranslateY(MENU_POSITION_Y);
 
         //"Continue" StandardButtonMenu
-        StandardButtonMenu btnCtn = new StandardButtonMenu("Continue");
-        btnCtn.setOnMouseClicked(event -> {
+        StandardButtonMenu buttonContinue = new StandardButtonMenu("Continue");
+        buttonContinue.setOnMouseClicked(event -> {
             FadeTransition ft = new FadeTransition(Duration.seconds(0.5), this);
             ft.setFromValue(1);
             ft.setToValue(0);
             ft.setOnFinished(evt -> this.setVisible(false));
             ft.play();
             music.stopMusic();
+
             //TODO : Take the save and launch the game.
+
+            setScene(GAME_SCENE);
         });
 
         //"New Game" StandardButtonMenu
-        StandardButtonMenu btnNG = new StandardButtonMenu("New Game");
-        btnNG.setOnMouseClicked(event -> {
-            FadeTransition ft = new FadeTransition(Duration.seconds(0.5), this);
-            ft.setFromValue(1);
-            ft.setToValue(0);
-            ft.setOnFinished(evt -> this.setVisible(false));
-            ft.play();
-
-            StackPane secondaryLayout = new StackPane();
-
-            Scene secondScene = new Scene(secondaryLayout, 230, 100);
-
-            // New window (Stage) which opens when "New Game" has chosen, it's to give a name at the hero
-            Stage newWindow = new Stage();
-            newWindow.setTitle("Second Stage");
-            newWindow.setScene(secondScene);
-
-            newWindow.initModality(Modality.WINDOW_MODAL);
-
-            newWindow.setAlwaysOnTop(true);
-
-            Label label = new Label("Name your hero ");
-
-            //Field for the hero name
-            TextField txtField = new TextField();
-            label.setTranslateY(-25);
-
-            //"Enter" StandardButtonMenu to validate the hero name and launch the game
-            StandardButtonMenu btnEnter = new StandardButtonMenu("Enter");
-            btnEnter.setTranslateY(30);
-            btnEnter.setOnMouseClicked(evt -> {
-                String nameHero = txtField.getText();
-                newWindow.close();
-
-                //Create the hero
-                hero = new Hero(200,
-                        CharacterState.NORMAL,
-                        nameHero,
-                        20,
-                        0,
-                        0,
-                        new HashMap<>() {{
-                            put(new Item(2, ItemName.ENERGYDRINK,""), 0);
-                            put(new Item(10, ItemName.ANTIDOTE,""), 1);
-                            put(new Item(40,ItemName.HEALPOTION,""),3);
-                        }});
-
-                //(GameScene)scenesController[GAME_SCENE].setHero(hero);
-                music.stopMusic();
-                Labygame.setScene(GAME_SCENE);
-            });
-
-            secondaryLayout.getChildren().addAll(label, txtField, btnEnter);
-
-            newWindow.setTitle("New Hero");
-            newWindow.show();
-
-        });
-
+        StandardButtonMenu buttonNewGame = new StandardButtonMenu("New Game");
+        buttonNewGame.setOnMouseClicked(event -> animationFadeMenu(menuMain,createNewGame));
         //"Options" StandardButtonMenu
-        StandardButtonMenu btnOpt = new StandardButtonMenu("Options");
-        btnOpt.setOnMouseClicked(event -> {
-            getChildren().add(menuOption);
-
-            TranslateTransition tt = new TranslateTransition(Duration.seconds(0.25), menuMain);
-            tt.setToX(menuMain.getTranslateX() + offset);
-
-            TranslateTransition tt1 = new TranslateTransition(Duration.seconds(0.5), menuOption);
-            tt1.setToX(menuMain.getTranslateX());
-
-            tt.play();
-            tt1.play();
-
-            tt.setOnFinished(evt -> getChildren().remove(menuMain));
-        });
+        StandardButtonMenu buttonOption = new StandardButtonMenu("Options");
+        buttonOption.setOnMouseClicked(event -> animationFadeMenu(menuMain,menuOption));
 
         //"Credits" StandardButtonMenu
-        StandardButtonMenu btnC = new StandardButtonMenu("Credits");
-        btnC.setOnMouseClicked(event -> Labygame.setScene(CREDITS_SCENE));
+        StandardButtonMenu buttonCredit = new StandardButtonMenu("Credits");
+        buttonCredit.setOnMouseClicked(event -> Labygame.setScene(CREDITS_SCENE));
 
         //"Exit" StandardButtonMenu to exit the game
-        StandardButtonMenu btnE = new StandardButtonMenu("Exit");
-        btnE.setOnMouseClicked(event -> System.exit(0));
+        StandardButtonMenu buttonExit = new StandardButtonMenu("Exit");
+        buttonExit.setOnMouseClicked(event -> System.exit(0));
 
         //"Back" StandardButtonMenu
-        StandardButtonMenu btnBk = new StandardButtonMenu("Back");
-        btnBk.setOnMouseClicked(event -> {
-            getChildren().add(menuMain);
-
-            TranslateTransition tt = new TranslateTransition(Duration.seconds(0.25), menuOptionSound);
-            tt.setToX(menuOptionSound.getTranslateX() + offset);
-
-            TranslateTransition tt1 = new TranslateTransition(Duration.seconds(0.5), menuMain);
-            tt1.setToX(menuOptionSound.getTranslateX());
-
-            tt.play();
-            tt1.play();
-
-            tt.setOnFinished(evt -> getChildren().remove(menuOptionSound));
-        });
+        StandardButtonMenu buttonBack = new StandardButtonMenu("Back");
+        buttonBack.setOnMouseClicked(event -> animationFadeMenu(menuOptionSound,menuMain));
 
         //"Sound" StandardButtonMenu
-        StandardButtonMenu btnS = new StandardButtonMenu("Sound");
-        btnS.setOnMouseClicked(event -> {
-            getChildren().add(menuOptionSound);
-
-            TranslateTransition tt = new TranslateTransition(Duration.seconds(0.25), menuOption);
-            tt.setToX(menuOption.getTranslateX() + offset);
-
-            TranslateTransition tt1 = new TranslateTransition(Duration.seconds(0.5), menuOptionSound);
-            tt1.setToX(menuOption.getTranslateX());
-
-            tt.play();
-            tt1.play();
-
-            tt.setOnFinished(evt -> getChildren().remove(menuOption));
-
-        });
+        StandardButtonMenu buttonSound = new StandardButtonMenu("Sound");
+        buttonSound.setOnMouseClicked(event -> animationFadeMenu(menuOption,menuOptionSound));
 
         //"Mute" StandardButtonMenu to stop the music
-        StandardButtonMenu btnM = new StandardButtonMenu("Mute");
-        btnM.setOnMouseClicked(event -> music.stopMusic());
+        StandardButtonMenu buttonMute = new StandardButtonMenu("Mute");
+        buttonMute.setOnMouseClicked(event -> music.stopMusic());
 
         //"Unmute" StandardButtonMenu to play the music if it was muted
-        StandardButtonMenu btnU = new StandardButtonMenu("Unmute");
-        btnU.setOnMouseClicked(event -> music.playMusic());
+        StandardButtonMenu buttonUnMute = new StandardButtonMenu("Unmute");
+        buttonUnMute.setOnMouseClicked(event -> music.playMusic());
 
+        //Create new hero
+        TextField heroNameText = new TextField();
+        heroNameText.setFont(Font.font(15));
+        heroNameText.setMaxWidth(300);
+        heroNameText.setTranslateX(0);
+        heroNameText.setTranslateY(225);
 
-        menuMain.getChildren().addAll(btnCtn, btnNG, btnOpt, btnC, btnE);
-        menuOption.getChildren().addAll(btnS);
-        menuOptionSound.getChildren().addAll(btnM, btnU, btnBk);
+        heroNameText.setOnKeyPressed(eventBis -> {
+            //when he validates his answer
+            if(eventBis.getCode() == KeyCode.ENTER){
+                //Check the name
+                String heroName = heroNameText.getText();
+                if(heroName.matches("^[A-Za-z][A-Za-z0-9_]{3,15}$")) {
+                    Hero hero = new Hero(200,
+                            CharacterState.NORMAL,
+                            heroName,
+                            20,
+                            0,
+                            0,
+                            new HashMap<>() {{
+                                put(new Item(2, ItemName.ENERGYDRINK, ""), 0);
+                                put(new Item(10, ItemName.ANTIDOTE, ""), 1);
+                                put(new Item(40, ItemName.HEALPOTION, ""), 3);
+                            }});
+                    //TODO SET HERO TO GAME SCENE
+                    music.stopMusic();
+                    setScene(GAME_SCENE);
+                }
+            }
+        });
 
-        Rectangle r = new Rectangle(1200, 600);
-        r.setFill(Color.GREY);
-        r.setOpacity(0.4);
+        createNewGame.getChildren().addAll(heroNameText,buttonBack);
+        menuMain.getChildren().addAll(buttonContinue, buttonNewGame, buttonOption, buttonCredit, buttonExit);
+        menuOption.getChildren().addAll(buttonSound);
+        menuOptionSound.getChildren().addAll(buttonMute, buttonUnMute, buttonBack);
 
-        getChildren().addAll(r, menuMain);
+        Rectangle rectangle = new Rectangle(1200, 600);
+        rectangle.setFill(Color.GREY);
+        rectangle.setOpacity(0.4);
 
+        getChildren().addAll(rectangle, menuMain);
+
+    }
+
+    /**
+     * animation for the menu
+     * @param menuOut the menu who will appear
+     * @param menuIn the menu who will disappear
+     */
+    public void animationFadeMenu(VBox menuOut,VBox menuIn){
+        getChildren().add(menuIn);
+
+        TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(0.25), menuOut);
+        translateTransition.setToX(menuOut.getTranslateX() + 200);
+
+        TranslateTransition translateTransition1 = new TranslateTransition(Duration.seconds(0.5), menuIn);
+        translateTransition1.setToX(menuOut.getTranslateX());
+
+        translateTransition.play();
+        translateTransition1.play();
+
+        translateTransition.setOnFinished(evt -> getChildren().remove(menuOut));
     }
 
 }
