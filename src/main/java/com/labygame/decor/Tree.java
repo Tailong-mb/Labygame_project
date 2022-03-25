@@ -11,8 +11,8 @@ public class Tree implements DecorInterface {
     }
 
     @Override
-    public boolean canMove() {
-        return false;
+    public boolean isvisible() {
+        return true;
     }
 
     @Override

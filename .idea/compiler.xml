@@ -14,7 +14,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="Labygame_project" options="" />
+      <module name="Labygame_project" options="--add-exports javafx.graphics/com.sun.glass.ui=com.labygame" />
     </option>
   </component>
 </project>

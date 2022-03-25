@@ -10,7 +10,7 @@ public class Water implements DecorInterface {
     }
 
     @Override
-    public boolean canMove() {
+    public boolean isVisible() {
         return false;
     }
 
