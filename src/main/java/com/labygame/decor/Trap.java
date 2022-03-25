@@ -8,7 +8,7 @@ import lombok.Data;
 @Data
 public class Trap implements DecorInterface {
 
-    int hp;
+    int hp = 15;
 
     @Override
     public boolean isDestroyed() {
@@ -23,5 +23,6 @@ public class Trap implements DecorInterface {
     @Override
     public void hurtHero(Hero hero) {
         hero.setHp(-5);
+        this.hp -= -5;
     }
 }
