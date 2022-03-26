@@ -1,4 +1,4 @@
-package com.labygame.demo.trayEnvironnement.Decor;
+package com.labygame.demo.decor;
 
 import com.labygame.demo.personnage.Hero;
 
