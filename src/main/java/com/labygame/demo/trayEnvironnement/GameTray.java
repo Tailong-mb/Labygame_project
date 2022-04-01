@@ -1,12 +1,32 @@
 package com.labygame.demo.trayEnvironnement;
 
-public class gameTray {
+import com.labygame.demo.decor.Chest;
+import com.labygame.demo.decor.Trap;
+import com.labygame.demo.decor.Tree;
+import com.labygame.demo.decor.Water;
+import com.labygame.demo.personnage.CharacterState;
+import com.labygame.demo.personnage.Monster;
+import com.labygame.demo.personnage.Wizard;
+import lombok.Getter;
 
-    private gameTrayPiece[][] gameBoard;
+@Getter
+public class GameTray {
+
+    private GameTrayPiece[][] gameBoard;
 
     //Constructor
-    public gameTray(){
-        this.gameBoard = new gameTrayPiece[5][5];
+    public GameTray(){
+        //Wizard myWizard = new Wizard(30,CharacterState.NORMAL,"merlin", 50,1000,350);
+        Tree myTree = new Tree(1000, 100);
+        Trap myTrap = new Trap(true);
+        Water myWater = new Water(200, 600);
+        Chest myChest = new Chest();
+        gameBoard = new GameTrayPiece[5][5];
+        for(int i = 0; i < 5; i++)
+        {
+            for(int j = 0; j < 5; j++)
+                gameBoard[i][j] = new GameTrayPiece(myTree, myWater, myTrap, myChest);
+        }
     }
 
 }

@@ -1,4 +1,4 @@
-package com.labygame.demo.trayEnvironnement.Decor;
+package com.labygame.demo.decor;
 
 import com.labygame.demo.personnage.Hero;
 import javafx.scene.image.Image;
@@ -23,8 +23,8 @@ public class Tree implements DecorInterface {
     }
 
     @Override
-    public boolean canMove() {
-        return false;
+    public boolean changeVisible() {
+        return true;
     }
 
     @Override

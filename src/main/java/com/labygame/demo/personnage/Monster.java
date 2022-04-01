@@ -1,5 +1,6 @@
 package com.labygame.demo.personnage;
 
+import com.labygame.demo.Sprites;
 import javafx.scene.image.Image;
 import lombok.Getter;
 
@@ -7,10 +8,12 @@ import java.util.Random;
 
 @Getter
 public class Monster extends Role {
-    private final transient Image []myImages = {new Image("file:doc/images/minotaurus_spritesheet/minotaurus_spritesheet_earth_original.png"),
-                                                new Image("file:doc/images/minotaurus_spritesheet/minotaurus_spritesheet_frost.png"),
-                                                new Image("file:doc/images/minotaurus_spritesheet/minotaurus_spritesheet_lava.png"),
-                                                new Image("file:doc/images/minotaurus_spritesheet/minotaurus_spritesheet_lightning.png")};
+    public static final int WIDTH = 50;
+    public static final int HEIGHT = 50;
+    private final transient Image []myImages = {new Image("file:doc/images/minotaur_spritesheets/minotaurus_spritesheet_earth_original.png"),
+                                                new Image("file:doc/images/minotaur_spritesheets/minotaurus_spritesheet_frost.png"),
+                                                new Image("file:doc/images/minotaur_spritesheets/minotaurus_spritesheet_lava.png"),
+                                                new Image("file:doc/images/minotaur_spritesheets/minotaurus_spritesheet_lightning.png")};
 
     //All args constructor
     public Monster(int hp, CharacterState status, String name, int power, int positionX, int positionY){
