@@ -1,8 +1,11 @@
 package com.labygame.decor;
 
 import com.labygame.personnage.Hero;
+import javafx.animation.Timeline;
+import javafx.scene.image.Image;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+
 
 @AllArgsConstructor
 @Data
@@ -10,6 +13,8 @@ public class Trap implements DecorInterface {
 
     int hp = 15;
     int hp = 30;
+    Timeline time;
+    Image image;
 
     @Override
     public boolean isDestroyed() {
@@ -24,8 +29,10 @@ public class Trap implements DecorInterface {
             return false;
     }
 
-    public boolean setVisible(boolean yn) {
-        return yn;
+    public boolean setVisible() {
+        time = new Timeline();
+        return false;
+
     }
 
     @Override
@@ -37,4 +44,11 @@ public class Trap implements DecorInterface {
             this.hp -= 10;
         }
     }
+
+    @Override
+    public void setImage() {
+        this.image = new Image("doc/images/trap.png");
+    }
+
+
 }
