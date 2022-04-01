@@ -1,7 +1,6 @@
 package com.labygame.decor;
 
 import com.labygame.personnage.Hero;
-import javafx.animation.Timeline;
 import javafx.scene.image.Image;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,44 +10,50 @@ import lombok.Data;
 @Data
 public class Trap implements DecorInterface {
 
-    int hp = 15;
-    int hp = 30;
-    Timeline time;
+    int hpTrap = 30;
+    int i = 300;
+    boolean b;
+
     Image image;
 
     @Override
     public boolean isDestroyed() {
-        return hp <= 0;
+        return hpTrap <= 0;
     }
 
     @Override
     public boolean isVisible() {
-        if(setVisible() == true)
+        if (setVisible())
             return true;
         else
             return false;
     }
 
     public boolean setVisible() {
-        time = new Timeline();
-        return false;
-
+        for(;;) {
+            b = true;
+            while(i!=0){
+                b = false;
+                i--;
+            }
+            return b;
+        }
     }
 
     @Override
     public void hurtHero(Hero hero) {
         hero.setHp(-5);
-        this.hp -= -5;
-        if(isVisible() == true){
+        this.hpTrap -= -5;
+        if(isVisible()){
             hero.setHp(-10);
-            this.hp -= 10;
+            this.hpTrap -= 10;
         }
     }
 
     @Override
     public void setImage() {
-        this.image = new Image("doc/images/trap.png");
+        if(isVisible())
+            this.image = new Image("doc/images/trap.png");
     }
-
 
 }
