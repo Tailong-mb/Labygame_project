@@ -21,4 +21,6 @@ public interface DecorInterface {
      */
     void hurtHero(Hero hero);
 
+    public void setImage();
+
 }
