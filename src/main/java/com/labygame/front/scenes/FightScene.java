@@ -115,7 +115,6 @@ public class FightScene extends GeneralScene{
         answerToRiddle.setMaxWidth(300);
         answerToRiddle.setTranslateX(0);
         answerToRiddle.setTranslateY(225);
-
         questionPane.setMaxHeight(80);
 
         answerToRiddle.setOnKeyPressed( event -> {
@@ -146,7 +145,7 @@ public class FightScene extends GeneralScene{
      */
     public void gameDrawScene(){
         showDamage();
-        //Check is one of the character is dead
+        //Check if one of the character is dead
         if(hero.isDead() || hero.getPower() <= 0)
             Labygame.setScene(Labygame.CREDITS_SCENE);
         else if(opponent.isDead()) {
@@ -155,6 +154,7 @@ public class FightScene extends GeneralScene{
             Labygame.setScene(Labygame.GAME_SCENE);
         }
 
+        //Set new font
         Font myFontStats = Font.font("Arial", FontWeight.BOLD, 24);
         gc.setFont(myFontStats);
 
