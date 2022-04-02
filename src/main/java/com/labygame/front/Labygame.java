@@ -48,7 +48,7 @@ public class Labygame extends Application {
     public void start(Stage stage){
         Labygame.stage = stage;
         stage.setTitle("LabyGame");
-        setScene(MENU_SCENE);
+        setScene(FIGHT_SCENE);
         stage.show();
     }
 
