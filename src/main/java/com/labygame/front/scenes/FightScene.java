@@ -147,7 +147,7 @@ public class FightScene extends GeneralScene{
         showDamage();
         //Check if one of the character is dead
         if(hero.isDead() || hero.getPower() <= 0)
-            Labygame.setScene(Labygame.CREDITS_SCENE);
+            Labygame.setScene(Labygame.GAME_OVER_SCENE);
         else if(opponent.isDead()) {
             hero.setHp(hero.getHp() + 20);
             hero.setPower(hero.getPower() + 5);
