@@ -1,6 +1,7 @@
 package com.labygame.decor;
 
 import com.labygame.personnage.Hero;
+import javafx.scene.image.Image;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -10,6 +11,7 @@ public class Trap implements DecorInterface {
 
     int hp;
     String name;
+    Image image;
 
     @Override
     public boolean isDestroyed() {
@@ -24,5 +26,10 @@ public class Trap implements DecorInterface {
     @Override
     public void hurtHero(Hero hero) {
         hero.setHp(-5);
+    }
+
+    @Override
+    public void setImage(){
+        this.image = new Image("doc/images/tree (1).png");
     }
 }

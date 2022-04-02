@@ -4,6 +4,8 @@ module com.labygame{
     requires javafx.fxml;
     requires org.jetbrains.annotations;
     requires com.google.gson;
+    requires javafx.media;
+    requires javafx.graphics;
 
     opens com.labygame.front to javafx.fxml;
     opens com.labygame.front.scenes to javafx.fxml;
