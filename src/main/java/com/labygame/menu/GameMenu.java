@@ -15,8 +15,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 
@@ -62,7 +62,6 @@ public class GameMenu extends Parent {
             music.stopMusic();
 
             //TODO : Take the save and launch the game.
-
             setScene(GAME_SCENE);
         });
 
@@ -81,9 +80,9 @@ public class GameMenu extends Parent {
         StandardButtonMenu buttonExit = new StandardButtonMenu("Exit");
         buttonExit.setOnMouseClicked(event -> System.exit(0));
 
-        //"Back" StandardButtonMenu
-        StandardButtonMenu buttonBack = new StandardButtonMenu("Back");
-        buttonBack.setOnMouseClicked(event -> animationFadeMenu(menuOptionSound,menuMain));
+        //"Back" StandardButtonMenu from sound.
+        StandardButtonMenu buttonBackFromSound = new StandardButtonMenu("Back");
+        buttonBackFromSound.setOnMouseClicked(event -> animationFadeMenu(menuOptionSound,menuMain));
 
         //"Sound" StandardButtonMenu
         StandardButtonMenu buttonSound = new StandardButtonMenu("Sound");
@@ -97,16 +96,18 @@ public class GameMenu extends Parent {
         StandardButtonMenu buttonUnMute = new StandardButtonMenu("Unmute");
         buttonUnMute.setOnMouseClicked(event -> music.playMusic());
 
-        //Create new hero
+        //Create area to set hero name
         TextField heroNameText = new TextField();
         heroNameText.setFont(Font.font(15));
         heroNameText.setMaxWidth(300);
-        heroNameText.setTranslateX(0);
-        heroNameText.setTranslateY(225);
 
-        heroNameText.setOnKeyPressed(eventBis -> {
+        Text instructionHeroNameText = new Text("Put the name of your hero !\n(3 to 15 characters)") ;
+        instructionHeroNameText.setFont(Font.font(20));
+        instructionHeroNameText.setFill(Color.BLACK);
+
+        heroNameText.setOnKeyPressed(event -> {
             //when he validates his answer
-            if(eventBis.getCode() == KeyCode.ENTER){
+            if(event.getCode() == KeyCode.ENTER){
                 //Check the name
                 String heroName = heroNameText.getText();
                 if(heroName.matches("^[A-Za-z][A-Za-z0-9_]{3,15}$")) {
@@ -128,17 +129,12 @@ public class GameMenu extends Parent {
             }
         });
 
-        createNewGame.getChildren().addAll(heroNameText,buttonBack);
+        createNewGame.getChildren().addAll(instructionHeroNameText,heroNameText);
         menuMain.getChildren().addAll(buttonContinue, buttonNewGame, buttonOption, buttonCredit, buttonExit);
         menuOption.getChildren().addAll(buttonSound);
-        menuOptionSound.getChildren().addAll(buttonMute, buttonUnMute, buttonBack);
+        menuOptionSound.getChildren().addAll(buttonMute, buttonUnMute, buttonBackFromSound);
 
-        Rectangle rectangle = new Rectangle(1200, 600);
-        rectangle.setFill(Color.GREY);
-        rectangle.setOpacity(0.4);
-
-        getChildren().addAll(rectangle, menuMain);
-
+        getChildren().addAll(menuMain);
     }
 
     /**
@@ -147,7 +143,6 @@ public class GameMenu extends Parent {
      * @param menuIn the menu who will disappear
      */
     public void animationFadeMenu(VBox menuOut,VBox menuIn){
-        getChildren().add(menuIn);
 
         TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(0.25), menuOut);
         translateTransition.setToX(menuOut.getTranslateX() + 200);
@@ -159,6 +154,7 @@ public class GameMenu extends Parent {
         translateTransition1.play();
 
         translateTransition.setOnFinished(evt -> getChildren().remove(menuOut));
+        getChildren().add(menuIn);
     }
 
 }
