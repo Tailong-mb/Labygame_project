@@ -7,7 +7,7 @@ public enum MusicType {
     MENU("doc/Music/GamerInstincts.mp3"),
     END("doc/Music/ItsNotGameOverYet.mp3"),
     FIGHT("doc/Music/WeMustBattleNOW.mp3"),
-    BASIC("SEARCH ONE");
+    BASIC("doc/Music/GamerInstincts.mp3");
 
     private final String pathMusic;
 
