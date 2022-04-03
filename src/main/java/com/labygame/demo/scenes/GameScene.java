@@ -69,14 +69,17 @@ public class GameScene extends GeneralScene{
                 else if(activeKeys.contains(KeyCode.Q)){
                     hero.getMainCharacter().setSpriteY(102);
                     if(hero.getMainCharacter().getX() > 2) {
-                        if(!hero.collision(new Integer[]{positions[0] + 10, positions[1] + 5, positions[2]*3, positions[3]*3}))
+                        if((!hero.collision(new Integer[]{positions[0], positions[1], positions[2]*3, positions[3]*3})) || hero.isStuckR())
                         {
+                            hero.setStuckR(false);
                             hero.move(hero.LEFT);
                             if(((int)(Math.random()*600)) == 1)
                             {
                                 mainLabyGame.setScene(FIGHT_SCENE);
                             }
                         }
+                        else
+                            hero.setStuckL(true);
                     }
                     else
                     {
@@ -90,23 +93,17 @@ public class GameScene extends GeneralScene{
                 else if(activeKeys.contains(KeyCode.D)){
                     hero.getMainCharacter().setSpriteY(38);
                     if(hero.getMainCharacter().getX() < GAME_WIDTH - (hero.getMainCharacter().getWidth()*2)) {
-                        if(!hero.collision(new Integer[]{positions[0], positions[1], positions[2]*3, positions[3]*3}))
+                        if((!hero.collision(new Integer[]{positions[0], positions[1], positions[2]*3, positions[3]*3})) || hero.isStuckL())
                         {
+                            hero.setStuckL(false);
                             hero.move(hero.RIGHT);
                             if(((int)(Math.random()*600)) == 1)
                             {
                                 mainLabyGame.setScene(FIGHT_SCENE);
                             }
                         }
-                        /*
-                        if((hero.getPositionX()+hero.getMainCharacter().getWidth() < positions[0]) || (hero.getPositionX() > positions[0]+ positions[2])) {
-                            hero.move(hero.RIGHT);
-                        }
-                        else if((hero.getPositionY()+hero.getMainCharacter().getHeight() < positions[1]) || (hero.getPositionY() > positions[1]+ positions[3])) {
-                            hero.move(hero.RIGHT);
-                        }
-
-                         */
+                        else
+                            hero.setStuckR(true);
                     }
                     else
                     {
@@ -120,23 +117,17 @@ public class GameScene extends GeneralScene{
                 else if(activeKeys.contains(KeyCode.Z)){
                     hero.getMainCharacter().setSpriteY(69);
                     if(hero.getMainCharacter().getY() > 2) {
-                        if(!hero.collision(new Integer[]{positions[0] + 10, positions[1] + 10, positions[2]*3, positions[3]*3}))
+                        if((!hero.collision(new Integer[]{positions[0], positions[1], positions[2]*3, positions[3]*3})) || hero.isStuckD())
                         {
+                            hero.setStuckD(false);
                             hero.move(hero.UP);
                             if(((int)(Math.random()*600)) == 1)
                             {
                                 mainLabyGame.setScene(FIGHT_SCENE);
                             }
                         }
-                        /*
-                        if((hero.getPositionY() < positions[1]+positions[3]) || (hero.getPositionY() > positions[1]+10)) {
-                            hero.move(hero.UP);
-                        }
-                        else if((hero.getPositionX() < positions[0]-10) || (hero.getPositionX() > positions[0]+50)) {
-                            hero.move(hero.UP);
-                        }
-
-                         */
+                        else
+                            hero.setStuckU(true);
                     }
                     else {
                         if(trayY>0)
@@ -150,14 +141,17 @@ public class GameScene extends GeneralScene{
                 else if(activeKeys.contains(KeyCode.S)){
                     hero.getMainCharacter().setSpriteY(6);
                     if(hero.getMainCharacter().getY() < GAME_HEIGHT - (hero.getMainCharacter().getHeight()*2)) {
-                        if(!hero.collision(new Integer[]{positions[0], positions[1], positions[2]*3, positions[3]*3}))
+                        if((!hero.collision(new Integer[]{positions[0], positions[1], positions[2]*3, positions[3]*3})) || hero.isStuckU())
                         {
+                            hero.setStuckU(false);
                             hero.move(hero.DOWN);
                             if(((int)(Math.random()*600)) == 1)
                             {
                                 mainLabyGame.setScene(FIGHT_SCENE);
                             }
                         }
+                        else
+                            hero.setStuckD(true);
                     }
                     else
                     {

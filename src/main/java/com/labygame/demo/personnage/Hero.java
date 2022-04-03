@@ -24,6 +24,11 @@ public class Hero extends Role implements Serializable {
     public static final int UP = 2;
     public static final int DOWN = 3;
 
+    private boolean stuckR = false;
+    private boolean stuckL = false;
+    private boolean stuckU = false;
+    private boolean stuckD = false;
+
     //All args constructor
     public Hero(int hp, CharacterState status, String name, int power, int positionX, int positionY, HashMap<Item, Integer> myItem) {
         super(hp,name, power, status);
