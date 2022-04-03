@@ -104,6 +104,10 @@ public class Hero extends Role implements Serializable {
         }
     }
 
+    /**
+     * this method allows to move the hero
+     * @param move the way the hero should move
+     */
     public void move(int move) {
         int newX = mainCharacter.getX();
         int newY = mainCharacter.getY();
@@ -121,5 +125,20 @@ public class Hero extends Role implements Serializable {
             setPositionY(newY);
         }
         mainCharacter.moveTo(newX, newY);
+    }
+
+    /**
+     * this method check if the hero is hitting an object
+     * @param check array that contains 4 int, position in X, position in Y, width and height of an object
+     * @return true if there is a collision and false other way
+     */
+    public boolean collision( Integer[] check){
+        if((getPositionX() + mainCharacter.getWidth() <= check[0]) || (getPositionX() >= check[0]+check[2])) {
+            return false;
+        }
+        if((getPositionY() + mainCharacter.getHeight() <= check[1]) || (getPositionY() >= check[1]+check[3])) {
+            return false;
+        }
+        return true;
     }
 }

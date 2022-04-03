@@ -19,11 +19,17 @@ import static com.labygame.demo.mainLabyGame.CREDITS_SCENE;
 public class GameScene extends GeneralScene{
 
     private GameTray gameBoard;
+    private GameTrayPiece currentTray;
     private Image background;
     private Hero hero;
     private Monster monster;
     private Tree tree;
     private Chest chest;
+    private Integer[] positions;
+    private int trayX;
+    private int trayY;
+
+    private boolean allowMoves = false;
 
     public GameScene(){
         super();
@@ -33,25 +39,23 @@ public class GameScene extends GeneralScene{
         tree = new Tree(50,50);
         chest = new Chest();
         gameBoard = new GameTray();
+        trayX = 0;
+        trayY = 0;
     }
 
     @Override
     public void draw() {
         activeKeys.clear();
         hero.getMainCharacter().moveTo(hero.getPositionX(),hero.getPositionY());
+        currentTray = gameBoard.getGameBoard()[trayX][trayY];
+        positions = new Integer[currentTray.getMyCoordinates().size()];
+        positions = currentTray.getMyCoordinates().toArray(positions);
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long currentNanoTime) {
                 gc.drawImage(background,0,0,GAME_WIDTH,GAME_HEIGHT);
-                gameBoard.getGameBoard()[0][0].draw(gc);
-                /*
-                gc.drawImage(monster.getMyImages()[3],31,29,monster.WIDTH,monster.HEIGHT,monster.getPositionX(),monster.getPositionY(),100,100);
-                gc.drawImage(tree.getMyImage(), tree.getPositionX(),tree.getPositionY());
-                gc.drawImage(chest.getMyImage(),1, 1, chest.getWidthSprite(), chest.getHeightSprite(),chest.getPositionX(), chest.getPositionY(), chest.getWidthSprite()*1.2, chest.getHeightSprite()*1.2);
-                //gc.drawImage(hero.getMyImage(),0,0,16,30,250,250,32,60);
+                currentTray.draw(gc);
                 hero.getMainCharacter().draw(gc);
-
-                 */
 
                 if(activeKeys.contains(KeyCode.ESCAPE)){
                     this.stop();
@@ -65,26 +69,87 @@ public class GameScene extends GeneralScene{
                 else if(activeKeys.contains(KeyCode.Q)){
                     hero.getMainCharacter().setSpriteY(102);
                     if(hero.getMainCharacter().getX() > 2) {
-                        hero.move(hero.LEFT);
+                        if(!hero.collision(new Integer[]{positions[0] + 10, positions[1] + 5, positions[2]*3, positions[3]*3}))
+                        {
+                            hero.move(hero.LEFT);
+                        }
+                    }
+                    else
+                    {
+                        if(trayX > 0) {
+                            trayX -= 1;
+                            currentTray = gameBoard.getGameBoard()[trayX][trayY];
+                            hero.getMainCharacter().setX(GAME_WIDTH - (hero.getMainCharacter().getWidth() * 3));
+                        }
                     }
                 }
                 else if(activeKeys.contains(KeyCode.D)){
                     hero.getMainCharacter().setSpriteY(38);
                     if(hero.getMainCharacter().getX() < GAME_WIDTH - (hero.getMainCharacter().getWidth()*2)) {
-                        if(hero.getPositionX())
-                        hero.move(hero.RIGHT);
+                        if(!hero.collision(new Integer[]{positions[0], positions[1], positions[2]*3, positions[3]*3}))
+                        {
+                            hero.move(hero.RIGHT);
+                        }
+                        /*
+                        if((hero.getPositionX()+hero.getMainCharacter().getWidth() < positions[0]) || (hero.getPositionX() > positions[0]+ positions[2])) {
+                            hero.move(hero.RIGHT);
+                        }
+                        else if((hero.getPositionY()+hero.getMainCharacter().getHeight() < positions[1]) || (hero.getPositionY() > positions[1]+ positions[3])) {
+                            hero.move(hero.RIGHT);
+                        }
+
+                         */
+                    }
+                    else
+                    {
+                        if(trayX<4) {
+                            trayX+=1;
+                            currentTray = gameBoard.getGameBoard()[trayX][trayY];
+                            hero.getMainCharacter().setX(10);
+                        }
                     }
                 }
                 else if(activeKeys.contains(KeyCode.Z)){
                     hero.getMainCharacter().setSpriteY(69);
                     if(hero.getMainCharacter().getY() > 2) {
-                        hero.move(hero.UP);
+                        if(!hero.collision(new Integer[]{positions[0] + 10, positions[1] + 10, positions[2]*3, positions[3]*3}))
+                        {
+                            hero.move(hero.UP);
+                        }
+                        /*
+                        if((hero.getPositionY() < positions[1]+positions[3]) || (hero.getPositionY() > positions[1]+10)) {
+                            hero.move(hero.UP);
+                        }
+                        else if((hero.getPositionX() < positions[0]-10) || (hero.getPositionX() > positions[0]+50)) {
+                            hero.move(hero.UP);
+                        }
+
+                         */
+                    }
+                    else {
+                        if(trayY>0)
+                        {
+                            trayY -= 1;
+                            currentTray = gameBoard.getGameBoard()[trayX][trayY];
+                            hero.getMainCharacter().setY(GAME_HEIGHT - hero.getMainCharacter().getHeight() * 3);
+                        }
                     }
                 }
                 else if(activeKeys.contains(KeyCode.S)){
                     hero.getMainCharacter().setSpriteY(6);
                     if(hero.getMainCharacter().getY() < GAME_HEIGHT - (hero.getMainCharacter().getHeight()*2)) {
-                        hero.move(hero.DOWN);
+                        if(!hero.collision(new Integer[]{positions[0], positions[1], positions[2]*3, positions[3]*3}))
+                        {
+                            hero.move(hero.DOWN);
+                        }
+                    }
+                    else
+                    {
+                        if(trayY<4){
+                            trayY +=1;
+                            currentTray = gameBoard.getGameBoard()[trayX][trayY];
+                            hero.getMainCharacter().setY(10);
+                        }
                     }
                 }
             }

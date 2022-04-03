@@ -11,8 +11,8 @@ public class Trap implements DecorInterface {
     private boolean isVisible = false;
     private final int positionX = 600;
     private final int positionY = 450;
-    private final int widthSprite = 30;
-    private final int heightSprite = 32;
+    private final int WIDTH = 30;
+    private final int HEIGHT = 32;
 
     @Override
     public boolean isDestroyed() {

@@ -11,8 +11,8 @@ public class Chest implements DecorInterface{
     private final transient Image myImage = new Image("file:doc/images/chest.png");
     private final int positionX = 400;
     private final int positionY = 350;
-    private final int widthSprite = 30;
-    private final int heightSprite = 32;
+    private final int WIDTH = 30;
+    private final int HEIGHT = 32;
 
     private boolean opened = false;
 

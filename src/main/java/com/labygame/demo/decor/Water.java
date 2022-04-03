@@ -10,6 +10,8 @@ public class Water implements DecorInterface {
     private final transient Image myImage = new Image("file:doc/images/water2.png");
     private int positionX;
     private int positionY;
+    private final int WIDTH = 30;
+    private final int HEIGHT = 30;
 
     public Water(int x, int y) {
         positionX = x;
