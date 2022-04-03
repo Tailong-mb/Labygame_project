@@ -16,7 +16,6 @@ public class GameTray {
 
     //Constructor
     public GameTray(){
-        //Wizard myWizard = new Wizard(30,CharacterState.NORMAL,"merlin", 50,1000,350);
         Tree myTree = new Tree(900, 200);
         Trap myTrap = new Trap(true);
         Water myWater = new Water(200, 600);
@@ -27,6 +26,6 @@ public class GameTray {
             for(int j = 0; j < 5; j++)
                 gameBoard[i][j] = new GameTrayPiece(myTree, myWater, myTrap, myChest);
         }
-        gameBoard[1][0] = new GameTrayPiece(null,myWater,myTrap,myChest);
+        //gameBoard[1][0] = new GameTrayPiece(null,myWater,myTrap,myChest);
     }
 }
