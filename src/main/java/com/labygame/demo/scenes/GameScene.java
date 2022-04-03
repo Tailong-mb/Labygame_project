@@ -13,7 +13,7 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import lombok.Setter;
 
-import static com.labygame.demo.mainLabyGame.CREDITS_SCENE;
+import static com.labygame.demo.mainLabyGame.*;
 
 @Setter
 public class GameScene extends GeneralScene{
@@ -72,6 +72,10 @@ public class GameScene extends GeneralScene{
                         if(!hero.collision(new Integer[]{positions[0] + 10, positions[1] + 5, positions[2]*3, positions[3]*3}))
                         {
                             hero.move(hero.LEFT);
+                            if(((int)(Math.random()*600)) == 1)
+                            {
+                                mainLabyGame.setScene(FIGHT_SCENE);
+                            }
                         }
                     }
                     else
@@ -89,6 +93,10 @@ public class GameScene extends GeneralScene{
                         if(!hero.collision(new Integer[]{positions[0], positions[1], positions[2]*3, positions[3]*3}))
                         {
                             hero.move(hero.RIGHT);
+                            if(((int)(Math.random()*600)) == 1)
+                            {
+                                mainLabyGame.setScene(FIGHT_SCENE);
+                            }
                         }
                         /*
                         if((hero.getPositionX()+hero.getMainCharacter().getWidth() < positions[0]) || (hero.getPositionX() > positions[0]+ positions[2])) {
@@ -115,6 +123,10 @@ public class GameScene extends GeneralScene{
                         if(!hero.collision(new Integer[]{positions[0] + 10, positions[1] + 10, positions[2]*3, positions[3]*3}))
                         {
                             hero.move(hero.UP);
+                            if(((int)(Math.random()*600)) == 1)
+                            {
+                                mainLabyGame.setScene(FIGHT_SCENE);
+                            }
                         }
                         /*
                         if((hero.getPositionY() < positions[1]+positions[3]) || (hero.getPositionY() > positions[1]+10)) {
@@ -141,6 +153,10 @@ public class GameScene extends GeneralScene{
                         if(!hero.collision(new Integer[]{positions[0], positions[1], positions[2]*3, positions[3]*3}))
                         {
                             hero.move(hero.DOWN);
+                            if(((int)(Math.random()*600)) == 1)
+                            {
+                                mainLabyGame.setScene(FIGHT_SCENE);
+                            }
                         }
                     }
                     else
