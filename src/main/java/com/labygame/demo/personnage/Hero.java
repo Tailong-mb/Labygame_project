@@ -133,7 +133,7 @@ public class Hero extends Role implements Serializable {
     }
 
     /**
-     * this method check if the hero is hitting an object
+     * this method check if hero is hitting an object
      * @param check array that contains 4 int, position in X, position in Y, width and height of an object
      * @return true if there is a collision and false other way
      */
