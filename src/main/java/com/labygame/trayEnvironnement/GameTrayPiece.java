@@ -2,7 +2,6 @@ package com.labygame.trayEnvironnement;
 
 import com.labygame.decor.*;
 import com.labygame.personnage.Hero;
-import com.labygame.personnage.Wizard;
 import com.labygame.front.scenes.GeneralScene;
 import javafx.scene.canvas.GraphicsContext;
 import lombok.Getter;
@@ -14,7 +13,6 @@ import java.util.ArrayList;
 @Setter
 public class GameTrayPiece {
     private Hero myHero;
-    private Wizard myWizard;
     private Tree myTree;
     private Water myWater;
     private Trap myTrap;
@@ -27,7 +25,7 @@ public class GameTrayPiece {
     private boolean exitDown;
 
     public GameTrayPiece(Tree tree, Water water, Trap trap, Chest chest, Hedges hedges) {
-    myCoordinates = new ArrayList<Integer>();
+    myCoordinates = new ArrayList<>();
 
         if(tree != null) {
             myTree = tree;

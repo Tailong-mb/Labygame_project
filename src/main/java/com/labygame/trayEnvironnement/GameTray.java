@@ -28,6 +28,5 @@ public class GameTray {
         gameBoard[0][0].getMyChest().setVisible(true);
         gameBoard[1][0].getMyChest().setVisible(false);
         gameBoard[1][0].setExitLeft(true);
-        gameBoard[1][0].setExitRight(false);
     }
 }
