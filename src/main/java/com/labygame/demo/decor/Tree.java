@@ -8,7 +8,7 @@ import lombok.Setter;
 @Setter
 @Getter
 public class Tree implements DecorInterface {
-    private final transient Image myImage = new Image("file:doc/images/tree (1).png");
+    private final transient Image myImage = new Image("file:doc/images/nature/tree (1).png");
     private int positionX;
     private int positionY;
     private final int WIDTH = 44;

@@ -1,6 +1,5 @@
 package com.labygame.demo.personnage;
 
-import com.labygame.demo.Sprites;
 import com.labygame.demo.items.Item;
 import com.labygame.demo.items.ItemName;
 import javafx.scene.image.Image;
@@ -138,10 +137,10 @@ public class Hero extends Role implements Serializable {
      * @return true if there is a collision and false other way
      */
     public boolean collision( Integer[] check){
-        if((getPositionX() + mainCharacter.getWidth()*2 <= check[0]) || (getPositionX() >= check[0]+check[2])) {
+        if((getPositionX() + mainCharacter.getWidth()*3 <= check[0]) || (getPositionX() >= check[0]+check[2])) {
             return false;
         }
-        if((getPositionY() + mainCharacter.getHeight()*2 <= check[1]) || (getPositionY() >= check[1]+check[3])) {
+        if((getPositionY() + mainCharacter.getHeight()*3 <= check[1]) || (getPositionY() >= check[1]+check[3])) {
             return false;
         }
         return true;

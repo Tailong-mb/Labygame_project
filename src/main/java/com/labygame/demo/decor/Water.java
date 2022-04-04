@@ -7,7 +7,7 @@ import lombok.Getter;
 @Getter
 public class Water implements DecorInterface {
 
-    private final transient Image myImage = new Image("file:doc/images/water2.png");
+    private final transient Image myImage = new Image("file:doc/images/nature/water2.png");
     private int positionX;
     private int positionY;
     private final int WIDTH = 30;

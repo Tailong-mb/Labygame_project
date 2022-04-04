@@ -1,4 +1,4 @@
-package com.labygame.demo;
+package com.labygame.demo.personnage;
 
 import javafx.scene.image.Image;
 

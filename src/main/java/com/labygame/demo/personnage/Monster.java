@@ -1,6 +1,5 @@
 package com.labygame.demo.personnage;
 
-import com.labygame.demo.Sprites;
 import javafx.scene.image.Image;
 import lombok.Getter;
 

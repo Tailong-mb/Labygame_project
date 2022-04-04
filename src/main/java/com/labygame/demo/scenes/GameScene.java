@@ -1,6 +1,7 @@
 package com.labygame.demo.scenes;
 
 import com.labygame.demo.decor.Chest;
+import com.labygame.demo.decor.Hedges;
 import com.labygame.demo.mainLabyGame;
 import com.labygame.demo.personnage.CharacterState;
 import com.labygame.demo.personnage.Hero;
@@ -33,8 +34,8 @@ public class GameScene extends GeneralScene{
 
     public GameScene(){
         super();
-        background = new Image("file:doc/images/grass_template.jpg");
-        hero = new Hero(50, CharacterState.NORMAL,"TheChosenOne",20,200,200);
+        background = new Image("file:doc/images/nature/grass_template.jpg");
+        hero = new Hero(5, CharacterState.NORMAL,"TheChosenOne",20,50,400);
         monster = new Monster(20,"Le Monstre",10,450,350);
         tree = new Tree(50,50);
         chest = new Chest();
@@ -57,6 +58,11 @@ public class GameScene extends GeneralScene{
                 currentTray.draw(gc);
                 hero.getMainCharacter().draw(gc);
 
+                if(hero.getHp() <= 0)
+                {
+                    this.stop();
+                    mainLabyGame.setScene(CREDITS_SCENE);
+                }
                 if(activeKeys.contains(KeyCode.ESCAPE)){
                     this.stop();
                     mainLabyGame.exit();
@@ -68,9 +74,15 @@ public class GameScene extends GeneralScene{
                 }
                 else if(activeKeys.contains(KeyCode.Q)){
                     hero.getMainCharacter().setSpriteY(102);
-                    if(hero.getMainCharacter().getX() > 2) {
-                        if((!hero.collision(new Integer[]{positions[0], positions[1], positions[2]*3, positions[3]*3})&& (!hero.collision(new Integer[]{positions[4], positions[5], positions[6]*2, positions[7]*2})) && (!hero.collision(new Integer[]{positions[8], positions[9], positions[10], positions[11]})) && (!hero.collision(new Integer[]{positions[12], positions[13], positions[14], positions[15]}))) || hero.isStuckR())
+                    if(hero.getMainCharacter().getX() > 40) {
+                        if (((!hero.collision(new Integer[]{positions[0], positions[1], positions[2]*3, positions[3]*3}) && (!hero.collision(new Integer[]{positions[4], positions[5], positions[6]*6, positions[7]*6})) && (!hero.collision(new Integer[]{positions[12], positions[13], positions[14], positions[15]}))) || hero.isStuckR()))
                         {
+                            if (currentTray.getMyChest().isVisible() && hero.collision(new Integer[]{positions[12], positions[13], positions[14], positions[15]}))
+                                currentTray.getMyChest().setOpened(true);
+                            if(hero.collision(new Integer[]{positions[8], positions[9], positions[10], positions[11]}) && currentTray.getMyTrap().isVisible()) {
+                                currentTray.getMyTrap().hurtHero(hero);
+                                currentTray.getMyTrap().setVisible(false);
+                            }
                             hero.setStuckR(false);
                             hero.move(hero.LEFT);
                             if(((int)(Math.random()*1000)) == 1)
@@ -79,10 +91,14 @@ public class GameScene extends GeneralScene{
                                 mainLabyGame.setScene(FIGHT_SCENE);
                             }
                         }
+                        else if(hero.collision(new Integer[]{positions[12], positions[13], positions[14], positions[15]}) && !currentTray.getMyChest().isVisible())
+                        {
+                            hero.move(hero.LEFT);
+                        }
                         else
                             hero.setStuckL(true);
                     }
-                    else
+                    else if(currentTray.isExitLeft() && hero.getMainCharacter().getY() > 320 && hero.getMainCharacter().getY() < 450)
                     {
                         if(trayX > 0) {
                             trayX -= 1;
@@ -93,9 +109,15 @@ public class GameScene extends GeneralScene{
                 }
                 else if(activeKeys.contains(KeyCode.D)){
                     hero.getMainCharacter().setSpriteY(38);
-                    if(hero.getMainCharacter().getX() < GAME_WIDTH - (hero.getMainCharacter().getWidth()*2)) {
-                        if((!hero.collision(new Integer[]{positions[0], positions[1], positions[2]*3, positions[3]*3})&& (!hero.collision(new Integer[]{positions[4], positions[5], positions[6]*2, positions[7]*2})) && (!hero.collision(new Integer[]{positions[8], positions[9], positions[10], positions[11]})) && (!hero.collision(new Integer[]{positions[12], positions[13], positions[14], positions[15]}))) || hero.isStuckL())
+                    if(hero.getMainCharacter().getX() < GAME_WIDTH - (hero.getMainCharacter().getWidth()*3) - 40) {
+                        if((!hero.collision(new Integer[]{positions[0], positions[1], positions[2]*3, positions[3]*3})&& (!hero.collision(new Integer[]{positions[4], positions[5], positions[6]*6, positions[7]*6})) && (!hero.collision(new Integer[]{positions[12], positions[13], positions[14], positions[15]}))) || hero.isStuckL())
                         {
+                            if(currentTray.getMyChest().isVisible() && hero.collision(new Integer[]{positions[12], positions[13], positions[14], positions[15]}))
+                                currentTray.getMyChest().setOpened(true);
+                            if(hero.collision(new Integer[]{positions[8], positions[9], positions[10], positions[11]}) && currentTray.getMyTrap().isVisible()) {
+                                currentTray.getMyTrap().hurtHero(hero);
+                                currentTray.getMyTrap().setVisible(false);
+                            }
                             hero.setStuckL(false);
                             hero.move(hero.RIGHT);
                             if(((int)(Math.random()*1000)) == 1)
@@ -104,10 +126,14 @@ public class GameScene extends GeneralScene{
                                 mainLabyGame.setScene(FIGHT_SCENE);
                             }
                         }
+                        else if(hero.collision(new Integer[]{positions[12], positions[13], positions[14], positions[15]}) && !currentTray.getMyChest().isVisible())
+                        {
+                            hero.move(hero.RIGHT);
+                        }
                         else
                             hero.setStuckR(true);
                     }
-                    else
+                    else if(currentTray.isExitRight() && hero.getMainCharacter().getY() > 320 && hero.getMainCharacter().getY() < 450)
                     {
                         if(trayX == 4 && trayY == 3) {
                             this.stop();
@@ -123,9 +149,15 @@ public class GameScene extends GeneralScene{
                 }
                 else if(activeKeys.contains(KeyCode.Z)){
                     hero.getMainCharacter().setSpriteY(69);
-                    if(hero.getMainCharacter().getY() > 2) {
-                        if(((!hero.collision(new Integer[]{positions[0], positions[1], positions[2]*3, positions[3]*3})) && (!hero.collision(new Integer[]{positions[4], positions[5], positions[6]*2, positions[7]*2})) && (!hero.collision(new Integer[]{positions[8], positions[9], positions[10], positions[11]})) && (!hero.collision(new Integer[]{positions[12], positions[13], positions[14], positions[15]}))) || hero.isStuckD())
+                    if(hero.getMainCharacter().getY() > 40) {
+                        if(((!hero.collision(new Integer[]{positions[0], positions[1], positions[2]*3, positions[3]*3})) && (!hero.collision(new Integer[]{positions[4], positions[5], positions[6]*6, positions[7]*6})) && (!hero.collision(new Integer[]{positions[12], positions[13], positions[14], positions[15]}))) || hero.isStuckD())
                         {
+                            if(currentTray.getMyChest().isVisible() && hero.collision(new Integer[]{positions[12], positions[13], positions[14], positions[15]}))
+                                currentTray.getMyChest().setOpened(true);
+                            if(hero.collision(new Integer[]{positions[8], positions[9], positions[10], positions[11]}) && currentTray.getMyTrap().isVisible()) {
+                                currentTray.getMyTrap().hurtHero(hero);
+                                currentTray.getMyTrap().setVisible(false);
+                            }
                             hero.setStuckD(false);
                             hero.move(hero.UP);
                             if(((int)(Math.random()*1000)) == 1)
@@ -134,10 +166,15 @@ public class GameScene extends GeneralScene{
                                 mainLabyGame.setScene(FIGHT_SCENE);
                             }
                         }
+                        else if(hero.collision(new Integer[]{positions[12], positions[13], positions[14], positions[15]}) && !currentTray.getMyChest().isVisible())
+                        {
+                            hero.move(hero.UP);
+                        }
                         else
                             hero.setStuckU(true);
                     }
-                    else {
+                    else if(currentTray.isExitUp() && hero.getMainCharacter().getY() > 320 && hero.getMainCharacter().getY() < 450)
+                    {
                         if(trayY>0)
                         {
                             trayY -= 1;
@@ -148,21 +185,29 @@ public class GameScene extends GeneralScene{
                 }
                 else if(activeKeys.contains(KeyCode.S)){
                     hero.getMainCharacter().setSpriteY(6);
-                    if(hero.getMainCharacter().getY() < GAME_HEIGHT - (hero.getMainCharacter().getHeight()*2)) {
-                        if((!hero.collision(new Integer[]{positions[0], positions[1], positions[2]*3, positions[3]*3}) && (!hero.collision(new Integer[]{positions[4], positions[5], positions[6]*2, positions[7]*2})) && (!hero.collision(new Integer[]{positions[8], positions[9], positions[10], positions[11]})) && (!hero.collision(new Integer[]{positions[12], positions[13], positions[14], positions[15]}))) || hero.isStuckU())
-                        {
+                    if(hero.getMainCharacter().getY() < GAME_HEIGHT - (hero.getMainCharacter().getHeight()*3) - 40) {
+                        if((!hero.collision(new Integer[]{positions[0], positions[1], positions[2]*3, positions[3]*3}) && (!hero.collision(new Integer[]{positions[4], positions[5], positions[6]*6, positions[7]*6})) && (!hero.collision(new Integer[]{positions[12], positions[13], positions[14], positions[15]}))) || hero.isStuckU()) {
+                            if (currentTray.getMyChest().isVisible() && hero.collision(new Integer[]{positions[12], positions[13], positions[14], positions[15]}))
+                                currentTray.getMyChest().setOpened(true);
+                            if (hero.collision(new Integer[]{positions[8], positions[9], positions[10], positions[11]}) && currentTray.getMyTrap().isVisible()) {
+                                currentTray.getMyTrap().hurtHero(hero);
+                                currentTray.getMyTrap().setVisible(false);
+                            }
                             hero.setStuckU(false);
                             hero.move(hero.DOWN);
-                            if(((int)(Math.random()*1000)) == 1)
-                            {
+                            if (((int) (Math.random() * 1000)) == 1) {
                                 this.stop();
                                 mainLabyGame.setScene(FIGHT_SCENE);
                             }
                         }
+                        else if(hero.collision(new Integer[]{positions[12], positions[13], positions[14], positions[15]}) && !currentTray.getMyChest().isVisible())
+                        {
+                            hero.move(hero.DOWN);
+                        }
                         else
                             hero.setStuckD(true);
                     }
-                    else
+                    else if(currentTray.isExitDown() && hero.getMainCharacter().getX() > 320 && hero.getMainCharacter().getX() < 450)
                     {
                         if(trayY<4){
                             trayY +=1;

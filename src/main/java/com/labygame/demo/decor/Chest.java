@@ -8,9 +8,10 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Chest implements DecorInterface{
-    private final transient Image myImage = new Image("file:doc/images/chest.png");
-    private final int positionX = 400;
-    private final int positionY = 350;
+    private final transient Image myImage = new Image("file:doc/images/element/chest.png");
+    private boolean visible;
+    private final int positionX = 250;
+    private final int positionY = 150;
     private final int WIDTH = 30;
     private final int HEIGHT = 32;
 
