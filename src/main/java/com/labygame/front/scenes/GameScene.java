@@ -1,7 +1,7 @@
-package com.labygame.front;
+package com.labygame.front.scenes;
 
 import com.labygame.decor.Chest;
-import com.labygame.mainLabyGame;
+import com.labygame.front.Labygame;
 import com.labygame.personnage.CharacterState;
 import com.labygame.personnage.Hero;
 import com.labygame.personnage.Monster;
@@ -14,7 +14,7 @@ import javafx.scene.input.KeyCode;
 import lombok.Setter;
 
 @Setter
-public class GameScene extends GeneralScene{
+public class GameScene extends GeneralScene {
 
     private GameTray gameBoard;
     private GameTrayPiece currentTray;
@@ -58,16 +58,16 @@ public class GameScene extends GeneralScene{
                 if(hero.getHp() <= 0)
                 {
                     this.stop();
-                    mainLabyGame.setScene(mainLabyGame.CREDITS_SCENE);
+                    Labygame.setScene(Labygame.CREDITS_SCENE);
                 }
                 if(activeKeys.contains(KeyCode.ESCAPE)){
                     this.stop();
-                    mainLabyGame.exit();
+                    Labygame.exit();
                     //Labygame.setScene(Labygame.MENU_SCENE);
                 }
                 else if(activeKeys.contains(KeyCode.SPACE)){
                     this.stop();
-                    mainLabyGame.setScene(mainLabyGame.CREDITS_SCENE);
+                    Labygame.setScene(Labygame.CREDITS_SCENE);
                 }
                 else if(activeKeys.contains(KeyCode.Q)){
                     hero.getMainCharacter().setSpriteY(102);
@@ -85,7 +85,7 @@ public class GameScene extends GeneralScene{
                             if(((int)(Math.random()*1000)) == 1)
                             {
                                 this.stop();
-                                mainLabyGame.setScene(mainLabyGame.FIGHT_SCENE);
+                                Labygame.setScene(Labygame.FIGHT_SCENE);
                             }
                         }
                         else if(hero.collision(new Integer[]{positions[12], positions[13], positions[14], positions[15]}) && !currentTray.getMyChest().isVisible())
@@ -120,7 +120,7 @@ public class GameScene extends GeneralScene{
                             if(((int)(Math.random()*1000)) == 1)
                             {
                                 this.stop();
-                                mainLabyGame.setScene(mainLabyGame.FIGHT_SCENE);
+                                Labygame.setScene(Labygame.FIGHT_SCENE);
                             }
                         }
                         else if(hero.collision(new Integer[]{positions[12], positions[13], positions[14], positions[15]}) && !currentTray.getMyChest().isVisible())
@@ -134,7 +134,7 @@ public class GameScene extends GeneralScene{
                     {
                         if(trayX == 4 && trayY == 3) {
                             this.stop();
-                            mainLabyGame.setScene(mainLabyGame.CREDITS_SCENE);
+                            Labygame.setScene(Labygame.CREDITS_SCENE);
                         }
 
                         if(trayX<4) {
@@ -160,7 +160,7 @@ public class GameScene extends GeneralScene{
                             if(((int)(Math.random()*1000)) == 1)
                             {
                                 this.stop();
-                                mainLabyGame.setScene(mainLabyGame.FIGHT_SCENE);
+                                Labygame.setScene(Labygame.FIGHT_SCENE);
                             }
                         }
                         else if(hero.collision(new Integer[]{positions[12], positions[13], positions[14], positions[15]}) && !currentTray.getMyChest().isVisible())
@@ -194,7 +194,7 @@ public class GameScene extends GeneralScene{
                             hero.move(hero.DOWN);
                             if (((int) (Math.random() * 1000)) == 1) {
                                 this.stop();
-                                mainLabyGame.setScene(mainLabyGame.FIGHT_SCENE);
+                                Labygame.setScene(Labygame.FIGHT_SCENE);
                             }
                         }
                         else if(hero.collision(new Integer[]{positions[12], positions[13], positions[14], positions[15]}) && !currentTray.getMyChest().isVisible())

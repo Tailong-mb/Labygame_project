@@ -1,24 +1,19 @@
-package com.labygame.front;
+package com.labygame.front.scenes;
 
-import com.labygame.mainLabyGame;
+import com.labygame.front.Labygame;
 import javafx.animation.AnimationTimer;
 import javafx.scene.input.KeyCode;
 
-public class CreditsScene extends GeneralScene{
+public class FightScene extends GeneralScene {
     @Override
     public void draw() {
         activeKeys.clear();
-
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long currentNanoTime) {
-                if(activeKeys.contains(KeyCode.SPACE)){
-                    this.stop();
-                    mainLabyGame.exit();
-                }
                 if(activeKeys.contains(KeyCode.BACK_SPACE)){
                     this.stop();
-                    mainLabyGame.setScene(mainLabyGame.GAME_SCENE);
+                    Labygame.setScene(Labygame.GAME_SCENE);
                 }
             }
         };timer.start();

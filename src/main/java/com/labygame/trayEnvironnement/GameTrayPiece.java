@@ -1,10 +1,9 @@
 package com.labygame.trayEnvironnement;
 
 import com.labygame.decor.*;
-import com.labygame.demo.decor.*;
 import com.labygame.personnage.Hero;
 import com.labygame.personnage.Wizard;
-import com.labygame.front.GeneralScene;
+import com.labygame.front.scenes.GeneralScene;
 import javafx.scene.canvas.GraphicsContext;
 import lombok.Getter;
 import lombok.Setter;

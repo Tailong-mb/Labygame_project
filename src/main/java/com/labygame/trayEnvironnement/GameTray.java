@@ -1,7 +1,6 @@
 package com.labygame.trayEnvironnement;
 
 import com.labygame.decor.*;
-import com.labygame.demo.decor.*;
 import lombok.Getter;
 
 @Getter
