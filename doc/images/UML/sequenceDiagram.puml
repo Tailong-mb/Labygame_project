@@ -1,0 +1,40 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+Hero -> Hero : chooses an attack
+note over Hero : between basicAttack or secretAttack
+Hero -> Monster : attacks
+Hero -> Hero : checks status
+note over Hero : a secretAttack will fail \n if the status is not NORMAL
+Hero -> Hero : hurts himself
+note over Hero : if a secretAttack failed
+Hero -> Hero : can use an item
+note over Hero : heals himself  \n or change his status
+Monster -> Monster : loses HP
+Monster -> Monster : can be dead
+note over Monster :  checks if he still has HP and if HP >= 0
+Monster -> Hero : chooses an attack
+note over Monster : between basicAttack and secretAttack
+Monster -> Hero : attacks
+Hero -> Hero : loses HP
+Hero -> Hero : can be dead
+note over Hero : check if he still has HP \n and if HP >= 0
+
+== repeat till one of them is dead ==
+
+Wizard -> Hero : asks a riddle
+Hero -> Wizard : answers to the riddle
+Wizard -> Wizard : verifies of the answer
+Hero -> Hero : exits the fight
+note over Hero : the answer is correct
+Wizard -> Wizard : chooses an attack
+note over Wizard : between basicAttack or secretAttack \n because the answer is wrong
+Wizard -> Hero : attacks
+Hero -> Hero : loses HP
+Hero -> Hero : can be dead
+note over Hero : check if he still has HP \n and if HP >= 0
+Hero -> Hero : exits the fight
+note over Hero : if he stills alive
+@enduml
