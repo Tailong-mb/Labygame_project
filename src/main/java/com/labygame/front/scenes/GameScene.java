@@ -1,11 +1,12 @@
 package com.labygame.front.scenes;
 
-import com.labygame.decor.Chest;
-import com.labygame.front.Labygame;
 import com.labygame.personnage.CharacterState;
 import com.labygame.personnage.Hero;
 import com.labygame.personnage.Monster;
-import com.labygame.decor.Tree;
+import com.labygame.personnage.Wizard;
+import com.labygame.sauvegarde.Save;
+import com.labygame.sound.Music;
+import com.labygame.sound.MusicType;
 import com.labygame.trayEnvironnement.GameTray;
 import com.labygame.trayEnvironnement.GameTrayPiece;
 import javafx.animation.AnimationTimer;
@@ -13,29 +14,27 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import lombok.Setter;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
+
+import static com.labygame.front.Labygame.*;
+
 @Setter
 public class GameScene extends GeneralScene {
 
     private GameTray gameBoard;
     private GameTrayPiece currentTray;
     private Image background;
-    private Hero hero;
-    private Monster monster;
-    private Tree tree;
-    private Chest chest;
     private Integer[] positions;
     private int trayX;
     private int trayY;
-
-    private boolean allowMoves = false;
-
+    private final Music music = new Music(MusicType.BASIC);
+    private final Random random = new Random();
     public GameScene(){
         super();
         background = new Image("file:doc/images/nature/grass_template.jpg");
         hero = new Hero(5, CharacterState.NORMAL,"TheChosenOne",20,50,400);
-        monster = new Monster(20,"Le Monstre",10,450,350);
-        tree = new Tree(50,50);
-        chest = new Chest();
         gameBoard = new GameTray();
         trayX = 0;
         trayY = 0;
@@ -48,49 +47,55 @@ public class GameScene extends GeneralScene {
         currentTray = gameBoard.getGameBoard()[trayX][trayY];
         positions = new Integer[currentTray.getMyCoordinates().size()];
         positions = currentTray.getMyCoordinates().toArray(positions);
+        music.playMusic();
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long currentNanoTime) {
+                boolean checkX = ((!hero.collisionX(new Integer[]{positions[0], positions[1], positions[2]*3, positions[3]*3})) && (!hero.collisionX(new Integer[]{positions[4], positions[5], positions[6]*6, positions[7]*6})) && (!hero.collisionX(new Integer[]{positions[12], positions[13], positions[14], positions[15]})));
+                boolean checkY = ((!hero.collisionY(new Integer[]{positions[0], positions[1], positions[2]*3, positions[3]*3})) && (!hero.collisionY(new Integer[]{positions[4], positions[5], positions[6]*6, positions[7]*6})) && (!hero.collisionY(new Integer[]{positions[12], positions[13], positions[14], positions[15]})));
+                boolean checkChestX = currentTray.getMyChest().isVisible() && hero.collisionX(new Integer[]{positions[12], positions[13], positions[14], positions[15]});
+                boolean checkChestY = currentTray.getMyChest().isVisible() && hero.collisionY(new Integer[]{positions[12], positions[13], positions[14], positions[15]});
                 gc.drawImage(background,0,0,GAME_WIDTH,GAME_HEIGHT);
                 currentTray.draw(gc);
                 hero.getMainCharacter().draw(gc);
 
-                if(hero.getHp() <= 0)
+                if(hero.isDead())
                 {
                     this.stop();
-                    Labygame.setScene(Labygame.CREDITS_SCENE);
+                    music.stopMusic();
+                    setScene(CREDITS_SCENE);
                 }
+
+                //Go to menu
                 if(activeKeys.contains(KeyCode.ESCAPE)){
                     this.stop();
-                    Labygame.exit();
-                    //Labygame.setScene(Labygame.MENU_SCENE);
+                    music.stopMusic();
+                    Save.saveHero(hero);
+                    setScene(MENU_SCENE);
                 }
-                else if(activeKeys.contains(KeyCode.SPACE)){
-                    this.stop();
-                    Labygame.setScene(Labygame.CREDITS_SCENE);
-                }
-                else if(activeKeys.contains(KeyCode.Q)){
+
+                //Left movement
+                else if(activeKeys.contains(KeyCode.Q) || activeKeys.contains(KeyCode.LEFT)){
                     hero.getMainCharacter().setSpriteY(102);
                     if(hero.getMainCharacter().getX() > 40) {
-                        if (((!hero.collision(new Integer[]{positions[0], positions[1], positions[2]*3, positions[3]*3}) && (!hero.collision(new Integer[]{positions[4], positions[5], positions[6]*6, positions[7]*6})) && (!hero.collision(new Integer[]{positions[12], positions[13], positions[14], positions[15]}))) || hero.isStuckR()))
+                        if(checkX || hero.isStuckR())
                         {
-                            if (currentTray.getMyChest().isVisible() && hero.collision(new Integer[]{positions[12], positions[13], positions[14], positions[15]}))
-                                currentTray.getMyChest().setOpened(true);
-                            if(hero.collision(new Integer[]{positions[8], positions[9], positions[10], positions[11]}) && currentTray.getMyTrap().isVisible()) {
-                                currentTray.getMyTrap().hurtHero(hero);
-                                currentTray.getMyTrap().setVisible(false);
+                            if(checkChestX) {
+                                collisionChest();
                             }
+                            checkCollisionTrap();
                             hero.setStuckR(false);
-                            hero.move(hero.LEFT);
-                            if(((int)(Math.random()*1000)) == 1)
+                            hero.move(Hero.LEFT);
+                            if(random1000())
                             {
                                 this.stop();
-                                Labygame.setScene(Labygame.FIGHT_SCENE);
+                                music.stopMusic();
+                                changeToFightScene();
                             }
                         }
-                        else if(hero.collision(new Integer[]{positions[12], positions[13], positions[14], positions[15]}) && !currentTray.getMyChest().isVisible())
+                        else if(hero.collisionX(new Integer[]{positions[12], positions[13], positions[14], positions[15]}) && !currentTray.getMyChest().isVisible())
                         {
-                            hero.move(hero.LEFT);
+                            hero.move(Hero.LEFT);
                         }
                         else
                             hero.setStuckL(true);
@@ -104,28 +109,28 @@ public class GameScene extends GeneralScene {
                         }
                     }
                 }
-                else if(activeKeys.contains(KeyCode.D)){
+
+                //Right movement
+                else if(activeKeys.contains(KeyCode.D) || activeKeys.contains(KeyCode.RIGHT)){
                     hero.getMainCharacter().setSpriteY(38);
                     if(hero.getMainCharacter().getX() < GAME_WIDTH - (hero.getMainCharacter().getWidth()*3) - 40) {
-                        if((!hero.collision(new Integer[]{positions[0], positions[1], positions[2]*3, positions[3]*3})&& (!hero.collision(new Integer[]{positions[4], positions[5], positions[6]*6, positions[7]*6})) && (!hero.collision(new Integer[]{positions[12], positions[13], positions[14], positions[15]}))) || hero.isStuckL())
+                        if(checkX || hero.isStuckL())
                         {
-                            if(currentTray.getMyChest().isVisible() && hero.collision(new Integer[]{positions[12], positions[13], positions[14], positions[15]}))
-                                currentTray.getMyChest().setOpened(true);
-                            if(hero.collision(new Integer[]{positions[8], positions[9], positions[10], positions[11]}) && currentTray.getMyTrap().isVisible()) {
-                                currentTray.getMyTrap().hurtHero(hero);
-                                currentTray.getMyTrap().setVisible(false);
+                            if(checkChestX) {
+                                collisionChest();
                             }
+                            checkCollisionTrap();
                             hero.setStuckL(false);
-                            hero.move(hero.RIGHT);
-                            if(((int)(Math.random()*1000)) == 1)
+                            hero.move(Hero.RIGHT);
+                            if(random1000())
                             {
                                 this.stop();
-                                Labygame.setScene(Labygame.FIGHT_SCENE);
+                                music.stopMusic();
                             }
                         }
-                        else if(hero.collision(new Integer[]{positions[12], positions[13], positions[14], positions[15]}) && !currentTray.getMyChest().isVisible())
+                        else if(hero.collisionX(new Integer[]{positions[12], positions[13], positions[14], positions[15]}) && !currentTray.getMyChest().isVisible())
                         {
-                            hero.move(hero.RIGHT);
+                            hero.move(Hero.RIGHT);
                         }
                         else
                             hero.setStuckR(true);
@@ -134,38 +139,42 @@ public class GameScene extends GeneralScene {
                     {
                         if(trayX == 4 && trayY == 3) {
                             this.stop();
-                            Labygame.setScene(Labygame.CREDITS_SCENE);
+                            music.stopMusic();
+                            setScene(CREDITS_SCENE);
                         }
 
-                        if(trayX<4) {
+                        if(trayX<1) {
                             trayX+=1;
                             currentTray = gameBoard.getGameBoard()[trayX][trayY];
                             hero.getMainCharacter().setX(10);
                         }
+                        else
+                            setScene(CREDITS_SCENE);
                     }
                 }
-                else if(activeKeys.contains(KeyCode.Z)){
+
+                //Up movement
+                else if(activeKeys.contains(KeyCode.Z) || activeKeys.contains(KeyCode.UP)){
                     hero.getMainCharacter().setSpriteY(69);
                     if(hero.getMainCharacter().getY() > 40) {
-                        if(((!hero.collision(new Integer[]{positions[0], positions[1], positions[2]*3, positions[3]*3})) && (!hero.collision(new Integer[]{positions[4], positions[5], positions[6]*6, positions[7]*6})) && (!hero.collision(new Integer[]{positions[12], positions[13], positions[14], positions[15]}))) || hero.isStuckD())
+                        if(checkY || hero.isStuckD())
                         {
-                            if(currentTray.getMyChest().isVisible() && hero.collision(new Integer[]{positions[12], positions[13], positions[14], positions[15]}))
-                                currentTray.getMyChest().setOpened(true);
-                            if(hero.collision(new Integer[]{positions[8], positions[9], positions[10], positions[11]}) && currentTray.getMyTrap().isVisible()) {
-                                currentTray.getMyTrap().hurtHero(hero);
-                                currentTray.getMyTrap().setVisible(false);
+                            if(checkChestY) {
+                                collisionChest();
                             }
+                            checkCollisionTrap();
                             hero.setStuckD(false);
-                            hero.move(hero.UP);
-                            if(((int)(Math.random()*1000)) == 1)
+                            hero.move(Hero.UP);
+                            if(random1000())
                             {
                                 this.stop();
-                                Labygame.setScene(Labygame.FIGHT_SCENE);
+                                music.stopMusic();
+                                changeToFightScene();
                             }
                         }
-                        else if(hero.collision(new Integer[]{positions[12], positions[13], positions[14], positions[15]}) && !currentTray.getMyChest().isVisible())
+                        else if(hero.collisionY(new Integer[]{positions[12], positions[13], positions[14], positions[15]}) && !currentTray.getMyChest().isVisible())
                         {
-                            hero.move(hero.UP);
+                            hero.move(Hero.UP);
                         }
                         else
                             hero.setStuckU(true);
@@ -180,26 +189,27 @@ public class GameScene extends GeneralScene {
                         }
                     }
                 }
-                else if(activeKeys.contains(KeyCode.S)){
+
+                //Down movement
+                else if(activeKeys.contains(KeyCode.S) || activeKeys.contains(KeyCode.DOWN)){
                     hero.getMainCharacter().setSpriteY(6);
                     if(hero.getMainCharacter().getY() < GAME_HEIGHT - (hero.getMainCharacter().getHeight()*3) - 40) {
-                        if((!hero.collision(new Integer[]{positions[0], positions[1], positions[2]*3, positions[3]*3}) && (!hero.collision(new Integer[]{positions[4], positions[5], positions[6]*6, positions[7]*6})) && (!hero.collision(new Integer[]{positions[12], positions[13], positions[14], positions[15]}))) || hero.isStuckU()) {
-                            if (currentTray.getMyChest().isVisible() && hero.collision(new Integer[]{positions[12], positions[13], positions[14], positions[15]}))
-                                currentTray.getMyChest().setOpened(true);
-                            if (hero.collision(new Integer[]{positions[8], positions[9], positions[10], positions[11]}) && currentTray.getMyTrap().isVisible()) {
-                                currentTray.getMyTrap().hurtHero(hero);
-                                currentTray.getMyTrap().setVisible(false);
+                        if(checkY || hero.isStuckU()) {
+                            if (checkChestY) {
+                                collisionChest();
                             }
+                            checkCollisionTrap();
                             hero.setStuckU(false);
-                            hero.move(hero.DOWN);
-                            if (((int) (Math.random() * 1000)) == 1) {
+                            hero.move(Hero.DOWN);
+                            if (random1000()) {
                                 this.stop();
-                                Labygame.setScene(Labygame.FIGHT_SCENE);
+                                music.stopMusic();
+                                changeToFightScene();
                             }
                         }
-                        else if(hero.collision(new Integer[]{positions[12], positions[13], positions[14], positions[15]}) && !currentTray.getMyChest().isVisible())
+                        else if(hero.collisionY(new Integer[]{positions[12], positions[13], positions[14], positions[15]}) && !currentTray.getMyChest().isVisible())
                         {
-                            hero.move(hero.DOWN);
+                            hero.move(Hero.DOWN);
                         }
                         else
                             hero.setStuckD(true);
@@ -215,5 +225,44 @@ public class GameScene extends GeneralScene {
                 }
             }
         };timer.start();
+    }
+
+    public Monster createRandomMonster(){
+        List<String> possibleMonsterName = Arrays.asList("Barbling","Duskvine","Warptaur","CavernSoul","The Sick Vermin");
+        return new Monster(random.nextInt(50) + 50,
+                CharacterState.NORMAL,
+                possibleMonsterName.get(random.nextInt(5)),
+                random.nextInt(20)+10
+        );
+    }
+
+    public boolean random1000(){
+        return ((int) (Math.random() * 1000)) == 1;
+    }
+
+    public void changeToFightScene(){
+        if(random.nextBoolean()){
+            FightScene fightScene = new FightScene(hero, createRandomMonster());
+            scenes[FIGHT_SCENE] = fightScene;
+            setScene(FIGHT_SCENE);
+        } else {
+            Wizard wizard = new Wizard(1000,CharacterState.NORMAL,"Merlin",30);
+            FightScene fightScene = new FightScene(hero,wizard);
+            scenes[FIGHT_SCENE] = fightScene;
+            setScene(FIGHT_SCENE);
+        }
+    }
+
+    public void collisionChest(){
+        currentTray.getMyChest().setOpened(true);
+        hero.setHaveMagicKey(true);
+        gameBoard.getGameBoard()[1][0].setExitRight(true);
+    }
+
+    public void checkCollisionTrap(){
+        if(hero.collisionX(new Integer[]{positions[8], positions[9], positions[10], positions[11]}) && currentTray.getMyTrap().isVisible()) {
+            currentTray.getMyTrap().hurtHero(hero);
+            currentTray.getMyTrap().setVisible(false);
+        }
     }
 }
