@@ -1,5 +1,6 @@
 package com.labygame.personnage;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.labygame.items.Item;
 import com.labygame.items.ItemName;
 import javafx.scene.image.Image;
@@ -14,19 +15,26 @@ import java.util.Random;
 @Getter
 @Setter
 public class Hero extends Role implements Serializable {
+    private boolean haveMagicKey = false;
     private transient HashMap<Item,Integer> myItem;
+
+    @JsonIgnore
     private final transient Image myImage = new Image("file:doc/images/gfx/gfx/character.png");
-    private Sprites mainCharacter;
+    @JsonIgnore
+    private transient Sprites mainCharacter;
+    @JsonIgnore
+    public transient static final int LEFT = 0;
+    @JsonIgnore
+    public transient static final int RIGHT = 1;
+    @JsonIgnore
+    public transient static final int UP = 2;
+    @JsonIgnore
+    public transient static final int DOWN = 3;
 
-    public static final int LEFT = 0;
-    public static final int RIGHT = 1;
-    public static final int UP = 2;
-    public static final int DOWN = 3;
-
-    private boolean stuckR = false;
-    private boolean stuckL = false;
-    private boolean stuckU = false;
-    private boolean stuckD = false;
+    private transient boolean stuckR = false;
+    private transient boolean stuckL = false;
+    private transient boolean stuckU = false;
+    private transient boolean stuckD = false;
 
     //All args constructor
     public Hero(int hp, CharacterState status, String name, int power, int positionX, int positionY, HashMap<Item, Integer> myItem) {
@@ -38,6 +46,7 @@ public class Hero extends Role implements Serializable {
         mainCharacter.setSpriteImage(new Image("file:doc/images/gfx/gfx/character.png"));
         mainCharacter.setSpriteX(0);
         mainCharacter.setSpriteY(6);
+        haveMagicKey = false;
     }
 
     //Constructor without Item
@@ -132,17 +141,19 @@ public class Hero extends Role implements Serializable {
     }
 
     /**
-     * this method check if hero is hitting an object
+     * these methods check if hero is hitting an object
      * @param check array that contains 4 int, position in X, position in Y, width and height of an object
      * @return true if there is a collision and false other way
      */
-    public boolean collision( Integer[] check){
-        if((getPositionX() + mainCharacter.getWidth()*3 <= check[0]) || (getPositionX() >= check[0]+check[2])) {
-            return false;
-        }
-        if((getPositionY() + mainCharacter.getHeight()*3 <= check[1]) || (getPositionY() >= check[1]+check[3])) {
-            return false;
-        }
-        return true;
+    public boolean collisionX( Integer[] check){
+        boolean firstCheckPosition = (getPositionX() + mainCharacter.getWidth()*3 <= check[0]) || (getPositionX() >= check[0]+check[2]);
+        boolean secondCheckPosition = (getPositionY() + mainCharacter.getHeight()*3-10 <= check[1]) || (getPositionY() + 10 >= check[1]+check[3]);
+        return !(firstCheckPosition || secondCheckPosition);
+    }
+
+    public boolean collisionY( Integer[] check){
+        boolean firstCheckPosition = (getPositionY() + mainCharacter.getHeight()*3 <= check[1]) || (getPositionY() >= check[1]+check[3]);
+        boolean secondCheckPosition = (getPositionX() + mainCharacter.getWidth()*3-10 <= check[0]) || (getPositionX() + 10 >= check[0]+check[2]);
+        return !(firstCheckPosition || secondCheckPosition);
     }
 }

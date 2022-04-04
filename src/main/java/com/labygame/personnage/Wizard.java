@@ -9,17 +9,8 @@ public class Wizard extends Role {
     private Riddles currentRiddle;
 
     //All args constructor
-    public Wizard(int hp, CharacterState status, String name, int power, int positionX, int positionY){
+    public Wizard(int hp, CharacterState status, String name, int power){
         super(hp,name, power, status);
-        this.positionX = positionX;
-        this.positionY = positionY;
-    }
-
-    //Basic status
-    public Wizard(int hp, String name, int power, int positionX, int positionY){
-        super(hp,name,power);
-        this.positionX = positionX;
-        this.positionY = positionY;
     }
 
     @Override
