@@ -1,0 +1,21 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+MenuScene <- GameMenu : ActionEvent functionalities
+note over MenuScene : choice 1 : \n new game
+MenuScene -> MenuScene : ask a name for the new hero
+MenuScene -> GameScene : launch a new game
+note over MenuScene : choice 2 :\n Options
+MenuScene -> Options : translate to the options menu
+note over MenuScene : choice 3 :\n Credits
+MenuScene -> CreditsScene : go to the CreditsScene
+note over MenuScene : choice 4 :\n Exit
+MenuScene -> MenuScene : Exit to the game
+Options -> soundOption : go to music options
+soundOption -> soundOption : mute the music
+soundOption -> soundOption : unmute the music
+soundOption -> MenuScene : back option
+
+@enduml
