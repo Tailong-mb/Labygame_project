@@ -6,6 +6,7 @@ import com.labygame.items.Item;
 import com.labygame.items.ItemName;
 import com.labygame.personnage.CharacterState;
 import com.labygame.personnage.Hero;
+import com.labygame.sauvegarde.Save;
 import com.labygame.sound.Music;
 import com.labygame.sound.MusicType;
 import javafx.animation.FadeTransition;
@@ -61,7 +62,8 @@ public class GameMenu extends Parent {
             ft.play();
             music.stopMusic();
 
-            //TODO : Take the save and launch the game.
+            Hero hero = Save.recuperationSaveHero();
+            scenes[GAME_SCENE].setHero(hero);
             setScene(GAME_SCENE);
         });
 
@@ -115,14 +117,14 @@ public class GameMenu extends Parent {
                             CharacterState.NORMAL,
                             heroName,
                             20,
-                            0,
-                            0,
+                            50,
+                            400,
                             new HashMap<>() {{
                                 put(new Item(2, ItemName.ENERGYDRINK, ""), 0);
                                 put(new Item(10, ItemName.ANTIDOTE, ""), 1);
                                 put(new Item(40, ItemName.HEALPOTION, ""), 3);
                             }});
-                    //TODO SET HERO TO GAME SCENE
+                    scenes[GAME_SCENE].setHero(hero);
                     music.stopMusic();
                     setScene(GAME_SCENE);
                 }
