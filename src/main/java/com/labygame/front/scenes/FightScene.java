@@ -128,6 +128,7 @@ public class FightScene extends GeneralScene{
                 //Check the answer
                 if(opponent.ansVerification(answerToRiddle.getText())){
                     //If he won change scene
+                    music.stopMusic();
                     Labygame.setScene(Labygame.GAME_SCENE);
                 } else{
                     //If the answer is bad the wizard hit him

@@ -41,7 +41,7 @@ public class GameScene extends GeneralScene {
         background = new Image("file:doc/images/nature/grass_template.jpg");
         gameBoard = new GameTray();
         trayX = 0;
-        trayY = 0;
+        trayY = 3;
         hero = new Hero(200,
                 CharacterState.NORMAL,
                 "basic",
@@ -142,6 +142,7 @@ public class GameScene extends GeneralScene {
                             {
                                 this.stop();
                                 music.stopMusic();
+                                changeToFightScene();
                             }
                         }
                         else if(hero.collisionX(new Integer[]{positions[12], positions[13], positions[14], positions[15]}) && !currentTray.getMyChest().isVisible())
@@ -265,13 +266,14 @@ public class GameScene extends GeneralScene {
     public void collisionChest(){
         currentTray.getMyChest().setOpened(true);
         hero.setHaveMagicKey(true);
-        gameBoard.getGameBoard()[1][0].setExitRight(true);
+        gameBoard.getGameBoard()[4][3].setExitRight(true);
     }
 
     public void checkCollisionTrap(){
         if(hero.collisionX(new Integer[]{positions[8], positions[9], positions[10], positions[11]}) && currentTray.getMyTrap().isVisible()) {
             currentTray.getMyTrap().hurtHero(hero);
             currentTray.getMyTrap().setVisible(false);
+            hero.setCurrentStatus(CharacterState.POISON);
         }
     }
 }

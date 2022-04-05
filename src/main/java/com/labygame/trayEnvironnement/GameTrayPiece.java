@@ -19,10 +19,10 @@ public class GameTrayPiece {
     private Chest myChest;
     private Hedges myHedges;
     private ArrayList<Integer> myCoordinates;
-    private boolean exitLeft;
-    private boolean exitRight;
-    private boolean exitUp;
-    private boolean exitDown;
+    private boolean exitLeft = true;
+    private boolean exitRight = true;
+    private boolean exitUp = true;
+    private boolean exitDown = true;
 
     public GameTrayPiece(Tree tree, Water water, Trap trap, Chest chest, Hedges hedges) {
     myCoordinates = new ArrayList<>();
