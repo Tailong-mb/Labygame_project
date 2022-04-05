@@ -25,6 +25,7 @@ public class Labygame extends Application {
         Labygame.stage = stage;
         stage.setTitle("LabyGame");
         setScene(MENU_SCENE);
+        stage.setResizable(false);
         stage.show();
     }
 
