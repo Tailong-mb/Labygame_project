@@ -14,5 +14,6 @@ module com.labygame{
     exports com.labygame.front.scenes;
     exports com.labygame.personnage;
     exports com.labygame.items;
+    exports com.labygame.riddles;
 
 }
