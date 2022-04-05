@@ -3,6 +3,7 @@ package com.labygame.menu;
 import com.labygame.front.Labygame;
 import com.labygame.front.button.StandardButtonMenu;
 import com.labygame.front.scenes.GameOverScene;
+import com.labygame.front.scenes.GameScene;
 import com.labygame.items.Item;
 import com.labygame.items.ItemName;
 import com.labygame.personnage.CharacterState;
@@ -127,6 +128,7 @@ public class GameMenu extends Parent {
                                 put(new Item(40, ItemName.HEALPOTION, ""), 3);
                             }});
                     scenes[GAME_OVER_SCENE] = new GameOverScene();
+                    scenes[GAME_SCENE] = new GameScene();
                     scenes[GAME_SCENE].setHero(hero);
                     music.stopMusic();
                     setScene(GAME_SCENE);
