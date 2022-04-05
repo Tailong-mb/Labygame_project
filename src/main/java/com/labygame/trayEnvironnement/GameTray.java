@@ -36,7 +36,5 @@ public class GameTray {
         gameBoard[0][0].getMyChest().setVisible(true);
         gameBoard[0][0].setExitUp(false);
         gameBoard[0][0].setExitLeft(false);
-
-        gameBoard[4][3].setExitRight(true);
     }
 }
