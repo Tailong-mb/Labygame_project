@@ -149,8 +149,6 @@ public class GameScene extends GeneralScene {
                             currentTray = gameBoard.getGameBoard()[trayX][trayY];
                             hero.getMainCharacter().setX(10);
                         }
-                        else
-                            setScene(CREDITS_SCENE);
                     }
                 }
 
