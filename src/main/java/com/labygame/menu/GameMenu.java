@@ -120,7 +120,7 @@ public class GameMenu extends Parent {
                             50,
                             400,
                             new HashMap<>() {{
-                                put(new Item(2, ItemName.ENERGYDRINK, ""), 0);
+                                put(new Item(2, ItemName.ENERGYDRINK, ""), 2);
                                 put(new Item(10, ItemName.ANTIDOTE, ""), 1);
                                 put(new Item(40, ItemName.HEALPOTION, ""), 3);
                             }});

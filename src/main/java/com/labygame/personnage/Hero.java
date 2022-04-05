@@ -1,6 +1,8 @@
 package com.labygame.personnage;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.labygame.items.Item;
 import com.labygame.items.ItemName;
@@ -11,13 +13,18 @@ import org.jetbrains.annotations.NotNull;
 import java.util.HashMap;
 import java.util.Random;
 
+import static com.labygame.front.Labygame.GAME_SCENE;
+import static com.labygame.front.Labygame.scenes;
+
 @JsonSerialize
 @ToString(callSuper=true)
 @EqualsAndHashCode(callSuper = true)
 @Getter
 @Setter
 public class Hero extends Role{
-    private boolean haveMagicKey = false;
+    @JsonProperty("haveMagicKey")
+    private boolean haveMagicKey;
+    @JsonIgnore
     private HashMap<Item,Integer> myItem;
 
     @JsonIgnore
@@ -43,7 +50,27 @@ public class Hero extends Role{
     private transient boolean stuckD = false;
 
     //All args constructor
-    public Hero(int hp, CharacterState status, String name, int power, int positionX, int positionY, HashMap<Item, Integer> myItem) {
+    @JsonCreator
+    public Hero(@JsonProperty("hp")int hp,
+                @JsonProperty("currentStatus") CharacterState status,
+                @JsonProperty("name")String name,
+                @JsonProperty("power")int power,
+                @JsonProperty("positionX")int positionX,
+                @JsonProperty("positionY")int positionY,
+                @JsonProperty("haveMagicKey")boolean haveMagicKey) {
+        super(hp,name, power, status);
+        this.myItem = scenes[GAME_SCENE].getHero().getMyItem();
+        super.positionX = positionX;
+        super.positionY = positionY;
+        mainCharacter = new Sprites(16,24);
+        mainCharacter.setSpriteImage(new Image("file:doc/images/gfx/gfx/character.png"));
+        mainCharacter.setSpriteX(0);
+        mainCharacter.setSpriteY(6);
+        this.haveMagicKey = haveMagicKey;
+    }
+
+    //Constructor without Item
+    public Hero(int hp, CharacterState status, String name, int power, int positionX, int positionY,HashMap<Item, Integer> myItem) {
         super(hp,name, power, status);
         this.myItem = myItem;
         super.positionX = positionX;
@@ -52,17 +79,7 @@ public class Hero extends Role{
         mainCharacter.setSpriteImage(new Image("file:doc/images/gfx/gfx/character.png"));
         mainCharacter.setSpriteX(0);
         mainCharacter.setSpriteY(6);
-        haveMagicKey = false;
-    }
-
-    //Constructor without Item
-    public Hero(int hp, CharacterState status, String name, int power, int positionX, int positionY) {
-        super(hp,name, power, status);
-        super.positionX = positionX;
-        super.positionY = positionY;
-        mainCharacter = new Sprites(15,29);
-        mainCharacter.setSpriteImage(new Image("file:doc/images/gfx/gfx/character.png"));
-        mainCharacter.setSpriteX(0);
+        this.haveMagicKey = false;
     }
 
     @Override

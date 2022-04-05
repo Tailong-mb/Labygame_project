@@ -1,5 +1,7 @@
 package com.labygame.front.scenes;
 
+import com.labygame.items.Item;
+import com.labygame.items.ItemName;
 import com.labygame.personnage.CharacterState;
 import com.labygame.personnage.Hero;
 import com.labygame.personnage.Monster;
@@ -12,15 +14,18 @@ import com.labygame.trayEnvironnement.GameTrayPiece;
 import javafx.animation.AnimationTimer;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
+import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
 import static com.labygame.front.Labygame.*;
 
 @Setter
+@Getter
 public class GameScene extends GeneralScene {
 
     private GameTray gameBoard;
@@ -34,10 +39,20 @@ public class GameScene extends GeneralScene {
     public GameScene(){
         super();
         background = new Image("file:doc/images/nature/grass_template.jpg");
-        hero = new Hero(5, CharacterState.NORMAL,"TheChosenOne",20,50,400);
         gameBoard = new GameTray();
         trayX = 0;
         trayY = 0;
+        hero = new Hero(200,
+                CharacterState.NORMAL,
+                "basic",
+                20,
+                50,
+                400,
+                new HashMap<>() {{
+                    put(new Item(2, ItemName.ENERGYDRINK, ""), 2);
+                    put(new Item(10, ItemName.ANTIDOTE, ""), 1);
+                    put(new Item(40, ItemName.HEALPOTION, ""), 3);
+                }});
     }
 
     @Override
