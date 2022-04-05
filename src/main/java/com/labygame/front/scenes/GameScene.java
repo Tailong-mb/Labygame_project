@@ -256,7 +256,7 @@ public class GameScene extends GeneralScene {
             scenes[FIGHT_SCENE] = fightScene;
             setScene(FIGHT_SCENE);
         } else {
-            Wizard wizard = new Wizard(1000,CharacterState.NORMAL,"Merlin",30);
+            Wizard wizard = new Wizard(400,CharacterState.NORMAL,"Merlin",30);
             FightScene fightScene = new FightScene(hero,wizard);
             scenes[FIGHT_SCENE] = fightScene;
             setScene(FIGHT_SCENE);
