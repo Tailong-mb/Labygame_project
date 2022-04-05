@@ -76,10 +76,22 @@ public class GameTrayPiece {
                 gc.drawImage(myChest.getMyImage(), myChest.getWIDTH() + 2, 0, myChest.getWIDTH(), myChest.getHEIGHT(), myChest.getPositionX(), myChest.getPositionY(), myChest.getWIDTH(), myChest.getHEIGHT());
         }
         //Horizontal hedges
-        for(int i = 0; i < 12; i++)
-            gc.drawImage(myHedges.getMyImage(),myHedges.getSpriteXHorizontal(), myHedges.getSpriteYHorizontal(), 100, 50, i*100, 0, 100, 50);
-        for(int i = 0; i < 12; i++)
-            gc.drawImage(myHedges.getMyImage(),myHedges.getSpriteXHorizontal(), myHedges.getSpriteYHorizontal(), 100, 50, i*100, GeneralScene.GAME_HEIGHT - 50, 100, 50);
+        for(int i = 0; i < 12; i++) {
+            if (exitUp) {
+                if (i != 5 && i != 6)
+                    gc.drawImage(myHedges.getMyImage(), myHedges.getSpriteXHorizontal(), myHedges.getSpriteYHorizontal(), 100, 50, i * 100, 0, 100, 50);
+            } else {
+                gc.drawImage(myHedges.getMyImage(), myHedges.getSpriteXHorizontal(), myHedges.getSpriteYHorizontal(), 100, 50, i * 100, 0, 100, 50);
+            }
+        }
+        for(int i = 0; i < 12; i++) {
+            if (exitDown) {
+                if (i != 5 && i != 6)
+                    gc.drawImage(myHedges.getMyImage(), myHedges.getSpriteXHorizontal(), myHedges.getSpriteYHorizontal(), 100, 50, i * 100, GeneralScene.GAME_HEIGHT - 50, 100, 50);
+            } else {
+                gc.drawImage(myHedges.getMyImage(), myHedges.getSpriteXHorizontal(), myHedges.getSpriteYHorizontal(), 100, 50, i * 100, GeneralScene.GAME_HEIGHT - 50, 100, 50);
+            }
+        }
         //Vertival hedges
         for(int i = 0; i < 12; i++) {
             if (exitLeft) {

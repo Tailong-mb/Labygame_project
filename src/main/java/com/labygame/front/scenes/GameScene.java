@@ -159,13 +159,11 @@ public class GameScene extends GeneralScene {
                             setScene(CREDITS_SCENE);
                         }
 
-                        if(trayX<1) {
+                        if(trayX<4) {
                             trayX+=1;
                             currentTray = gameBoard.getGameBoard()[trayX][trayY];
                             hero.getMainCharacter().setX(10);
                         }
-                        else
-                            setScene(CREDITS_SCENE);
                     }
                 }
 
@@ -192,7 +190,7 @@ public class GameScene extends GeneralScene {
                         else
                             hero.setStuckU(true);
                     }
-                    else if(currentTray.isExitUp() && hero.getMainCharacter().getY() > 320 && hero.getMainCharacter().getY() < 450)
+                    else if(currentTray.isExitUp() && hero.getMainCharacter().getX() > 500 && hero.getMainCharacter().getX() < 660)
                     {
                         if(trayY>0)
                         {
@@ -225,7 +223,7 @@ public class GameScene extends GeneralScene {
                         else
                             hero.setStuckD(true);
                     }
-                    else if(currentTray.isExitDown() && hero.getMainCharacter().getX() > 320 && hero.getMainCharacter().getX() < 450)
+                    else if(currentTray.isExitDown() && hero.getMainCharacter().getX() > 500 && hero.getMainCharacter().getX() < 660)
                     {
                         if(trayY<4){
                             trayY +=1;
