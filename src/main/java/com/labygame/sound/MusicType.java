@@ -8,7 +8,7 @@ public enum MusicType {
     END("doc/Music/ItsNotGameOverYet.mp3"),
     FIGHT("doc/Music/fight-theme.mp3"),
     BASIC("doc/Music/basic-theme.mp3"),
-    CREDIT("doc/Music/credit-theme.mp3");
+    CREDIT("doc/Music/credit-theme.wav");
 
     private final String pathMusic;
 
