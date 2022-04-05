@@ -273,7 +273,7 @@ public class GameScene extends GeneralScene {
         currentTray.getMyChest().setOpened(true);
         hero.setHaveMagicKey(true);
 
-        Text textObtainKey = new Text("You got the KEY !");
+        Text textObtainKey = new Text("You got the KEY !\nFind the exit");
         textObtainKey.setFont(Font.font("Arial", FontWeight.BOLD,30));
         textObtainKey.setTranslateX(0);
         textObtainKey.setTranslateY(-100);
