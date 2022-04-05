@@ -12,8 +12,14 @@ import com.labygame.sound.MusicType;
 import com.labygame.trayEnvironnement.GameTray;
 import com.labygame.trayEnvironnement.GameTrayPiece;
 import javafx.animation.AnimationTimer;
+import javafx.animation.FadeTransition;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
+import javafx.util.Duration;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -266,6 +272,19 @@ public class GameScene extends GeneralScene {
     public void collisionChest(){
         currentTray.getMyChest().setOpened(true);
         hero.setHaveMagicKey(true);
+
+        Text textObtainKey = new Text("You got the KEY !");
+        textObtainKey.setFont(Font.font("Arial", FontWeight.BOLD,30));
+        textObtainKey.setTranslateX(0);
+        textObtainKey.setTranslateY(-100);
+        textObtainKey.setFill(Color.BLACK);
+        FadeTransition ft = new FadeTransition(Duration.seconds(2.5), textObtainKey);
+        ft.setFromValue(1.0);
+        ft.setToValue(0.0);
+        ft.play();
+        root.getChildren().addAll(textObtainKey);
+        this.setRoot(root);
+
         gameBoard.getGameBoard()[4][3].setExitRight(true);
     }
 
@@ -274,6 +293,18 @@ public class GameScene extends GeneralScene {
             currentTray.getMyTrap().hurtHero(hero);
             currentTray.getMyTrap().setVisible(false);
             hero.setCurrentStatus(CharacterState.POISON);
+
+            Text textDamageTrap = new Text(" - 5 + POISON");
+            textDamageTrap.setFont(Font.font("Arial", FontWeight.BOLD,30));
+            textDamageTrap.setTranslateX(0);
+            textDamageTrap.setTranslateY(-100);
+            textDamageTrap.setFill(Color.RED);
+            FadeTransition ft = new FadeTransition(Duration.seconds(2.5), textDamageTrap);
+            ft.setFromValue(1.0);
+            ft.setToValue(0.0);
+            ft.play();
+            root.getChildren().addAll(textDamageTrap);
+            this.setRoot(root);
         }
     }
 }
