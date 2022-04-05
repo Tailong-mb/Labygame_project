@@ -4,10 +4,11 @@ import lombok.Getter;
 
 @Getter
 public enum MusicType {
-    MENU("doc/Music/GamerInstincts.mp3"),
+    MENU("doc/Music/menu-theme.mp3"),
     END("doc/Music/ItsNotGameOverYet.mp3"),
-    FIGHT("doc/Music/WeMustBattleNOW.mp3"),
-    BASIC("SEARCH ONE");
+    FIGHT("doc/Music/fight-theme.mp3"),
+    BASIC("doc/Music/basic-theme.mp3"),
+    CREDIT("doc/Music/credit-theme.mp3");
 
     private final String pathMusic;
 

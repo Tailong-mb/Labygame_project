@@ -8,28 +8,39 @@ import lombok.Data;
 @AllArgsConstructor
 @Data
 public class Trap implements DecorInterface {
-
-    int hp;
-    String name;
-    Image image;
+    private final transient Image myImage = new Image("file:doc/images/element/trap.png");
+    private static int hp = 30;
+    private boolean visible = false;
+    private final int positionX = 600;
+    private final int positionY = 450;
+    private final int WIDTH = 23;
+    private final int HEIGHT = 32;
 
     @Override
     public boolean isDestroyed() {
         return hp <= 0;
     }
 
-    @Override
-    public boolean canMove() {
-        return true;
+    public boolean changeVisible() {
+        if(visible == true)
+            return true;
+        else
+            return false;
+    }
+
+    public void setVisible(boolean yn) {
+        this.visible = yn;
     }
 
     @Override
     public void hurtHero(Hero hero) {
-        hero.setHp(-5);
-    }
-
-    @Override
-    public void setImage(){
-        this.image = new Image("doc/images/tree (1).png");
+        if(!visible) {
+            hero.setHp(-5);
+            this.hp -= -5;
+            if (this.changeVisible() == true) {
+                hero.setHp(-10);
+                this.hp -= 10;
+            }
+        }
     }
 }

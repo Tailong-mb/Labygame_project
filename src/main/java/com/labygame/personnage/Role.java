@@ -1,25 +1,24 @@
 package com.labygame.personnage;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @AllArgsConstructor
 @Data
 public abstract class Role {
+    @JsonProperty("hp")
     protected int hp;
+    @JsonProperty("currentStatus")
     protected CharacterState currentStatus;
+    @JsonProperty("name")
     protected String name;
+    @JsonProperty("power")
     protected int power;
+    @JsonProperty("positionX")
     protected int positionX;
+    @JsonProperty("positionY")
     protected int positionY;
-
-    //Basic constructor
-    public Role(int hp, String name, int power) {
-        this.hp = hp;
-        this.currentStatus = CharacterState.NORMAL;
-        this.name = name;
-        this.power = power;
-    }
 
     public Role(int hp, String name, int power, CharacterState status) {
         this.hp = hp;
@@ -43,7 +42,7 @@ public abstract class Role {
      *
      * @return yes if hp are under or equal to 0 otherwise false;
      */
-    public boolean isDead() {
+    public boolean theCharacterIsDead() {
         return hp <= 0;
     }
 

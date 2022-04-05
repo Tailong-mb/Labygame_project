@@ -1,5 +1,7 @@
 package com.labygame.front.scenes;
 
+import com.labygame.sound.Music;
+import com.labygame.sound.MusicType;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -10,11 +12,9 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
-import static com.labygame.front.Labygame.*;
-
-
 public class CreditsScene extends GeneralScene{
 
+    private final Music music = new Music(MusicType.CREDIT);
     private final Timeline creditTimer;
     private int positionCreditY = 600;
     private final Text credit = new Text("""
@@ -29,7 +29,7 @@ public class CreditsScene extends GeneralScene{
                 Music :
                 
                 Cody O'Quinn
-                
+                Cjbeards - Fire and Thunder
                 
                 Thanks for playing !
                 """);
@@ -51,6 +51,7 @@ public class CreditsScene extends GeneralScene{
         Image backgroundMenu = new Image("file:doc/images/wallpaper/mainMenu.jpg",1200,850,false,false);
         gc.drawImage(backgroundMenu,0,0);
         //Launch the animation
+        music.playMusic();
         creditTimer.play();
     }
 
@@ -61,8 +62,5 @@ public class CreditsScene extends GeneralScene{
         root.getChildren().addAll(credit);
         this.setRoot(root);
         positionCreditY -= 2;
-
-        if(positionCreditY == 0)
-            setScene(MENU_SCENE);
     }
 }

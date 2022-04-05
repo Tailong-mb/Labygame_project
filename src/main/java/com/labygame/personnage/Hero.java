@@ -1,32 +1,85 @@
 package com.labygame.personnage;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.labygame.items.Item;
 import com.labygame.items.ItemName;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import javafx.scene.image.Image;
+import lombok.*;
+import org.jetbrains.annotations.NotNull;
 
-import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Random;
 
+import static com.labygame.front.Labygame.GAME_SCENE;
+import static com.labygame.front.Labygame.scenes;
+
+@JsonSerialize
 @ToString(callSuper=true)
 @EqualsAndHashCode(callSuper = true)
-public class Hero extends Role implements Serializable {
-    private transient HashMap<Item,Integer> myItem;
+@Getter
+@Setter
+public class Hero extends Role{
+    @JsonProperty("haveMagicKey")
+    private boolean haveMagicKey;
+    @JsonIgnore
+    private HashMap<Item,Integer> myItem;
+
+    @JsonIgnore
+    private final transient Image myImage = new Image("file:doc/images/gfx/gfx/character.png");
+    @JsonIgnore
+    private transient Sprites mainCharacter;
+    @JsonIgnore
+    public transient static final int LEFT = 0;
+    @JsonIgnore
+    public transient static final int RIGHT = 1;
+    @JsonIgnore
+    public transient static final int UP = 2;
+    @JsonIgnore
+    public transient static final int DOWN = 3;
+
+    @JsonIgnore
+    private transient boolean stuckR = false;
+    @JsonIgnore
+    private transient boolean stuckL = false;
+    @JsonIgnore
+    private transient boolean stuckU = false;
+    @JsonIgnore
+    private transient boolean stuckD = false;
 
     //All args constructor
-    public Hero(int hp, CharacterState status, String name, int power, int positionX, int positionY, HashMap<Item, Integer> myItem) {
+    @JsonCreator
+    public Hero(@JsonProperty("hp")int hp,
+                @JsonProperty("currentStatus") CharacterState status,
+                @JsonProperty("name")String name,
+                @JsonProperty("power")int power,
+                @JsonProperty("positionX")int positionX,
+                @JsonProperty("positionY")int positionY,
+                @JsonProperty("haveMagicKey")boolean haveMagicKey) {
+        super(hp,name, power, status);
+        this.myItem = scenes[GAME_SCENE].getHero().getMyItem();
+        super.positionX = positionX;
+        super.positionY = positionY;
+        mainCharacter = new Sprites(16,24);
+        mainCharacter.setSpriteImage(new Image("file:doc/images/gfx/gfx/character.png"));
+        mainCharacter.setSpriteX(0);
+        mainCharacter.setSpriteY(6);
+        this.haveMagicKey = haveMagicKey;
+    }
+
+    //Constructor without Item
+    public Hero(int hp, CharacterState status, String name, int power, int positionX, int positionY,HashMap<Item, Integer> myItem) {
         super(hp,name, power, status);
         this.myItem = myItem;
         super.positionX = positionX;
         super.positionY = positionY;
-    }
-
-    //Constructor without Item
-    public Hero(int hp, CharacterState status, String name, int power, int positionX, int positionY) {
-        super(hp,name, power, status);
-        super.positionX = positionX;
-        super.positionY = positionY;
+        mainCharacter = new Sprites(16,24);
+        mainCharacter.setSpriteImage(new Image("file:doc/images/gfx/gfx/character.png"));
+        mainCharacter.setSpriteX(0);
+        mainCharacter.setSpriteY(6);
+        this.haveMagicKey = false;
     }
 
     @Override
@@ -43,10 +96,8 @@ public class Hero extends Role implements Serializable {
     @Override
     public void secretAttack(Role target) {
         Random rand = new Random();
-        if (CharacterState.NORMAL == currentStatus) {
-            target.setHp(target.getHp() - rand.nextInt(power * power - power * 9) - power * 10);
-            currentStatus = CharacterState.WEARY;
-        }
+        if (CharacterState.NORMAL == currentStatus)
+            target.setHp(target.getHp() - rand.nextInt(power*power - power*9) - power *10);
         else
             hp -= power; //He hurts himself because he can't use his secret attack (not the good statement).
     }
@@ -66,13 +117,10 @@ public class Hero extends Role implements Serializable {
      */
     public void useItem(Item itemTargeted){
         if(canUseItem(itemTargeted)) {
-            if (((itemTargeted.name() == ItemName.ANTIDOTE) && (currentStatus == CharacterState.POISON)) ||
-                    ((itemTargeted.name() == ItemName.HEALPOTION) && (currentStatus == CharacterState.SICK)) ||
-                    ((itemTargeted.name() == ItemName.ENERGYDRINK) && (currentStatus == CharacterState.WEARY))){
+            if (itemTargeted.name() == ItemName.ANTIDOTE)
                 currentStatus = CharacterState.NORMAL;
-                power += 10;
-            }
-            hp += itemTargeted.bonus();
+            else
+                hp += itemTargeted.bonus();
             myItem.put(itemTargeted, myItem.get(itemTargeted) - 1);
         }
     }
@@ -85,21 +133,50 @@ public class Hero extends Role implements Serializable {
             case POISON -> hp -= 10;
             case SICK -> {
                 hp -= 5;
-                power -= 3;
+                power -= 5;
             }
             case WEARY -> power -= 3;
             default -> hp += 2;
         }
     }
 
-    //get and set method
-
-    public HashMap<Item, Integer> getMyItem() {
-        return myItem;
+    /**
+     * this method allows to move the hero
+     * @param move the way the hero should move
+     */
+    public void move(int move) {
+        int newX = mainCharacter.getX();
+        int newY = mainCharacter.getY();
+        if (move == LEFT) {
+            newX -= 10;
+            setPositionX(newX);
+        } else if (move == RIGHT) {
+            newX += 10;
+            setPositionX(newX);
+        } else if (move == UP) {
+            newY -= 10;
+            setPositionY(newY);
+        } else if (move == DOWN) {
+            newY += 10;
+            setPositionY(newY);
+        }
+        mainCharacter.moveTo(newX, newY);
     }
 
-    public void setMyItem(HashMap<Item, Integer> myItem) {
-        this.myItem = myItem;
+    /**
+     * these methods check if hero is hitting an object
+     * @param check array that contains 4 int, position in X, position in Y, width and height of an object
+     * @return true if there is a collision and false other way
+     */
+    public boolean collisionX( Integer @NotNull [] check){
+        boolean firstCheckPosition = (getPositionX() + mainCharacter.getWidth()*3 <= check[0]) || (getPositionX() >= check[0]+check[2]);
+        boolean secondCheckPosition = (getPositionY() + mainCharacter.getHeight()*3-10 <= check[1]) || (getPositionY() + 10 >= check[1]+check[3]);
+        return !(firstCheckPosition || secondCheckPosition);
+    }
+
+    public boolean collisionY( Integer @NotNull [] check){
+        boolean firstCheckPosition = (getPositionY() + mainCharacter.getHeight()*3 <= check[1]) || (getPositionY() >= check[1]+check[3]);
+        boolean secondCheckPosition = (getPositionX() + mainCharacter.getWidth()*3-10 <= check[0]) || (getPositionX() + 10 >= check[0]+check[2]);
+        return !(firstCheckPosition || secondCheckPosition);
     }
 }
-

@@ -8,6 +8,8 @@ import com.labygame.personnage.Hero;
 import com.labygame.personnage.Monster;
 import com.labygame.personnage.Role;
 import com.labygame.personnage.Wizard;
+import com.labygame.sound.Music;
+import com.labygame.sound.MusicType;
 import javafx.animation.FadeTransition;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.GaussianBlur;
@@ -23,21 +25,23 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.*;
 
 @Setter
 @Getter
+@NoArgsConstructor
 public class FightScene extends GeneralScene{
 
-    private Hero hero;
     private Role opponent;
     private Image backgroundImage;
     private int typeMonster;
     private int lastHpHero;
     private int lastHpOpponent;
 
+    private final Music music = new Music(MusicType.FIGHT);
     private final String PATH_BACKGROUND_IMAGE = "file:doc/images/gfx/gfx/fightScene/backgroundFightScene.png";
 
     public FightScene(Hero hero, Role opponent){
@@ -55,6 +59,7 @@ public class FightScene extends GeneralScene{
     public void draw() {
         //Reset Key
         activeKeys.clear();
+        music.playMusic();
 
         //Draw Scene
         gameDrawScene();
@@ -146,12 +151,15 @@ public class FightScene extends GeneralScene{
     public void gameDrawScene(){
         showDamage();
         //Check if one of the character is dead
-        if(hero.isDead() || hero.getPower() <= 0)
+        if(hero.theCharacterIsDead() || hero.getPower() <= 0) {
             Labygame.setScene(Labygame.GAME_OVER_SCENE);
-        else if(opponent.isDead()) {
+            music.stopMusic();
+        }
+        else if(opponent.theCharacterIsDead()) {
             hero.setHp(hero.getHp() + 20);
             hero.setPower(hero.getPower() + 5);
             Labygame.setScene(Labygame.GAME_SCENE);
+            music.stopMusic();
         }
 
         //Set new font
@@ -210,13 +218,13 @@ public class FightScene extends GeneralScene{
 
         //Draw item Hero Image
         Image healPotionImage = new Image("file:doc/images/gfx/gfx/item/hpPotion.png");
-        gc.drawImage(healPotionImage,20,775);
+        gc.drawImage(healPotionImage,20,740);
 
         Image antidotePotionImage = new Image("file:doc/images/gfx/gfx/item/antidotePotion.png");
-        gc.drawImage(antidotePotionImage,20,740);
+        gc.drawImage(antidotePotionImage,20,710);
 
         Image energyDrinkPotionImage = new Image("file:doc/images/gfx/gfx/item/energyDrinkPotion.png");
-        gc.drawImage(energyDrinkPotionImage,20,705);
+        gc.drawImage(energyDrinkPotionImage,20,675);
 
         //Draw item stats
         myFontStats = Font.font("Arial", FontWeight.BOLD, 17);
@@ -231,7 +239,7 @@ public class FightScene extends GeneralScene{
         }
 
         //Print all values
-        int yPositionItemNumber = 792;
+        int yPositionItemNumber = 762;
         for(int i = 0; i < 3;i++){
             gc.fillText(String.format("= %d",numberOfItem.get(i)),50,yPositionItemNumber);
             yPositionItemNumber -= 35;

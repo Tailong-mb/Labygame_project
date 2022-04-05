@@ -2,10 +2,21 @@ package com.labygame.decor;
 
 import com.labygame.personnage.Hero;
 import javafx.scene.image.Image;
+import lombok.Getter;
 
+@Getter
 public class Water implements DecorInterface {
 
-    Image image;
+    private final transient Image myImage = new Image("file:doc/images/nature/water2.png");
+    private int positionX;
+    private int positionY;
+    private final int WIDTH = 30;
+    private final int HEIGHT = 30;
+
+    public Water(int x, int y) {
+        positionX = x;
+        positionY = y;
+    }
 
     @Override
     public boolean isDestroyed(){
@@ -13,17 +24,12 @@ public class Water implements DecorInterface {
     }
 
     @Override
-    public boolean canMove() {
-        return false;
+    public boolean changeVisible() {
+        return true;
     }
 
     @Override
     public void hurtHero(Hero hero) {
         hero.setHp(0);
-    }
-
-    @Override
-    public void setImage(){
-        this.image = new Image("doc/images/water.png");
     }
 }

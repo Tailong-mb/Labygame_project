@@ -3,9 +3,10 @@ module com.labygame{
     requires javafx.controls;
     requires javafx.fxml;
     requires org.jetbrains.annotations;
-    requires com.google.gson;
     requires javafx.media;
     requires javafx.graphics;
+    requires com.fasterxml.jackson.core;
+    requires com.fasterxml.jackson.databind;
 
     opens com.labygame.front to javafx.fxml;
     opens com.labygame.front.scenes to javafx.fxml;
@@ -13,5 +14,6 @@ module com.labygame{
     exports com.labygame.front.scenes;
     exports com.labygame.personnage;
     exports com.labygame.items;
+    exports com.labygame.riddles;
 
 }
