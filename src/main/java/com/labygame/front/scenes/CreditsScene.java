@@ -12,9 +12,6 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
-import static com.labygame.front.Labygame.*;
-
-
 public class CreditsScene extends GeneralScene{
 
     private final Music music = new Music(MusicType.CREDIT);
@@ -65,10 +62,5 @@ public class CreditsScene extends GeneralScene{
         root.getChildren().addAll(credit);
         this.setRoot(root);
         positionCreditY -= 2;
-
-        if(positionCreditY == 0) {
-            music.stopMusic();
-            setScene(MENU_SCENE);
-        }
     }
 }

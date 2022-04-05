@@ -1,5 +1,7 @@
 package com.labygame.items;
 
-import java.io.Serializable;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-public record Item(int bonus, ItemName name, String description) implements Serializable { }
+
+@JsonSerialize
+public record Item(int bonus, ItemName name, String description){ }

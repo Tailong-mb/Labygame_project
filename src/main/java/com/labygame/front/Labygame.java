@@ -33,10 +33,6 @@ public class Labygame extends Application {
         scenes[numScene].draw();
     }
 
-    public static void exit(){
-        stage.hide();
-    }
-
     public static void main(String[] args) {
         Application.launch();
     }

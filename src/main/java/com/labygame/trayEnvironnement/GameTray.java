@@ -6,7 +6,7 @@ import lombok.Getter;
 @Getter
 public class GameTray {
 
-    private GameTrayPiece[][] gameBoard;
+    private final GameTrayPiece[][] gameBoard;
 
     //Constructor
     public GameTray(){

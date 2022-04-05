@@ -1,6 +1,5 @@
 package com.labygame.front.scenes;
 
-import com.labygame.personnage.CharacterState;
 import com.labygame.personnage.Hero;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;

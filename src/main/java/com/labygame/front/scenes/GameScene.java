@@ -59,6 +59,13 @@ public class GameScene extends GeneralScene {
                 currentTray.draw(gc);
                 hero.getMainCharacter().draw(gc);
 
+                if(checkChestX) {
+                    collisionChest();
+                }
+                if(checkChestY) {
+                    collisionChest();
+                }
+
                 if(hero.isDead())
                 {
                     this.stop();
@@ -80,9 +87,6 @@ public class GameScene extends GeneralScene {
                     if(hero.getMainCharacter().getX() > 40) {
                         if(checkX || hero.isStuckR())
                         {
-                            if(checkChestX) {
-                                collisionChest();
-                            }
                             checkCollisionTrap();
                             hero.setStuckR(false);
                             hero.move(Hero.LEFT);
@@ -116,9 +120,6 @@ public class GameScene extends GeneralScene {
                     if(hero.getMainCharacter().getX() < GAME_WIDTH - (hero.getMainCharacter().getWidth()*3) - 40) {
                         if(checkX || hero.isStuckL())
                         {
-                            if(checkChestX) {
-                                collisionChest();
-                            }
                             checkCollisionTrap();
                             hero.setStuckL(false);
                             hero.move(Hero.RIGHT);
@@ -159,9 +160,6 @@ public class GameScene extends GeneralScene {
                     if(hero.getMainCharacter().getY() > 40) {
                         if(checkY || hero.isStuckD())
                         {
-                            if(checkChestY) {
-                                collisionChest();
-                            }
                             checkCollisionTrap();
                             hero.setStuckD(false);
                             hero.move(Hero.UP);
@@ -194,10 +192,8 @@ public class GameScene extends GeneralScene {
                 else if(activeKeys.contains(KeyCode.S) || activeKeys.contains(KeyCode.DOWN)){
                     hero.getMainCharacter().setSpriteY(6);
                     if(hero.getMainCharacter().getY() < GAME_HEIGHT - (hero.getMainCharacter().getHeight()*3) - 40) {
-                        if(checkY || hero.isStuckU()) {
-                            if (checkChestY) {
-                                collisionChest();
-                            }
+                        if(checkY || hero.isStuckU())
+                        {
                             checkCollisionTrap();
                             hero.setStuckU(false);
                             hero.move(Hero.DOWN);
@@ -231,7 +227,7 @@ public class GameScene extends GeneralScene {
         List<String> possibleMonsterName = Arrays.asList("Barbling","Duskvine","Warptaur","CavernSoul","The Sick Vermin");
         return new Monster(random.nextInt(50) + 50,
                 CharacterState.NORMAL,
-                possibleMonsterName.get(random.nextInt(5)),
+                possibleMonsterName.get(random.nextInt(4)),
                 random.nextInt(20)+10
         );
     }

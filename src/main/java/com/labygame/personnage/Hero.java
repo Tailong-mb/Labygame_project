@@ -1,20 +1,22 @@
 package com.labygame.personnage;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.labygame.items.Item;
 import com.labygame.items.ItemName;
 import javafx.scene.image.Image;
 import lombok.*;
+import org.jetbrains.annotations.NotNull;
 
-import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Random;
 
+@JsonSerialize
 @ToString(callSuper=true)
 @EqualsAndHashCode(callSuper = true)
 @Getter
 @Setter
-public class Hero extends Role implements Serializable {
+public class Hero extends Role{
     private boolean haveMagicKey = false;
     private HashMap<Item,Integer> myItem;
 
@@ -31,9 +33,13 @@ public class Hero extends Role implements Serializable {
     @JsonIgnore
     public transient static final int DOWN = 3;
 
+    @JsonIgnore
     private transient boolean stuckR = false;
+    @JsonIgnore
     private transient boolean stuckL = false;
+    @JsonIgnore
     private transient boolean stuckU = false;
+    @JsonIgnore
     private transient boolean stuckD = false;
 
     //All args constructor
@@ -145,13 +151,13 @@ public class Hero extends Role implements Serializable {
      * @param check array that contains 4 int, position in X, position in Y, width and height of an object
      * @return true if there is a collision and false other way
      */
-    public boolean collisionX( Integer[] check){
+    public boolean collisionX( Integer @NotNull [] check){
         boolean firstCheckPosition = (getPositionX() + mainCharacter.getWidth()*3 <= check[0]) || (getPositionX() >= check[0]+check[2]);
         boolean secondCheckPosition = (getPositionY() + mainCharacter.getHeight()*3-10 <= check[1]) || (getPositionY() + 10 >= check[1]+check[3]);
         return !(firstCheckPosition || secondCheckPosition);
     }
 
-    public boolean collisionY( Integer[] check){
+    public boolean collisionY( Integer @NotNull [] check){
         boolean firstCheckPosition = (getPositionY() + mainCharacter.getHeight()*3 <= check[1]) || (getPositionY() >= check[1]+check[3]);
         boolean secondCheckPosition = (getPositionX() + mainCharacter.getWidth()*3-10 <= check[0]) || (getPositionX() + 10 >= check[0]+check[2]);
         return !(firstCheckPosition || secondCheckPosition);
