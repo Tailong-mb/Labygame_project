@@ -265,7 +265,7 @@ public class GameScene extends GeneralScene {
     public void collisionChest(){
         currentTray.getMyChest().setOpened(true);
         hero.setHaveMagicKey(true);
-        gameBoard.getGameBoard()[1][0].setExitRight(true);
+        gameBoard.getGameBoard()[4][3].setExitRight(true);
     }
 
     public void checkCollisionTrap(){
