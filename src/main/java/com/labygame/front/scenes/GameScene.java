@@ -142,6 +142,7 @@ public class GameScene extends GeneralScene {
                             {
                                 this.stop();
                                 music.stopMusic();
+                                changeToFightScene();
                             }
                         }
                         else if(hero.collisionX(new Integer[]{positions[12], positions[13], positions[14], positions[15]}) && !currentTray.getMyChest().isVisible())
@@ -272,6 +273,7 @@ public class GameScene extends GeneralScene {
         if(hero.collisionX(new Integer[]{positions[8], positions[9], positions[10], positions[11]}) && currentTray.getMyTrap().isVisible()) {
             currentTray.getMyTrap().hurtHero(hero);
             currentTray.getMyTrap().setVisible(false);
+            hero.setCurrentStatus(CharacterState.POISON);
         }
     }
 }
