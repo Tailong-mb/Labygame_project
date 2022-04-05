@@ -218,13 +218,13 @@ public class FightScene extends GeneralScene{
 
         //Draw item Hero Image
         Image healPotionImage = new Image("file:doc/images/gfx/gfx/item/hpPotion.png");
-        gc.drawImage(healPotionImage,20,775);
+        gc.drawImage(healPotionImage,20,740);
 
         Image antidotePotionImage = new Image("file:doc/images/gfx/gfx/item/antidotePotion.png");
-        gc.drawImage(antidotePotionImage,20,740);
+        gc.drawImage(antidotePotionImage,20,710);
 
         Image energyDrinkPotionImage = new Image("file:doc/images/gfx/gfx/item/energyDrinkPotion.png");
-        gc.drawImage(energyDrinkPotionImage,20,705);
+        gc.drawImage(energyDrinkPotionImage,20,675);
 
         //Draw item stats
         myFontStats = Font.font("Arial", FontWeight.BOLD, 17);
@@ -239,7 +239,7 @@ public class FightScene extends GeneralScene{
         }
 
         //Print all values
-        int yPositionItemNumber = 792;
+        int yPositionItemNumber = 762;
         for(int i = 0; i < 3;i++){
             gc.fillText(String.format("= %d",numberOfItem.get(i)),50,yPositionItemNumber);
             yPositionItemNumber -= 35;

@@ -16,7 +16,7 @@ import java.util.Random;
 @Setter
 public class Hero extends Role implements Serializable {
     private boolean haveMagicKey = false;
-    private transient HashMap<Item,Integer> myItem;
+    private HashMap<Item,Integer> myItem;
 
     @JsonIgnore
     private final transient Image myImage = new Image("file:doc/images/gfx/gfx/character.png");
