@@ -247,7 +247,7 @@ public class GameScene extends GeneralScene {
     }
 
     public boolean random1000(){
-        return ((int) (Math.random() * 1000)) == 1;
+        return ((int) (Math.random() * 10)) == 1;
     }
 
     public void changeToFightScene(){
