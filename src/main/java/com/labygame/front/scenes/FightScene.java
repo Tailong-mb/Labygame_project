@@ -151,11 +151,11 @@ public class FightScene extends GeneralScene{
     public void gameDrawScene(){
         showDamage();
         //Check if one of the character is dead
-        if(hero.isDead() || hero.getPower() <= 0) {
+        if(hero.theCharacterIsDead() || hero.getPower() <= 0) {
             Labygame.setScene(Labygame.GAME_OVER_SCENE);
             music.stopMusic();
         }
-        else if(opponent.isDead()) {
+        else if(opponent.theCharacterIsDead()) {
             hero.setHp(hero.getHp() + 20);
             hero.setPower(hero.getPower() + 5);
             Labygame.setScene(Labygame.GAME_SCENE);

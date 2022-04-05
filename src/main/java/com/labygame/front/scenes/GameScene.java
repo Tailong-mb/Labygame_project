@@ -81,7 +81,7 @@ public class GameScene extends GeneralScene {
                     collisionChest();
                 }
 
-                if(hero.isDead())
+                if(hero.theCharacterIsDead())
                 {
                     this.stop();
                     music.stopMusic();

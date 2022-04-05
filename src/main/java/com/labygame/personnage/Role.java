@@ -42,7 +42,7 @@ public abstract class Role {
      *
      * @return yes if hp are under or equal to 0 otherwise false;
      */
-    public boolean isDead() {
+    public boolean theCharacterIsDead() {
         return hp <= 0;
     }
 
