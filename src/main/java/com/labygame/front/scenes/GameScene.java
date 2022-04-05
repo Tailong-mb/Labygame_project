@@ -41,7 +41,7 @@ public class GameScene extends GeneralScene {
         background = new Image("file:doc/images/nature/grass_template.jpg");
         gameBoard = new GameTray();
         trayX = 0;
-        trayY = 0;
+        trayY = 3;
         hero = new Hero(200,
                 CharacterState.NORMAL,
                 "basic",
@@ -247,7 +247,7 @@ public class GameScene extends GeneralScene {
     }
 
     public boolean random1000(){
-        return ((int) (Math.random() * 10)) == 1;
+        return ((int) (Math.random() * 1000)) == 1;
     }
 
     public void changeToFightScene(){
