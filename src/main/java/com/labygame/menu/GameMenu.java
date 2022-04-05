@@ -2,6 +2,7 @@ package com.labygame.menu;
 
 import com.labygame.front.Labygame;
 import com.labygame.front.button.StandardButtonMenu;
+import com.labygame.front.scenes.GameOverScene;
 import com.labygame.items.Item;
 import com.labygame.items.ItemName;
 import com.labygame.personnage.CharacterState;
@@ -64,6 +65,7 @@ public class GameMenu extends Parent {
 
             Hero hero = Save.recuperationSaveHero();
             scenes[GAME_SCENE].setHero(hero);
+            scenes[GAME_OVER_SCENE] = new GameOverScene();
             setScene(GAME_SCENE);
         });
 
@@ -124,6 +126,7 @@ public class GameMenu extends Parent {
                                 put(new Item(10, ItemName.ANTIDOTE, ""), 1);
                                 put(new Item(40, ItemName.HEALPOTION, ""), 3);
                             }});
+                    scenes[GAME_OVER_SCENE] = new GameOverScene();
                     scenes[GAME_SCENE].setHero(hero);
                     music.stopMusic();
                     setScene(GAME_SCENE);
