@@ -18,7 +18,7 @@ public class CreditsScene extends GeneralScene{
     private final Timeline creditTimer;
     private int positionCreditY = 600;
     private final Text credit = new Text("""
-                Congrulations !
+                Congratulations !
 
                 Creators :
                             
