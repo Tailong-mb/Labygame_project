@@ -47,7 +47,7 @@ public class GameScene extends GeneralScene {
         background = new Image("file:doc/images/nature/grass_template.jpg");
         gameBoard = new GameTray();
         trayX = 0;
-        trayY = 3;
+        trayY = 0;
         hero = new Hero(200,
                 CharacterState.NORMAL,
                 "basic",

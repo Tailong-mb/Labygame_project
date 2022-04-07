@@ -1,16 +1,22 @@
 package com.labygame.front.scenes;
 
+import com.labygame.sauvegarde.Save;
 import com.labygame.sound.Music;
 import com.labygame.sound.MusicType;
+import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+
+import static com.labygame.front.Labygame.MENU_SCENE;
+import static com.labygame.front.Labygame.setScene;
 
 public class CreditsScene extends GeneralScene{
 
@@ -53,6 +59,17 @@ public class CreditsScene extends GeneralScene{
         //Launch the animation
         music.playMusic();
         creditTimer.play();
+
+        AnimationTimer timer = new AnimationTimer() {
+            @Override
+            public void handle(long currentNanoTime) {
+                if (activeKeys.contains(KeyCode.ESCAPE)) {
+                    this.stop();
+                    music.stopMusic();
+                    setScene(MENU_SCENE);
+                }
+            }
+        };timer.start();
     }
 
     private void doStep(ActionEvent e){

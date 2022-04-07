@@ -2,6 +2,7 @@ package com.labygame.menu;
 
 import com.labygame.front.Labygame;
 import com.labygame.front.button.StandardButtonMenu;
+import com.labygame.front.scenes.CreditsScene;
 import com.labygame.front.scenes.GameOverScene;
 import com.labygame.front.scenes.GameScene;
 import com.labygame.items.Item;
@@ -79,7 +80,11 @@ public class GameMenu extends Parent {
 
         //"Credits" StandardButtonMenu
         StandardButtonMenu buttonCredit = new StandardButtonMenu("Credits");
-        buttonCredit.setOnMouseClicked(event -> Labygame.setScene(CREDITS_SCENE));
+        buttonCredit.setOnMouseClicked(event -> {
+            scenes[CREDITS_SCENE] = new CreditsScene();
+            music.stopMusic();
+            Labygame.setScene(CREDITS_SCENE);
+        });
 
         //"Exit" StandardButtonMenu to exit the game
         StandardButtonMenu buttonExit = new StandardButtonMenu("Exit");
