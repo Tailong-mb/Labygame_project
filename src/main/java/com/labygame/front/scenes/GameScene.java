@@ -80,13 +80,15 @@ public class GameScene extends GeneralScene {
                 currentTray.draw(gc);
                 hero.getMainCharacter().draw(gc);
 
+                //Verify if the character open the key chest
                 if(checkChestX) {
-                    collisionChest();
+                    collisionKeyChest();
                 }
                 if(checkChestY) {
-                    collisionChest();
+                    collisionKeyChest();
                 }
 
+                //Verify if the character is dead
                 if(hero.theCharacterIsDead())
                 {
                     this.stop();
@@ -243,6 +245,10 @@ public class GameScene extends GeneralScene {
         };timer.start();
     }
 
+    /**
+     * this method create a new Monster with random stats
+     * @return a Monster in order to create a FightScene
+     */
     public Monster createRandomMonster(){
         List<String> possibleMonsterName = Arrays.asList("Barbling","Duskvine","Warptaur","CavernSoul","The Sick Vermin");
         return new Monster(random.nextInt(50) + 50,
@@ -256,6 +262,9 @@ public class GameScene extends GeneralScene {
         return ((int) (Math.random() * 1000)) == 1;
     }
 
+    /**
+     * this method create a new FightScene against a monster or a wizard
+     */
     public void changeToFightScene(){
         if(random.nextBoolean()){
             FightScene fightScene = new FightScene(hero, createRandomMonster());
@@ -269,7 +278,10 @@ public class GameScene extends GeneralScene {
         }
     }
 
-    public void collisionChest(){
+    /**
+     * this method check if the hero enter in collision with the key chest using an attribute of the current gameTrayPiece
+     */
+    public void collisionKeyChest(){
         currentTray.getMyChest().setOpened(true);
         hero.setHaveMagicKey(true);
 
@@ -288,6 +300,9 @@ public class GameScene extends GeneralScene {
         gameBoard.getGameBoard()[4][3].setExitRight(true);
     }
 
+    /**
+     * this method check if the hero enter in collision with a trap using an attribute of the current gameTrayPiece
+     */
     public void checkCollisionTrap(){
         if(hero.collisionX(new Integer[]{positions[8], positions[9], positions[10], positions[11]}) && currentTray.getMyTrap().isVisible()) {
             currentTray.getMyTrap().hurtHero(hero);
