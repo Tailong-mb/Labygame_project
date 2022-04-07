@@ -60,6 +60,11 @@ public class CreditsScene extends GeneralScene{
         music.playMusic();
         creditTimer.play();
 
+        if(activeKeys.contains(KeyCode.ESCAPE)){
+            music.stopMusic();
+            setScene(MENU_SCENE);
+        }
+
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long currentNanoTime) {
