@@ -68,6 +68,7 @@ public class GameMenu extends Parent {
             Hero hero = Save.recuperationSaveHero();
             scenes[GAME_SCENE].setHero(hero);
             scenes[GAME_OVER_SCENE] = new GameOverScene();
+            scenes[CREDITS_SCENE] = new CreditsScene();
             setScene(GAME_SCENE);
         });
 

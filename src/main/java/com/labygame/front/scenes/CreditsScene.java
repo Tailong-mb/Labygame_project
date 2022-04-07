@@ -59,6 +59,7 @@ public class CreditsScene extends GeneralScene{
         //Launch the animation
         music.playMusic();
         creditTimer.play();
+        activeKeys.clear();
 
         AnimationTimer timer = new AnimationTimer() {
             @Override
