@@ -13,8 +13,8 @@ import org.jetbrains.annotations.NotNull;
 import java.util.HashMap;
 import java.util.Random;
 
-import static com.labygame.front.Labygame.GAME_SCENE;
-import static com.labygame.front.Labygame.scenes;
+import static com.labygame.Labygame.GAME_SCENE;
+import static com.labygame.Labygame.scenes;
 
 @JsonSerialize
 @ToString(callSuper=true)

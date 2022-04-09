@@ -1,6 +1,6 @@
 package com.labygame.front.scenes;
 
-import com.labygame.front.Labygame;
+import com.labygame.Labygame;
 import com.labygame.front.button.ItemButton;
 import com.labygame.front.button.StandardButtonMenu;
 import com.labygame.items.Item;

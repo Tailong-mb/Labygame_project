@@ -7,10 +7,6 @@ module com.labygame{
     requires com.fasterxml.jackson.core;
     requires com.fasterxml.jackson.databind;
 
-    exports com.labygame.front;
-    exports com.labygame.front.scenes;
-    exports com.labygame.personnage;
-    exports com.labygame.items;
-    exports com.labygame.riddles;
+    exports com.labygame;
 
 }

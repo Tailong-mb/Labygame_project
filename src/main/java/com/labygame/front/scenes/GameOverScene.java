@@ -1,6 +1,6 @@
 package com.labygame.front.scenes;
 
-import com.labygame.front.Labygame;
+import com.labygame.Labygame;
 import com.labygame.sound.Music;
 import com.labygame.sound.MusicType;
 import javafx.animation.KeyFrame;

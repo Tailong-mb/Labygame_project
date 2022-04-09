@@ -1,4 +1,4 @@
-package com.labygame.front;
+package com.labygame.front.maincharacter;
 
 import javafx.scene.image.Image;
 import lombok.Getter;

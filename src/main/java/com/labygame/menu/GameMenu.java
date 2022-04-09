@@ -1,6 +1,6 @@
 package com.labygame.menu;
 
-import com.labygame.front.Labygame;
+import com.labygame.Labygame;
 import com.labygame.front.button.StandardButtonMenu;
 import com.labygame.front.scenes.CreditsScene;
 import com.labygame.front.scenes.GameOverScene;
@@ -26,7 +26,7 @@ import javafx.util.Duration;
 
 import java.util.HashMap;
 
-import static com.labygame.front.Labygame.*;
+import static com.labygame.Labygame.*;
 
 public class GameMenu extends Parent {
 

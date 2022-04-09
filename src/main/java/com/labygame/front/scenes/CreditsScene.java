@@ -1,6 +1,5 @@
 package com.labygame.front.scenes;
 
-import com.labygame.sauvegarde.Save;
 import com.labygame.sound.Music;
 import com.labygame.sound.MusicType;
 import javafx.animation.AnimationTimer;
@@ -15,8 +14,8 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
-import static com.labygame.front.Labygame.MENU_SCENE;
-import static com.labygame.front.Labygame.setScene;
+import static com.labygame.Labygame.MENU_SCENE;
+import static com.labygame.Labygame.setScene;
 
 public class CreditsScene extends GeneralScene{
 

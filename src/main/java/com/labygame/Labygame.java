@@ -1,4 +1,4 @@
-package com.labygame.front;
+package com.labygame;
 
 import com.labygame.front.scenes.*;
 import javafx.application.Application;
